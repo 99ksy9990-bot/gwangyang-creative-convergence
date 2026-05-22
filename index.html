@@ -1,0 +1,3231 @@
+<!doctype html>
+<!-- Codex local-edit copy -->
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>기후, 기술, 그리고 광양의 미래</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Pretendard -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+<!-- Optional: serif fallback for mood option -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  @font-face {
+    font-family: "A2G Body";
+    src: url("./assets/fonts/a2g-regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ====== INDUSTRIAL CLIMATE TRANSITION SYSTEM ================== */
+  :root {
+    --bg:        #070809;
+    --bg-2:      #0E1114;
+    --panel:     #111418;
+    --text-main: #F4F4F5;
+    --text-sub:  rgba(244,244,245,0.68);
+    --text-dim:  rgba(244,244,245,0.38);
+    --rule:      rgba(244,244,245,0.12);
+    --carbon:    #FF6B35;
+    --carbon-dark: #C2410C;
+    --transition: #22D3EE;
+    --transition-soft: #67E8F9;
+    --human:     #91F7BA;
+    --steel:     #9CA3AF;
+    --fg:        var(--text-main);
+    --fg-muted:  var(--text-sub);
+    --fg-dim:    var(--text-dim);
+    --accent:    var(--carbon);
+    --accent-2:  var(--transition);
+    --accent-3:  var(--human);
+    --font-head: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Segoe UI", sans-serif;
+    --font-sans: "A2G Body", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Segoe UI", sans-serif;
+    --font-body: var(--font-sans);
+    --font-mono: var(--font-sans);
+    --font-disp: var(--font-head);
+    --t-scale:   1;       /* text scale */
+    --t-dur:     900ms;   /* transition duration */
+    --t-easing:  cubic-bezier(.22,.61,.36,1);
+  }
+
+  [data-mood="dark"],
+  [data-mood="light"] {
+    --bg: #070809; --bg-2: #0E1114; --panel: #111418;
+    --fg: var(--text-main); --fg-muted: var(--text-sub); --fg-dim: var(--text-dim);
+    --rule: rgba(244,244,245,0.12);
+  }
+  [data-mood="editorial"] {
+    --bg: #070809; --bg-2: #0E1114; --panel: #111418;
+    --font-disp: "Noto Serif KR", "Pretendard Variable", serif;
+  }
+
+  /* ====== GLOBAL ============================================== */
+  html, body { background: #000; margin: 0; padding: 0; color: var(--fg); font-family: var(--font-sans); }
+  body { overflow: hidden; }
+  deck-stage,
+  deck-stage * {
+    letter-spacing: normal !important;
+  }
+
+  deck-stage:not(:defined) { visibility: hidden; }
+
+  /* Slide root */
+  deck-stage > section {
+    --slide-bg: var(--bg);
+    --stage-a: var(--carbon);
+    --stage-b: var(--transition);
+    --stage-c: var(--steel);
+    background:
+      radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--stage-a) 18%, transparent) 0%, transparent 30%),
+      radial-gradient(circle at 82% 78%, color-mix(in srgb, var(--stage-b) 12%, transparent) 0%, transparent 34%),
+      linear-gradient(180deg, rgba(244,244,245,0.035) 0%, rgba(244,244,245,0.006) 34%, rgba(0,0,0,0.18) 100%),
+      linear-gradient(135deg, #0E1114 0%, #070809 52%, #030405 100%);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01" 1, "tnum" 1;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    position: relative;
+  }
+  deck-stage > section:nth-of-type(4),
+  deck-stage > section:nth-of-type(5),
+  deck-stage > section:nth-of-type(6) {
+    --stage-a: var(--carbon);
+    --stage-b: var(--carbon-dark);
+    --accent: var(--carbon);
+    --accent-2: var(--transition);
+  }
+  deck-stage > section:nth-of-type(7),
+  deck-stage > section:nth-of-type(8),
+  deck-stage > section:nth-of-type(9),
+  deck-stage > section:nth-of-type(10) {
+    --stage-a: var(--transition);
+    --stage-b: var(--transition-soft);
+    --accent: var(--transition);
+    --accent-2: var(--transition-soft);
+  }
+  deck-stage > section:nth-of-type(11) {
+    --stage-a: var(--human);
+    --stage-b: var(--transition);
+    --accent: var(--human);
+    --accent-2: var(--human);
+  }
+  deck-stage > section:nth-of-type(12),
+  deck-stage > section:nth-of-type(13),
+  deck-stage > section:nth-of-type(14),
+  deck-stage > section:nth-of-type(15) {
+    --stage-a: var(--human);
+    --stage-b: var(--human);
+    --accent: var(--human);
+    --accent-2: var(--human);
+  }
+  deck-stage > section:nth-of-type(16) {
+    --stage-a: var(--human);
+    --stage-b: var(--transition);
+    --accent: var(--human);
+    --accent-2: var(--transition);
+  }
+  deck-stage > section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(244,244,245,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,244,245,0.035) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 74%);
+    opacity: 0.65;
+    pointer-events: none;
+  }
+  deck-stage > section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.42), transparent 18%, transparent 82%, rgba(0,0,0,0.38)),
+      linear-gradient(180deg, rgba(0,0,0,0.18), transparent 36%, rgba(0,0,0,0.44));
+    pointer-events: none;
+  }
+
+  /* ====== TRANSITIONS ========================================== */
+  /* "fade+slide" — fades + slides from right */
+  [data-transition="fade-slide"] deck-stage > section[data-deck-active] .slide-inner {
+    animation: tx-fadeslide var(--t-dur) var(--t-easing) both;
+  }
+  @keyframes tx-fadeslide {
+    from { opacity: 0; transform: translate3d(80px, 0, 0); filter: blur(8px); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+  }
+
+  /* "fade" — pure fade */
+  [data-transition="fade"] deck-stage > section[data-deck-active] .slide-inner {
+    animation: tx-fade var(--t-dur) var(--t-easing) both;
+  }
+  @keyframes tx-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  /* "scale" — scale-in cinematic */
+  [data-transition="scale"] deck-stage > section[data-deck-active] .slide-inner {
+    animation: tx-scale var(--t-dur) var(--t-easing) both;
+  }
+  @keyframes tx-scale {
+    from { opacity: 0; transform: scale(1.04); filter: blur(10px); }
+    to   { opacity: 1; transform: scale(1); filter: blur(0); }
+  }
+
+  /* "parallax" — text and bg move at different rates (handled in JS for bg) */
+  [data-transition="parallax"] deck-stage > section[data-deck-active] .slide-inner {
+    animation: tx-parallax-text var(--t-dur) var(--t-easing) both;
+  }
+  [data-transition="parallax"] deck-stage > section[data-deck-active] .bg-layer {
+    animation: tx-parallax-bg calc(var(--t-dur) * 1.4) var(--t-easing) both;
+  }
+  @keyframes tx-parallax-text {
+    from { opacity: 0; transform: translate3d(60px, 0, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+  @keyframes tx-parallax-bg {
+    from { opacity: 0; transform: scale(1.08) translate3d(-30px, 0, 0); }
+    to   { opacity: 1; transform: scale(1) translate3d(0, 0, 0); }
+  }
+
+  /* ====== SLIDE LAYOUTS ======================================== */
+  .slide-inner {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    padding: 150px 128px 92px;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+  .slide-inner::before {
+    content: "";
+    position: absolute;
+    top: 78px;
+    left: 102px;
+    z-index: 0;
+    font-family: var(--font-disp);
+    font-size: calc(250px * var(--t-scale));
+    line-height: 0.85;
+    font-weight: 700;
+    letter-spacing: 0;
+    color: color-mix(in srgb, var(--stage-c) 10%, transparent);
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .slide-inner > * { position: relative; z-index: 1; }
+  .slide-inner.center { justify-content: center; }
+  .slide-inner.end    { justify-content: flex-end; }
+  .slide-inner.split  { padding: 0; flex-direction: row; }
+  deck-stage > section:nth-of-type(1) > .slide-inner {
+    justify-content: flex-start;
+    padding-top: 250px;
+    padding-bottom: 92px;
+  }
+  deck-stage > section:nth-of-type(1) > .slide-inner > .row {
+    margin-top: 108px !important;
+  }
+  deck-stage > section:nth-of-type(13) > .slide-inner,
+  deck-stage > section:nth-of-type(14) > .slide-inner,
+  deck-stage > section:nth-of-type(15) > .slide-inner {
+    padding-top: 205px;
+  }
+
+  /* chapter navigation — part of the slide canvas, not external UI */
+  .nav-shell {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100% - 240px);
+    height: 74px;
+    padding: 0 28px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 44px;
+    border-radius: 999px;
+    background: rgba(10, 10, 12, 0.72);
+    border: 1px solid rgba(245,245,247,0.12);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.28);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    z-index: 20;
+  }
+  .nav-brand {
+    font-family: var(--font-sans);
+    font-weight: 750;
+    font-size: calc(22px * var(--t-scale));
+    color: #f5f5f7;
+    letter-spacing: 0;
+    white-space: nowrap;
+    padding: 13px 24px;
+    border-radius: 999px;
+    line-height: 1;
+  }
+  .nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .nav-tab {
+    appearance: none;
+    border: 0;
+    border-radius: 999px;
+    padding: 13px 24px;
+    background: transparent;
+    color: rgba(245,245,247,0.58);
+    font-family: var(--font-sans);
+    font-size: calc(21px * var(--t-scale));
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+  }
+  .nav-tab:hover {
+    color: rgba(245,245,247,0.78);
+    background: rgba(245,245,247,0.055);
+  }
+  .nav-tab.active {
+    background: var(--carbon);
+    color: #0a0a0c;
+    box-shadow: 0 0 28px rgba(255,107,53,0.28);
+    font-weight: 750;
+  }
+  .nav-tab[data-chapter="transition"].active,
+  .nav-tab[data-chapter="platform"].active {
+    background: var(--transition);
+    color: #041113;
+    box-shadow: 0 0 28px rgba(34,211,238,0.24);
+  }
+  .nav-tab[data-chapter="jobs"].active,
+  .nav-tab[data-chapter="choice"].active {
+    background: var(--human);
+    color: #07100a;
+    box-shadow: 0 0 28px rgba(145,247,186,0.22);
+  }
+  .page-turn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 68px;
+    height: 68px;
+    border-radius: 999px;
+    border: 1px solid rgba(245,245,247,0.14);
+    background: rgba(10,10,12,0.58);
+    color: rgba(245,245,247,0.78);
+    display: grid;
+    place-items: center;
+    z-index: 24;
+    cursor: pointer;
+    box-shadow: 0 18px 46px rgba(0,0,0,0.28);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+    opacity: 0.62;
+    transition: opacity 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
+  }
+  .page-turn:hover {
+    opacity: 1;
+    background: rgba(17,20,24,0.82);
+    border-color: rgba(245,245,247,0.24);
+    transform: translateY(-50%) scale(1.04);
+  }
+  .page-turn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+  }
+  .page-turn svg {
+    width: 34px;
+    height: 34px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .page-turn-prev { left: 36px; }
+  .page-turn-next { right: 36px; }
+  .page-turn[disabled] {
+    opacity: 0.14;
+    pointer-events: none;
+  }
+
+  /* eyebrow / chrome */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: calc(17px * var(--t-scale));
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+    display: flex; gap: 24px; align-items: center;
+    white-space: nowrap;
+  }
+  .eyebrow > * { white-space: nowrap; }
+  .eyebrow .dot {
+    width: 6px; height: 6px; background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+
+  .slide-num {
+    position: absolute; top: 56px; right: 96px;
+    font-family: var(--font-mono);
+    font-size: calc(18px * var(--t-scale));
+    color: var(--fg-dim);
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  .footer-mark {
+    position: absolute; bottom: 56px; left: 120px;
+    font-family: var(--font-mono);
+    font-size: calc(18px * var(--t-scale));
+    color: var(--fg-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 2;
+  }
+  .source-note {
+    position: absolute; right: 96px; bottom: 56px;
+    max-width: 920px;
+    font-family: var(--font-mono);
+    font-size: calc(16px * var(--t-scale));
+    line-height: 1.55;
+    color: var(--fg-dim);
+    text-align: right;
+    letter-spacing: 0.02em;
+    z-index: 2;
+  }
+
+  /* typography scale */
+  .display {
+    font-family: var(--font-disp);
+    font-weight: 750;
+    font-size: calc(132px * var(--t-scale));
+    line-height: 1.04;
+    letter-spacing: 0;
+    margin: 0;
+    word-break: keep-all;
+  }
+  .h1 { font-family: var(--font-disp); font-weight: 720; font-size: calc(92px * var(--t-scale)); line-height: 1.05; letter-spacing: 0; margin: 0; word-break: keep-all; }
+  .h2 { font-family: var(--font-disp); font-weight: 700; font-size: calc(66px * var(--t-scale)); line-height: 1.10; letter-spacing: 0; margin: 0; word-break: keep-all; }
+  .h3 { font-family: var(--font-disp); font-weight: 620; font-size: calc(46px * var(--t-scale)); line-height: 1.16; letter-spacing: 0; margin: 0; }
+  .body-lg { font-family: var(--font-body); font-size: calc(28px * var(--t-scale)); line-height: 1.45; color: var(--fg-muted); font-weight: 400; margin: 0; max-width: 1200px; }
+  .body    { font-family: var(--font-body); font-size: calc(22px * var(--t-scale)); line-height: 1.55; color: var(--fg-muted); font-weight: 400; margin: 0; max-width: 1000px; }
+  .small   { font-family: var(--font-body); font-size: calc(20px * var(--t-scale)); line-height: 1.5; color: var(--fg-dim); font-weight: 400; margin: 0; }
+  .mono    { font-family: var(--font-mono); }
+
+  .mono,
+  .tag,
+  .eyebrow,
+  .slide-num,
+  .footer-mark,
+  .source-note,
+  .chart-svg text,
+  .tax-labels text,
+  .tax-year,
+  .tax-legend,
+  .bar .val,
+  .bar-label {
+    font-family: "A2G Body", var(--font-sans) !important;
+    letter-spacing: normal !important;
+  }
+
+  .accent  { color: var(--accent); text-shadow: 0 0 28px color-mix(in srgb, var(--accent) 28%, transparent); }
+  .accent-2{
+    color: var(--accent-2);
+    text-shadow: 0 0 28px color-mix(in srgb, var(--accent-2) 24%, transparent);
+  }
+  .mute    { color: var(--fg-muted); }
+  .dim     { color: var(--fg-dim); }
+
+  .stack > * + * { margin-top: 24px; }
+  .stack-lg > * + * { margin-top: 48px; }
+  .stack-sm > * + * { margin-top: 12px; }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* ====== KICKER / TAG ========================================= */
+  .tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: calc(16px * var(--t-scale));
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    padding: 9px 16px;
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    background: rgba(17,20,24,0.78);
+    box-shadow: 0 18px 42px rgba(0,0,0,0.25);
+  }
+  .tag .dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 58%, transparent);
+  }
+
+  /* ====== IMAGE SLOT styling (overrides) ====================== */
+  image-slot {
+    background:
+      linear-gradient(135deg, rgba(255,107,53,0.08), rgba(34,211,238,0.06)),
+      var(--bg-2);
+    border: 1px solid var(--rule);
+    color: var(--fg-muted);
+    font-family: var(--font-mono);
+    box-shadow: none;
+  }
+  .bg-layer image-slot,
+  .slide-inner.split > div > image-slot {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ====== CHARTS ============================================== */
+  .bar-row { display: flex; align-items: flex-end; gap: 56px; height: 360px; }
+  .bar-col { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .bar {
+    width: 120px;
+    background: linear-gradient(180deg, var(--carbon), var(--carbon-dark));
+    border-radius: 3px 3px 0 0;
+    position: relative;
+    transform-origin: bottom;
+    box-shadow: 0 0 34px rgba(255,107,53,0.20);
+  }
+  .bar.muted { background: linear-gradient(180deg, var(--steel), rgba(156,163,175,0.38)); box-shadow: none; }
+  .bar .val { position: absolute; top: -42px; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: calc(20px * var(--t-scale)); color: var(--fg); white-space: nowrap; }
+  .bar-label { font-family: var(--font-mono); font-size: calc(20px * var(--t-scale)); color: var(--fg-dim); text-transform: uppercase; letter-spacing: 0.15em; }
+
+  /* line chart svg */
+  .chart-svg { width: 100%; height: 320px; overflow: visible; }
+  .chart-svg .grid { stroke: rgba(244,244,245,0.10); stroke-width: 1; }
+  .chart-svg .axis { stroke: rgba(244,244,245,0.16); stroke-width: 1; }
+  .chart-svg .line-down { stroke: var(--carbon); stroke-width: 4; fill: none; stroke-linecap: round; filter: drop-shadow(0 0 10px rgba(255,107,53,0.22)); }
+  .chart-svg .line-up   { stroke: var(--accent); stroke-width: 4; fill: none; stroke-linecap: round; filter: none; }
+  .chart-svg .pt { fill: var(--carbon); }
+  .chart-svg .pt-up { fill: var(--accent); }
+  .chart-svg text { fill: var(--fg-dim); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; }
+
+  /* ====== TAX DATA SLIDE ======================================= */
+  .tax-trend-slide {
+    padding: 150px 120px 92px;
+  }
+  .tax-trend-layout {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .tax-trend-copy { max-width: 720px; }
+  .tax-period {
+    margin-top: 32px;
+    display: grid;
+    gap: 6px;
+  }
+  .tax-period .small {
+    color: rgba(245,245,247,0.64);
+  }
+  .tax-number-pair {
+    margin-top: 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 28px;
+    white-space: nowrap;
+  }
+  .tax-old {
+    font-family: var(--font-disp);
+    font-size: calc(94px * var(--t-scale));
+    font-weight: 700;
+    line-height: 0.95;
+    color: rgba(245,245,247,0.34);
+    text-decoration: line-through;
+    text-decoration-color: var(--carbon);
+    text-decoration-thickness: 5px;
+  }
+  .tax-arrow {
+    font-family: var(--font-disp);
+    font-size: calc(54px * var(--t-scale));
+    color: rgba(245,245,247,0.34);
+  }
+  .countdown-number,
+  .tax-new {
+    font-family: var(--font-disp);
+    font-size: calc(104px * var(--t-scale));
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0;
+  }
+  .tax-drop {
+    margin-top: 18px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 520ms ease, transform 520ms ease;
+  }
+  .tax-trend-slide.tax-animated .tax-drop,
+  .tax-trend-slide.tax-ready .tax-drop {
+    opacity: 1;
+    transform: none;
+  }
+  .tax-sub { margin-top: 24px; max-width: 690px; }
+  .tax-posco-note {
+    margin-top: 26px;
+    max-width: 680px;
+    color: rgba(245,245,247,0.62);
+  }
+  .tax-insight {
+    margin-top: 34px;
+    padding-left: 22px;
+    border-left: 3px solid var(--carbon);
+    color: rgba(245,245,247,0.72);
+    font-size: calc(24px * var(--t-scale));
+    line-height: 1.45;
+    max-width: 720px;
+  }
+  .tax-trend-card {
+    border: 1px solid rgba(245,245,247,0.12);
+    border-radius: 22px;
+    background:
+      radial-gradient(circle at 88% 10%, rgba(79,195,247,0.08), transparent 34%),
+      radial-gradient(circle at 8% 92%, rgba(255,107,53,0.08), transparent 36%),
+      linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018));
+    padding: 28px 38px 26px;
+    box-shadow: 0 28px 90px rgba(0,0,0,0.30);
+  }
+  .tax-card-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .tax-card-head .small + .small { margin-top: 4px; }
+  .tax-line-chart {
+    width: 100%;
+    height: 392px;
+    overflow: visible;
+  }
+  .tax-grid {
+    stroke: rgba(245,245,247,0.10);
+    stroke-width: 1;
+  }
+  .tax-axis {
+    stroke: rgba(245,245,247,0.17);
+    stroke-width: 1.2;
+  }
+  .tax-area {
+    fill: rgba(255,107,53,0.08);
+    opacity: 0;
+    transition: opacity 520ms ease 680ms;
+  }
+  .tax-line {
+    fill: none;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-dashoffset 900ms cubic-bezier(.22,.61,.36,1);
+  }
+  .tax-line.total {
+    stroke: var(--carbon);
+    filter: drop-shadow(0 0 12px rgba(255,107,53,0.22));
+  }
+  .tax-line.posco {
+    stroke: var(--accent-2);
+    filter: drop-shadow(0 0 12px rgba(34,211,238,0.18));
+    transition-delay: 250ms;
+  }
+  .tax-markers,
+  .tax-labels {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 360ms ease, transform 360ms ease;
+  }
+  .tax-markers.total,
+  .tax-labels.total { transition-delay: 900ms; }
+  .tax-markers.posco,
+  .tax-labels.posco { transition-delay: 1120ms; }
+  .tax-markers circle {
+    fill: var(--bg);
+    stroke-width: 4;
+  }
+  .tax-markers.total circle { stroke: var(--carbon); }
+  .tax-markers.posco circle { stroke: var(--accent-2); }
+  .tax-labels text {
+    font-family: var(--font-mono);
+    font-size: calc(20px * var(--t-scale));
+    fill: var(--fg);
+    paint-order: stroke;
+    stroke: rgba(7,8,9,0.92);
+    stroke-width: 5px;
+    stroke-linejoin: round;
+  }
+  .tax-labels.total text { fill: #ff9a5e; }
+  .tax-labels.posco text { fill: var(--transition-soft); }
+  .tax-year {
+    font-family: var(--font-mono);
+    font-size: calc(18px * var(--t-scale));
+    fill: rgba(245,245,247,0.42);
+    letter-spacing: 0.12em;
+  }
+  .tax-trend-slide.tax-animated .tax-area,
+  .tax-trend-slide.tax-ready .tax-area {
+    opacity: 1;
+  }
+  .tax-trend-slide.tax-animated .tax-markers,
+  .tax-trend-slide.tax-animated .tax-labels,
+  .tax-trend-slide.tax-ready .tax-markers,
+  .tax-trend-slide.tax-ready .tax-labels {
+    opacity: 1;
+    transform: none;
+  }
+  .tax-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px 28px;
+    margin-top: 8px;
+    font-family: var(--font-body);
+    font-size: calc(18px * var(--t-scale));
+    color: rgba(245,245,247,0.66);
+  }
+  .tax-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+  }
+  .tax-legend i {
+    width: 28px;
+    height: 4px;
+    border-radius: 999px;
+    display: inline-block;
+  }
+  .legend-total { background: var(--carbon); }
+  .legend-posco { background: var(--accent-2); }
+
+  /* ====== UTILS =============================================== */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 56px; align-items: start; }
+  .col { display: flex; flex-direction: column; }
+  .row { display: flex; }
+  .gap-12 { gap: 12px; } .gap-24 { gap: 24px; } .gap-48 { gap: 48px; } .gap-80 { gap: 80px; }
+  .num-big { font-family: var(--font-disp); font-weight: 650; font-size: calc(198px * var(--t-scale)); line-height: 0.9; letter-spacing: 0; }
+  .num-mid { font-family: var(--font-disp); font-weight: 650; font-size: calc(118px * var(--t-scale)); line-height: 0.9; letter-spacing: 0; }
+  .prep-header {
+    align-items: flex-end;
+    gap: 80px;
+  }
+  .prep-title {
+    flex: 1;
+    padding-bottom: 4px;
+  }
+  .prep-num { transform: none; }
+  .prep-card {
+    min-height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .prep-card .body { max-width: 100%; }
+
+  /* card */
+  .card {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 40px;
+    background:
+      linear-gradient(180deg, rgba(244,244,245,0.055), rgba(244,244,245,0.018)),
+      var(--panel);
+    box-shadow: 0 24px 58px rgba(0,0,0,0.30);
+  }
+  [data-mood="light"] .card { background: linear-gradient(180deg, rgba(244,244,245,0.055), rgba(244,244,245,0.018)), var(--panel); }
+
+  /* numbered list */
+  .step { display: flex; gap: 32px; align-items: baseline; }
+  .step .n {
+    font-family: var(--font-mono); font-size: calc(20px * var(--t-scale));
+    color: var(--accent); letter-spacing: 0.15em; min-width: 60px;
+    text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  .job-step {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 26px;
+    align-items: start;
+  }
+  .job-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+    background: radial-gradient(circle at 35% 28%, color-mix(in srgb, var(--accent) 26%, transparent), rgba(244,244,245,0.035));
+    box-shadow: 0 0 28px color-mix(in srgb, var(--accent) 18%, transparent);
+  }
+  .job-icon svg {
+    width: 34px;
+    height: 34px;
+    stroke: var(--accent);
+    stroke-width: 2.7;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .job-icon.down { --accent: var(--carbon); }
+  .job-icon.up { --accent: var(--accent-2); }
+  .job-icon.equal { --accent: var(--human); }
+
+  /* ====== SYSTEM STRATEGY SLIDES ============================== */
+  .system-slide {
+    padding: 150px 120px 92px;
+  }
+  .system-title {
+    margin-top: 30px;
+    max-width: 980px;
+  }
+  .system-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+  .system-card {
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 18px;
+    padding: 28px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.018)),
+      rgba(17,20,24,0.76);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+    overflow: hidden;
+  }
+  .system-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 28px;
+    right: 28px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 24px color-mix(in srgb, var(--accent) 34%, transparent);
+  }
+  .system-card .h3 {
+    font-size: calc(34px * var(--t-scale));
+    line-height: 1.12;
+  }
+  .system-card .body,
+  .system-card .small {
+    max-width: 100%;
+  }
+  .system-note {
+    margin-top: 34px;
+    padding-left: 22px;
+    border-left: 3px solid var(--accent);
+    color: rgba(245,245,247,0.78);
+  }
+  .compare-card .label {
+    margin-top: 22px;
+    font-family: "A2G Body", var(--font-sans);
+    font-size: calc(17px * var(--t-scale));
+    color: var(--accent);
+  }
+  .xchange-wrap {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: 1fr 360px 1fr;
+    gap: 42px;
+    align-items: center;
+  }
+  .x-list {
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+  }
+  .x-list.down { --accent: var(--carbon); }
+  .x-list.up { --accent: var(--human); }
+  .x-item {
+    padding: 16px 18px;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.035);
+    color: rgba(245,245,247,0.76);
+    font-family: "A2G Body", var(--font-sans);
+    font-size: calc(21px * var(--t-scale));
+  }
+  .x-diagram {
+    height: 360px;
+  }
+  .x-diagram .x-arrow {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 12px rgba(34,211,238,0.22));
+  }
+  .venn-wrap {
+    margin-top: 44px;
+    position: relative;
+    height: 430px;
+  }
+  .venn-circle {
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    box-shadow: 0 0 46px color-mix(in srgb, var(--accent) 14%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 54px;
+    box-sizing: border-box;
+  }
+  .venn-env { --accent: var(--transition); left: 360px; top: 0; }
+  .venn-economy { --accent: var(--carbon); left: 185px; top: 132px; }
+  .venn-social { --accent: var(--human); left: 535px; top: 132px; }
+  .venn-center {
+    position: absolute;
+    left: 430px;
+    top: 186px;
+    width: 300px;
+    padding: 22px 26px;
+    border-radius: 16px;
+    border: 1px solid rgba(245,245,247,0.38);
+    background: rgba(7,8,9,0.82);
+    text-align: center;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.42);
+  }
+  .hub-wrap {
+    margin-top: 54px;
+    position: relative;
+    height: 520px;
+  }
+  .hub-center {
+    position: absolute;
+    left: 50%;
+    top: 178px;
+    transform: translateX(-50%);
+    width: 360px;
+    height: 180px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--human) 72%, transparent);
+    background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--human) 22%, transparent), rgba(255,255,255,0.035));
+    box-shadow: 0 0 60px color-mix(in srgb, var(--human) 18%, transparent);
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+  .hub-node {
+    position: absolute;
+    width: 330px;
+    padding: 26px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.035);
+    box-shadow: 0 22px 60px rgba(0,0,0,0.28);
+  }
+  .hub-node.left { left: 70px; top: 100px; }
+  .hub-node.right { right: 70px; top: 100px; }
+  .hub-node.bottom { left: 50%; bottom: 28px; transform: translateX(-50%); }
+  .hub-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .hub-lines path {
+    fill: none;
+    stroke: color-mix(in srgb, var(--human) 58%, transparent);
+    stroke-width: 2;
+    stroke-dasharray: 8 10;
+  }
+  .capability-card .h3 {
+    font-size: calc(38px * var(--t-scale));
+  }
+  .blueprint-map {
+    margin-top: 44px;
+    position: relative;
+    height: 500px;
+    border: 1px solid rgba(34,211,238,0.14);
+    border-radius: 22px;
+    background:
+      linear-gradient(rgba(34,211,238,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(34,211,238,0.045) 1px, transparent 1px),
+      radial-gradient(circle at 50% 45%, rgba(34,211,238,0.11), transparent 42%),
+      linear-gradient(180deg, rgba(7,8,9,0.48), rgba(7,8,9,0.70)),
+      rgba(255,255,255,0.018);
+    background-size: 58px 58px, 58px 58px, auto, auto, auto;
+    overflow: hidden;
+  }
+  .blueprint-center {
+    position: absolute;
+    left: 50%;
+    top: 190px;
+    transform: translateX(-50%);
+    width: 360px;
+    padding: 28px;
+    border-radius: 18px;
+    border: 1px solid color-mix(in srgb, var(--transition) 62%, transparent);
+    background: rgba(7,8,9,0.82);
+    text-align: center;
+    box-shadow: 0 0 54px rgba(34,211,238,0.16);
+  }
+  .blueprint-node {
+    position: absolute;
+    width: 300px;
+    padding: 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.035);
+  }
+  .blueprint-node.n1 { left: 72px; top: 62px; }
+  .blueprint-node.n2 { right: 72px; top: 62px; }
+  .blueprint-node.n3 { left: 72px; bottom: 62px; }
+  .blueprint-node.n4 { right: 72px; bottom: 62px; --accent: var(--human); }
+  .blueprint-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .blueprint-lines path {
+    fill: none;
+    stroke: rgba(34,211,238,0.46);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  /* stabilized system layouts for 10-15 */
+  section[data-label="10 Global Cases"] .system-slide,
+  section[data-label="11 Jobs"] .system-slide,
+  section[data-label="12 Just Transition Intro"] .system-slide,
+  section[data-label="13 Just Transition"] .system-slide,
+  section[data-label="14 Capabilities"] .system-slide,
+  section[data-label="15 Teamplay"] .system-slide {
+    padding: 150px 120px 90px;
+    overflow: hidden;
+  }
+  section[data-label="10 Global Cases"] .system-title,
+  section[data-label="11 Jobs"] .system-title,
+  section[data-label="12 Just Transition Intro"] .system-title,
+  section[data-label="13 Just Transition"] .system-title,
+  section[data-label="14 Capabilities"] .system-title,
+  section[data-label="15 Teamplay"] .system-title {
+    margin-top: 28px;
+    max-width: 960px;
+    font-size: calc(66px * var(--t-scale));
+    line-height: 1.12;
+    font-weight: 750;
+    word-break: keep-all;
+  }
+  section[data-label="10 Global Cases"] .system-card,
+  section[data-label="11 Jobs"] .system-card,
+  section[data-label="12 Just Transition Intro"] .system-card,
+  section[data-label="13 Just Transition"] .system-card,
+  section[data-label="14 Capabilities"] .system-card,
+  section[data-label="15 Teamplay"] .system-card {
+    box-sizing: border-box;
+    overflow: visible;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 18px;
+    padding: 28px 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    min-width: 0;
+  }
+  .system-tight-note {
+    margin-top: 30px;
+    max-width: 900px;
+    padding-left: 22px;
+    border-left: 3px solid var(--accent);
+    color: rgba(245,245,247,0.74);
+  }
+  .case-grid {
+    margin-top: 42px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+  .case-card {
+    min-height: 260px;
+    padding: 30px 34px;
+  }
+  .case-subtitle {
+    margin-top: 24px;
+    max-width: 820px;
+    color: rgba(245,245,247,0.60);
+  }
+  .case-number {
+    font-family: var(--font-mono);
+    font-size: calc(18px * var(--t-scale));
+    color: var(--accent-2);
+    letter-spacing: 0.12em !important;
+  }
+  .case-model {
+    margin-top: 18px;
+    font-size: calc(38px * var(--t-scale));
+    line-height: 1.14;
+    font-weight: 750;
+    color: var(--fg);
+  }
+  .case-name {
+    margin-top: 26px;
+    font-size: calc(22px * var(--t-scale));
+    line-height: 1.35;
+    color: var(--accent-2);
+    font-weight: 600;
+  }
+  .case-desc {
+    margin-top: 14px;
+    font-size: calc(23px * var(--t-scale));
+    line-height: 1.45;
+    color: rgba(245,245,247,0.68);
+    word-break: keep-all;
+  }
+  .case-summary-box {
+    margin-top: 34px;
+    width: min(1280px, 100%);
+    padding: 2px 0 2px 26px;
+    border-left: 3px solid var(--accent-2);
+    display: grid;
+    grid-template-columns: 0.88fr 1.35fr;
+    gap: 44px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent-2) 6%, transparent), transparent 72%);
+  }
+  .case-summary-box .summary-label {
+    font-family: var(--font-mono);
+    font-size: calc(17px * var(--t-scale));
+    line-height: 1.45;
+    color: rgba(245,245,247,0.48);
+    margin: 0 0 8px;
+  }
+  .case-summary-box .summary-label.warning { color: color-mix(in srgb, var(--carbon) 78%, rgba(245,245,247,0.45)); }
+  .case-summary-box .summary-value {
+    font-size: calc(23px * var(--t-scale));
+    line-height: 1.45;
+    color: rgba(245,245,247,0.76);
+    margin: 0;
+    word-break: keep-all;
+  }
+  .case-summary-box .summary-value strong {
+    color: var(--accent-2);
+    font-weight: 700;
+  }
+  .case-row {
+    margin-top: 18px;
+    display: grid;
+    gap: 6px;
+  }
+  .case-row .small {
+    color: var(--accent);
+  }
+  .case-row .body {
+    font-size: calc(20px * var(--t-scale));
+    line-height: 1.45;
+  }
+  .jobs-system-grid {
+    margin-top: 54px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px minmax(0, 1fr);
+    gap: 46px;
+    align-items: center;
+  }
+  .jobs-list-card {
+    min-height: 390px;
+  }
+  .jobs-list-card .x-item {
+    font-size: calc(20px * var(--t-scale));
+    padding: 15px 18px;
+  }
+  .trilemma-layout {
+    margin-top: 52px;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .balance-board {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    align-items: stretch;
+  }
+  .balance-card {
+    min-height: 148px;
+  }
+  .balance-card.env { --accent: var(--transition); }
+  .balance-card.economy { --accent: var(--carbon); }
+  .balance-card.social { --accent: var(--human); }
+  section[data-label="12 Just Transition Intro"] .balance-card {
+    --accent: var(--human);
+  }
+  .balance-center {
+    grid-column: 1 / -1;
+    text-align: center;
+    border-color: rgba(245,245,247,0.28);
+    background: rgba(7,8,9,0.72);
+  }
+  .jt-concept-layout {
+    margin-top: 34px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.88fr) minmax(640px, 0.96fr);
+    gap: 76px;
+    align-items: start;
+  }
+  .jt-copy {
+    max-width: 760px;
+  }
+  .jt-copy .body-lg {
+    color: rgba(245,245,247,0.68);
+    word-break: keep-all;
+  }
+  .jt-copy .system-tight-note {
+    margin-top: 30px;
+    max-width: 720px;
+  }
+  .jt-flow {
+    width: 100%;
+    min-height: 320px;
+    box-sizing: border-box;
+  }
+  .jt-flow-title {
+    margin: 0 0 14px;
+    font-family: var(--font-mono);
+    font-size: calc(17px * var(--t-scale));
+    letter-spacing: 0.14em !important;
+    color: rgba(245,245,247,0.54);
+  }
+  .jt-flow-stack {
+    display: grid;
+    gap: 4px;
+  }
+  .jt-flow-card {
+    position: relative;
+    min-height: 84px;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 22px;
+    align-items: center;
+    padding: 14px 28px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background:
+      radial-gradient(circle at 92% 24%, color-mix(in srgb, var(--step-accent) 10%, transparent), transparent 34%),
+      linear-gradient(180deg, rgba(255,255,255,0.060), rgba(255,255,255,0.022));
+    box-shadow: 0 22px 60px rgba(0,0,0,0.26);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .jt-flow-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--step-accent);
+    opacity: 0.86;
+  }
+  .jt-flow-card.step-1 { --step-accent: color-mix(in srgb, var(--transition) 56%, var(--human)); }
+  .jt-flow-card.step-2 { --step-accent: var(--carbon); }
+  .jt-flow-card.step-3 { --step-accent: var(--human); }
+  .jt-step-number {
+    font-family: var(--font-mono);
+    font-size: calc(20px * var(--t-scale));
+    letter-spacing: 0.14em !important;
+    color: var(--step-accent);
+  }
+  .jt-step-title {
+    font-size: calc(28px * var(--t-scale));
+    line-height: 1.18;
+    font-weight: 750;
+    color: var(--fg);
+  }
+  .jt-step-desc {
+    margin-top: 5px;
+    font-size: calc(18px * var(--t-scale));
+    line-height: 1.32;
+    color: rgba(245,245,247,0.62);
+    word-break: keep-all;
+  }
+  .jt-flow-arrow {
+    height: 12px;
+    display: grid;
+    place-items: center;
+    color: rgba(145,247,186,0.48);
+    font-family: var(--font-mono);
+    font-size: calc(22px * var(--t-scale));
+    line-height: 1;
+  }
+  .jt-bottom-note {
+    position: absolute;
+    left: 128px;
+    bottom: 124px;
+    max-width: 850px;
+    padding: 2px 0 2px 24px;
+    border-left: 3px solid var(--human);
+    color: rgba(245,245,247,0.76);
+    font-size: calc(27px * var(--t-scale));
+    line-height: 1.42;
+    word-break: keep-all;
+  }
+  .human-skill-subtitle {
+    margin-top: 22px;
+    max-width: 760px;
+    font-size: calc(25px * var(--t-scale));
+    line-height: 1.45;
+    color: rgba(245,245,247,0.62);
+    word-break: keep-all;
+  }
+  .skill-pipeline {
+    margin-top: 34px;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    min-height: 246px;
+  }
+  .skill-card {
+    position: relative;
+    min-height: 246px;
+    padding: 30px 36px;
+    border-radius: 20px;
+    overflow: visible;
+    background:
+      radial-gradient(circle at 78% 12%, color-mix(in srgb, var(--human) 12%, transparent), transparent 36%),
+      linear-gradient(180deg, rgba(255,255,255,0.060), rgba(255,255,255,0.020));
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.30);
+    box-sizing: border-box;
+  }
+  .skill-card::before {
+    content: "";
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    top: 0;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--human), color-mix(in srgb, var(--transition) 46%, var(--human)));
+    opacity: 0.95;
+  }
+  .skill-card:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -31px;
+    top: 50%;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--human) 60%, transparent), color-mix(in srgb, var(--transition) 44%, var(--human)));
+    transform: translateY(-50%);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--human) 18%, transparent);
+  }
+  .skill-card:not(:last-child) .pipeline-arrow {
+    position: absolute;
+    right: -33px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid color-mix(in srgb, var(--transition) 44%, var(--human));
+    border-right: 2px solid color-mix(in srgb, var(--transition) 44%, var(--human));
+    transform: translateY(-50%) rotate(45deg);
+    z-index: 2;
+  }
+  .skill-step {
+    font-family: var(--font-mono);
+    font-size: calc(18px * var(--t-scale));
+    letter-spacing: 0.14em !important;
+    color: var(--human);
+  }
+  .skill-card-title {
+    margin-top: 16px;
+    font-size: calc(36px * var(--t-scale));
+    line-height: 1.16;
+    font-weight: 750;
+    color: var(--fg);
+  }
+  .skill-card-key {
+    margin-top: 16px;
+    font-size: calc(25px * var(--t-scale));
+    line-height: 1.26;
+    font-weight: 650;
+    color: rgba(245,245,247,0.88);
+    word-break: keep-all;
+  }
+  .skill-card-desc {
+    margin-top: 12px;
+    font-size: calc(20px * var(--t-scale));
+    line-height: 1.45;
+    color: rgba(245,245,247,0.58);
+    word-break: keep-all;
+  }
+  .skill-result-band {
+    margin-top: 18px;
+    min-height: 76px;
+    border-radius: 16px;
+    border: 1px solid rgba(145,247,186,0.16);
+    border-left: 4px solid var(--human);
+    background:
+      linear-gradient(90deg, rgba(145,247,186,0.085), rgba(145,247,186,0.024)),
+      rgba(255,255,255,0.014);
+    display: flex;
+    align-items: center;
+    padding: 0 34px;
+    box-sizing: border-box;
+    font-size: calc(30px * var(--t-scale));
+    line-height: 1.28;
+    color: rgba(245,245,247,0.88);
+    word-break: keep-all;
+  }
+  .skill-result-band strong {
+    color: var(--human);
+    font-weight: 750;
+    text-shadow: 0 0 24px color-mix(in srgb, var(--human) 22%, transparent);
+  }
+  .skill-closing-note {
+    margin-top: 16px;
+    max-width: 980px;
+    padding-left: 22px;
+    border-left: 3px solid var(--human);
+    color: rgba(245,245,247,0.70);
+    font-size: calc(24px * var(--t-scale));
+    line-height: 1.42;
+    word-break: keep-all;
+  }
+  .capability-grid {
+    margin-top: 62px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+  }
+  .capability-card {
+    min-height: 210px;
+  }
+  .blueprint-map {
+    margin-top: 40px;
+    height: 560px;
+    padding: 42px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px minmax(0, 1fr);
+    grid-template-rows: 138px 118px 120px 82px;
+    gap: 18px 34px;
+  }
+  .blueprint-center,
+  .blueprint-node {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    width: auto;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+  .blueprint-center {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 118px;
+    display: grid;
+    place-items: center;
+    padding: 22px;
+  }
+  .blueprint-node {
+    min-height: 120px;
+    padding: 20px 22px;
+  }
+  .blueprint-node.n1 { grid-column: 1; grid-row: 1; }
+  .blueprint-node.n2 { grid-column: 3; grid-row: 1; }
+  .blueprint-node.n3 { grid-column: 1; grid-row: 3; }
+  .blueprint-node.n4 {
+    grid-column: 2 / 4;
+    grid-row: 4;
+    min-height: 82px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+  .blueprint-lines {
+    z-index: 0;
+  }
+  section[data-label="15 Teamplay"] .blueprint-map {
+    height: 460px;
+    margin-top: 28px;
+    display: block;
+    position: relative;
+    padding: 0;
+    border-color: rgba(145,247,186,0.14);
+    background:
+      linear-gradient(rgba(145,247,186,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(145,247,186,0.035) 1px, transparent 1px),
+      radial-gradient(circle at 50% 52%, rgba(145,247,186,0.12), transparent 36%),
+      linear-gradient(180deg, rgba(7,8,9,0.50), rgba(7,8,9,0.78)),
+      rgba(255,255,255,0.018);
+    background-size: 58px 58px, 58px 58px, auto, auto, auto;
+    overflow: visible;
+  }
+  section[data-label="15 Teamplay"] .blueprint-center {
+    position: absolute;
+    left: 50%;
+    right: auto;
+    top: 170px;
+    bottom: auto;
+    width: 350px;
+    height: 125px;
+    padding: 0;
+    transform: translateX(-50%);
+    display: grid;
+    place-items: center;
+    border-radius: 22px;
+    border-color: rgba(79,195,247,0.34);
+    background: rgba(0,0,0,0.35);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.05) inset,
+      0 26px 70px rgba(0,0,0,0.36),
+      0 0 34px rgba(79,195,247,0.12);
+    z-index: 2;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node {
+    position: absolute;
+    width: 500px;
+    height: 150px;
+    padding: 22px 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.060), rgba(255,255,255,0.022));
+    box-shadow: 0 22px 64px rgba(0,0,0,0.30);
+    backdrop-filter: blur(18px) saturate(140%);
+    overflow: hidden;
+    z-index: 2;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node.n1 {
+    left: 50%;
+    right: auto;
+    top: 0;
+    bottom: auto;
+    transform: translateX(-50%);
+  }
+  section[data-label="15 Teamplay"] .blueprint-node.n2 {
+    left: 120px;
+    right: auto;
+    top: auto;
+    bottom: 0;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node.n3 {
+    left: auto;
+    right: 120px;
+    top: auto;
+    bottom: 0;
+    width: 500px;
+    text-align: left;
+  }
+  section[data-label="15 Teamplay"] .blueprint-center .h3 {
+    font-size: calc(36px * var(--t-scale));
+    line-height: 1.18;
+    font-weight: 800 !important;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node .small {
+    color: var(--human);
+    font-size: calc(17px * var(--t-scale));
+    letter-spacing: 0.12em;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node .h3 {
+    font-size: calc(34px * var(--t-scale));
+    line-height: 1.14;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node .body {
+    font-size: calc(19px * var(--t-scale));
+    line-height: 1.40;
+    color: rgba(245,245,247,0.62);
+  }
+  section[data-label="15 Teamplay"] .blueprint-lines {
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    z-index: 1;
+  }
+  section[data-label="15 Teamplay"] .blueprint-lines path {
+    stroke: rgba(79,195,247,0.42);
+    stroke-width: 2;
+  }
+  section[data-label="15 Teamplay"] .system-tight-note {
+    margin-top: 22px;
+    max-width: 1080px;
+  }
+
+  /* rear typography system: keep 11-15 closer to the cinematic opening */
+  .typo-slide {
+    padding: 150px 120px 90px;
+    overflow: hidden;
+  }
+  .typo-title {
+    margin-top: 28px;
+    max-width: 1220px !important;
+    font-size: calc(82px * var(--t-scale)) !important;
+    line-height: 1.09 !important;
+    letter-spacing: -0.02em;
+    font-weight: 800 !important;
+    word-break: keep-all;
+  }
+  .typo-slide .eyebrow {
+    opacity: 0.76;
+  }
+  .typo-sub {
+    margin-top: 24px;
+    max-width: 780px;
+    font-size: calc(27px * var(--t-scale));
+    line-height: 1.42;
+    color: rgba(245,245,247,0.62);
+    word-break: keep-all;
+  }
+  .mini-card {
+    background: rgba(255,255,255,0.028) !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.22) !important;
+  }
+  .mini-card::before {
+    opacity: 0.46;
+    height: 2px;
+    box-shadow: none;
+  }
+  .mini-card-row {
+    display: grid;
+    gap: 26px;
+  }
+  .flow-line {
+    stroke-width: 2;
+    opacity: 0.42;
+  }
+  .emphasis-line {
+    padding-left: 22px;
+    border-left: 3px solid var(--accent);
+    color: rgba(245,245,247,0.72);
+    word-break: keep-all;
+  }
+  section[data-label="11 Jobs"] .jobs-system-grid {
+    margin-top: 54px;
+    max-width: 1520px;
+    grid-template-columns: minmax(0, 540px) 220px minmax(0, 620px);
+    gap: 58px;
+    align-items: center;
+  }
+  section[data-label="11 Jobs"] .jobs-list-card {
+    min-height: 246px;
+    padding: 28px 32px;
+  }
+  section[data-label="11 Jobs"] .jobs-list-card > .small {
+    margin-bottom: 12px;
+    font-size: calc(18px * var(--t-scale));
+  }
+  section[data-label="11 Jobs"] .jobs-list-card .x-item {
+    position: relative;
+    padding: 8px 0 8px 22px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: calc(23px * var(--t-scale));
+    color: rgba(245,245,247,0.76);
+  }
+  section[data-label="11 Jobs"] .jobs-list-card .x-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent);
+    transform: translateY(-50%);
+  }
+  section[data-label="11 Jobs"] .x-diagram {
+    height: 220px;
+    opacity: 0.72;
+  }
+  section[data-label="11 Jobs"] .x-diagram .x-arrow {
+    stroke-width: 5;
+    filter: none;
+  }
+  section[data-label="11 Jobs"] .system-tight-note,
+  section[data-label="14 Capabilities"] .system-tight-note,
+  section[data-label="15 Teamplay"] .system-tight-note {
+    margin-top: 32px;
+    max-width: 1050px;
+    font-size: calc(28px * var(--t-scale));
+    line-height: 1.42;
+  }
+  section[data-label="12 Just Transition Intro"] .jt-concept-layout {
+    margin-top: 44px;
+    grid-template-columns: minmax(0, 0.98fr) minmax(0, 0.70fr);
+    gap: 104px;
+    align-items: start;
+  }
+  section[data-label="12 Just Transition Intro"] .jt-copy .body-lg {
+    font-size: calc(28px * var(--t-scale));
+    line-height: 1.46;
+  }
+  section[data-label="12 Just Transition Intro"] .jt-copy .system-tight-note {
+    margin-top: 34px;
+    font-size: calc(27px * var(--t-scale));
+  }
+  section[data-label="12 Just Transition Intro"] .jt-flow {
+    max-width: 560px;
+    min-height: 0;
+    margin-top: 0;
+  }
+  section[data-label="12 Just Transition Intro"] .jt-flow-title {
+    margin-bottom: 16px;
+    opacity: 0.72;
+  }
+  section[data-label="12 Just Transition Intro"] .jt-flow-stack {
+    gap: 2px;
+  }
+  section[data-label="12 Just Transition Intro"] .jt-flow-card {
+    min-height: 78px;
+    padding: 12px 24px;
+    grid-template-columns: 58px minmax(0, 1fr);
+    gap: 18px;
+  }
+  section[data-label="12 Just Transition Intro"] .jt-step-title {
+    font-size: calc(27px * var(--t-scale));
+  }
+  section[data-label="12 Just Transition Intro"] .jt-step-desc {
+    font-size: calc(18px * var(--t-scale));
+  }
+  section[data-label="12 Just Transition Intro"] .jt-bottom-note {
+    position: static;
+    margin-top: 42px;
+    max-width: 1120px;
+    font-size: calc(28px * var(--t-scale));
+  }
+  section[data-label="13 Just Transition"] .human-skill-subtitle {
+    margin-top: 24px;
+    font-size: calc(27px * var(--t-scale));
+  }
+  section[data-label="13 Just Transition"] .skill-pipeline {
+    margin-top: 34px;
+    min-height: 190px;
+    gap: 28px;
+  }
+  section[data-label="13 Just Transition"] .skill-card {
+    min-height: 190px;
+    padding: 24px 30px;
+    background: rgba(255,255,255,0.028);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.22);
+  }
+  section[data-label="13 Just Transition"] .skill-card::before {
+    opacity: 0.48;
+    height: 2px;
+  }
+  section[data-label="13 Just Transition"] .skill-card-title {
+    margin-top: 12px;
+    font-size: calc(32px * var(--t-scale));
+  }
+  section[data-label="13 Just Transition"] .skill-card-key {
+    margin-top: 12px;
+    font-size: calc(23px * var(--t-scale));
+  }
+  section[data-label="13 Just Transition"] .skill-card-desc {
+    margin-top: 10px;
+    font-size: calc(18px * var(--t-scale));
+    line-height: 1.38;
+  }
+  section[data-label="13 Just Transition"] .skill-result-band {
+    min-height: 62px;
+    margin-top: 16px;
+    background: rgba(145,247,186,0.036);
+    font-size: calc(27px * var(--t-scale));
+  }
+  section[data-label="13 Just Transition"] .skill-closing-note {
+    margin-top: 16px;
+    max-width: 1040px;
+    font-size: calc(24px * var(--t-scale));
+  }
+  section[data-label="14 Capabilities"] .capability-grid {
+    margin-top: 58px;
+    gap: 30px;
+  }
+  section[data-label="14 Capabilities"] .capability-card {
+    min-height: 188px;
+    padding: 28px 34px;
+  }
+  section[data-label="14 Capabilities"] .capability-card > .small {
+    font-size: calc(42px * var(--t-scale));
+    line-height: 0.95;
+    color: rgba(145,247,186,0.70);
+    letter-spacing: 0.04em !important;
+  }
+  section[data-label="14 Capabilities"] .capability-card .h3 {
+    margin-top: 18px !important;
+    font-size: calc(34px * var(--t-scale));
+  }
+  section[data-label="14 Capabilities"] .capability-card .body {
+    margin-top: 14px !important;
+    font-size: calc(20px * var(--t-scale));
+    line-height: 1.42;
+  }
+  section[data-label="15 Teamplay"] .blueprint-map {
+    height: 392px;
+    margin-top: 22px;
+    border-color: rgba(145,247,186,0.06);
+    background:
+      radial-gradient(circle at 50% 52%, rgba(145,247,186,0.065), transparent 34%),
+      linear-gradient(180deg, rgba(7,8,9,0.20), rgba(7,8,9,0.42));
+  }
+  section[data-label="15 Teamplay"] .blueprint-center {
+    top: 145px;
+    border-color: rgba(79,195,247,0.24);
+    background: rgba(7,8,9,0.42);
+    box-shadow: 0 22px 56px rgba(0,0,0,0.28);
+  }
+  section[data-label="15 Teamplay"] .blueprint-node {
+    height: 122px;
+    background: rgba(255,255,255,0.026);
+    border-color: rgba(255,255,255,0.075);
+    box-shadow: 0 18px 46px rgba(0,0,0,0.22);
+  }
+  section[data-label="15 Teamplay"] .blueprint-node.n1 {
+    top: 0;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node.n2 {
+    left: 140px;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node.n3 {
+    right: 140px;
+  }
+  section[data-label="15 Teamplay"] .blueprint-node .h3 {
+    font-size: calc(31px * var(--t-scale));
+  }
+  section[data-label="15 Teamplay"] .blueprint-node .body {
+    font-size: calc(18px * var(--t-scale));
+  }
+  section[data-label="15 Teamplay"] .blueprint-lines {
+    opacity: 0.38;
+  }
+
+  /* fullscreen photo bg */
+  .bg-layer {
+    position: absolute; inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .bg-layer image-slot { width: 100%; height: 100%; }
+  .abstract-visual {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+      linear-gradient(132deg, color-mix(in srgb, var(--stage-a) 18%, transparent), transparent 48%),
+      linear-gradient(302deg, color-mix(in srgb, var(--stage-b) 10%, transparent), transparent 52%),
+      linear-gradient(180deg, #0E1114, #070809);
+  }
+  .abstract-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(244,244,245,0.08) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, rgba(244,244,245,0.06) 0 1px, transparent 1px 34px);
+    mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 68%);
+  }
+  .abstract-visual::after {
+    content: "";
+    position: absolute;
+    width: 72%;
+    height: 46%;
+    left: 12%;
+    bottom: 16%;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgba(244,244,245,0.10), rgba(244,244,245,0.03)),
+      linear-gradient(90deg, color-mix(in srgb, var(--stage-a) 11%, transparent), transparent 62%);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.34);
+  }
+  .gwangyang-field-slide {
+    display: grid;
+    grid-template-columns: minmax(0, 0.55fr) minmax(0, 0.45fr);
+    gap: 72px;
+    align-items: center;
+    padding: 170px 108px 92px 128px;
+  }
+  .gwangyang-field-copy {
+    max-width: 840px;
+    align-self: center;
+  }
+  .industry-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 30px;
+  }
+  .industry-chip {
+    padding: 12px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(244,244,245,0.13);
+    background: rgba(17,20,24,0.64);
+    color: var(--fg-muted);
+    font-family: "A2G Body", var(--font-sans);
+    font-size: calc(18px * var(--t-scale));
+    line-height: 1;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .field-link {
+    margin-top: 40px;
+    padding-left: 20px;
+    border-left: 3px solid var(--accent);
+    color: var(--fg);
+    font-family: "A2G Body", var(--font-sans);
+    font-size: calc(28px * var(--t-scale));
+    line-height: 1.42;
+    font-weight: 700;
+    max-width: 720px;
+  }
+  .gwangyang-image-card {
+    position: absolute;
+    left: 56.25%;
+    top: 27.78%;
+    width: 32.29%;
+    height: 46.30%;
+    min-height: 0;
+    margin-top: 0;
+    aspect-ratio: auto;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: url("assets/images/gwangyang-industrial-port-generated.png") center / cover no-repeat;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.40);
+  }
+  .gwangyang-image-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.34), rgba(0,0,0,0.06)),
+      linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.30));
+    pointer-events: none;
+  }
+  .gwangyang-image-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .flow-visual {
+    position: absolute;
+    inset: 0;
+    padding: 112px 86px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 26px;
+    background:
+      radial-gradient(circle at 20% 28%, color-mix(in srgb, var(--stage-a) 20%, transparent), transparent 28%),
+      linear-gradient(302deg, color-mix(in srgb, var(--stage-b) 11%, transparent), transparent 52%),
+      linear-gradient(180deg, #0E1114, #070809);
+  }
+  .flow-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+  .flow-box {
+    min-height: 128px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 28px;
+    background:
+      linear-gradient(180deg, rgba(244,244,245,0.06), rgba(244,244,245,0.018)),
+      var(--panel);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.28);
+  }
+  .flow-box .h3 {
+    font-size: calc(38px * var(--t-scale));
+    word-break: keep-all;
+  }
+  .flow-arrow {
+    font-family: var(--font-mono);
+    font-size: 36px;
+    color: var(--accent);
+  }
+  .hydrogen-visual {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0;
+    background:
+      url("assets/images/hyrex.png") 46% center / cover no-repeat;
+    box-shadow: none;
+    filter: brightness(0.78) saturate(0.94) contrast(1.05);
+  }
+  .hydrogen-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 52% 46%, transparent 0 26%, rgba(0,0,0,0.16) 62%, rgba(0,0,0,0.44) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.28));
+    pointer-events: none;
+  }
+  .hydrogen-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.18) 48%, rgba(0,0,0,0.72) 86%, rgba(0,0,0,0.96) 100%);
+    pointer-events: none;
+  }
+  .hyrex-layout > .hyrex-media {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    min-width: 0;
+    height: 100%;
+  }
+  .hyrex-layout {
+    display: grid !important;
+    grid-template-columns: 45.83% 54.17%;
+  }
+  .hyrex-copy {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 96px 112px 96px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hyrex-copy .body {
+    max-width: 720px;
+  }
+  .hyrex-formula {
+    margin-top: 28px;
+    width: fit-content;
+    min-width: 410px;
+    padding: 18px 24px;
+    border-radius: 14px;
+    border: 1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+    background: rgba(255,255,255,0.035);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 18px 46px rgba(34,211,238,0.08);
+    font-family: "A2G Body", var(--font-sans);
+    font-size: calc(30px * var(--t-scale));
+    line-height: 1.1;
+    color: var(--fg);
+  }
+  .hyrex-formula .accent {
+    text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 720px;
+  }
+  .challenge-card {
+    position: relative;
+    min-height: 116px;
+    padding: 20px 18px 18px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(255,255,255,0.035);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .challenge-card::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    width: 26px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 38%, transparent);
+  }
+  .challenge-card .h3 {
+    margin-top: 18px;
+    font-size: calc(26px * var(--t-scale));
+    line-height: 1.12;
+    color: var(--fg);
+  }
+  .challenge-card .small {
+    margin-top: 10px;
+    font-size: calc(18px * var(--t-scale));
+    line-height: 1.35;
+    color: var(--fg-dim);
+  }
+  section[data-label="08 Hydrogen"] .source-note {
+    font-size: calc(16px * var(--t-scale));
+    color: rgba(245,245,247,0.42);
+  }
+  section[data-label="08 Hydrogen"] .nav-shell {
+    box-shadow: 0 22px 56px rgba(0,0,0,0.36);
+  }
+  @keyframes hyrex-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes hyrex-up {
+    from { opacity: 0; transform: translate3d(0, 18px, 0); }
+    to { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+  @keyframes hyrex-line {
+    from { opacity: 0; transform: scaleX(0.82); }
+    to { opacity: 1; transform: scaleX(1); }
+  }
+  section[data-label="08 Hydrogen"][data-deck-active] .hyrex-visual {
+    animation: hyrex-fade 420ms ease-out both;
+  }
+  section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .tag,
+  section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .h1,
+  section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .body-lg {
+    animation: hyrex-up 520ms cubic-bezier(.2,.8,.2,1) both;
+  }
+  section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .h1 { animation-delay: 90ms; }
+  section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .body-lg { animation-delay: 150ms; }
+  section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .body {
+    animation: hyrex-fade 520ms ease-out 260ms both;
+  }
+  section[data-label="08 Hydrogen"][data-deck-active] .hyrex-formula {
+    transform-origin: left center;
+    animation: hyrex-line 480ms cubic-bezier(.2,.8,.2,1) 390ms both;
+  }
+  section[data-label="08 Hydrogen"][data-deck-active] .challenge-card {
+    animation: hyrex-up 420ms cubic-bezier(.2,.8,.2,1) both;
+  }
+  section[data-label="08 Hydrogen"][data-deck-active] .challenge-card:nth-child(1) { animation-delay: 560ms; }
+  section[data-label="08 Hydrogen"][data-deck-active] .challenge-card:nth-child(2) { animation-delay: 660ms; }
+  section[data-label="08 Hydrogen"][data-deck-active] .challenge-card:nth-child(3) { animation-delay: 760ms; }
+  @media (prefers-reduced-motion: reduce) {
+    section[data-label="08 Hydrogen"][data-deck-active] .hyrex-visual,
+    section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .tag,
+    section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .h1,
+    section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .body-lg,
+    section[data-label="08 Hydrogen"][data-deck-active] .hyrex-copy .body,
+    section[data-label="08 Hydrogen"][data-deck-active] .hyrex-formula,
+    section[data-label="08 Hydrogen"][data-deck-active] .challenge-card {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+  .hydrogen-caption {
+    position: absolute;
+    z-index: 1;
+    left: auto;
+    right: 7%;
+    bottom: 54px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    align-items: center;
+    width: min(340px, 42%);
+  }
+  .hydrogen-caption .flow-box {
+    min-height: 0;
+    padding: 18px 20px;
+    background: rgba(17,20,24,0.68);
+    backdrop-filter: blur(14px);
+  }
+  .hydrogen-caption .flow-box .h3 {
+    font-size: calc(24px * var(--t-scale));
+  }
+  .hydrogen-caption .body {
+    font-size: calc(16px * var(--t-scale));
+  }
+  .hydrogen-caption .flow-arrow {
+    font-size: 30px;
+    text-shadow: 0 0 18px rgba(34,211,238,0.5);
+  }
+  .hydrogen-complex-visual {
+    position: absolute;
+    left: 1080px;
+    top: 315px;
+    width: 620px;
+    height: 520px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 22px;
+    box-shadow: 0 30px 90px rgba(0,0,0,0.45);
+    background:
+      url("assets/images/gwangyang-industry-platform-generated.png") 55% 50% / cover no-repeat;
+    filter: brightness(0.86) saturate(1.04) contrast(1.02);
+  }
+  .hydrogen-complex-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.05)),
+      linear-gradient(180deg, rgba(0,0,0,0.08), rgba(0,0,0,0.28));
+    pointer-events: none;
+  }
+  .battery-layout {
+    display: grid !important;
+    grid-template-columns: minmax(0, 55%) minmax(0, 45%);
+  }
+  .battery-layout .battery-visual-wrap {
+    grid-column: 2;
+    grid-row: 1;
+    position: static;
+    min-width: 0;
+  }
+  .battery-copy {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 108px 72px 96px 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .industry-axis-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .industry-axis-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.10);
+    font-family: var(--font-mono);
+    font-size: calc(16px * var(--t-scale));
+    line-height: 1;
+    color: rgba(245,245,247,0.68);
+  }
+  .platform-direction {
+    max-width: 760px;
+  }
+  .platform-direction .h3 {
+    font-size: calc(42px * var(--t-scale));
+    line-height: 1.18;
+  }
+  section[data-label="09 Battery"] .source-note {
+    font-size: calc(15px * var(--t-scale));
+    color: rgba(245,245,247,0.42);
+  }
+  section[data-label="10 Global Cases"] .source-note,
+  section[data-label="11 Jobs"] .source-note,
+  section[data-label="12 Just Transition Intro"] .source-note,
+  section[data-label="13 Just Transition"] .source-note,
+  section[data-label="15 Teamplay"] .source-note {
+    bottom: 56px;
+  }
+  .keyword-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 36px;
+  }
+  .keyword-pill {
+    border: 1px solid var(--rule);
+    border-radius: 999px;
+    padding: 14px 18px;
+    background: rgba(17,20,24,0.82);
+    font-family: var(--font-mono);
+    font-size: calc(18px * var(--t-scale));
+    color: var(--fg-muted);
+    text-align: center;
+  }
+  .vignette::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(180deg, rgba(7,8,9,0.05) 0%, rgba(7,8,9,0.34) 58%, rgba(7,8,9,0.92) 100%),
+      linear-gradient(90deg, rgba(7,8,9,0.84), rgba(7,8,9,0.18));
+    pointer-events: none;
+  }
+  .slide-inner.on-photo { z-index: 1; }
+
+  /* ====== AUTOPLAY hint ======================================= */
+  .autoplay-indicator {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 50;
+    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    pointer-events: none;
+    display: none;
+  }
+  body[data-autoplay="on"] .autoplay-indicator { display: block; }
+</style>
+
+<!-- Speaker notes for the host preview -->
+<script type="application/json" id="speaker-notes">
+[
+"발표자 1입니다. 저희가 오늘 발표할 주제는 '기후, 기술, 그리고 광양의 미래'입니다. 탄소 규제가 광양의 산업과 일자리 지도를 바꾸는 흐름을 살펴보겠습니다.",
+"먼저 질문으로 시작하겠습니다. 지구 반대편의 정책 하나가 내 미래의 직업을 바꿀 수 있을까요? 답은, 이미 바뀌기 시작했다는 것입니다.",
+"광양은 광양제철소와 광양항을 중심으로 성장해 온 대표적인 산업 도시입니다. 하지만 탄소 규제와 산업 전환은 이 구조에도 변화를 요구하고 있습니다.",
+"그 변화의 핵심 중 하나가 EU 탄소국경조정제도, CBAM입니다. 철강처럼 배출량이 큰 산업은 수출 과정에서 비용 부담이 커질 가능성이 있습니다.",
+"광양의 산업 의존도는 숫자로도 확인할 수 있습니다. 광양시 전체 지방세 징수액은 2022년 1,121억 원에서 2023년 409억 원, 2024년 246억 원으로 줄었습니다. 포스코 광양제철소 지방소득세도 2022년 876억 원에서 2023년 155억 원, 2024년 78억 원으로 감소했습니다. 이 수치를 기후변화 때문이라고 단정할 수는 없지만, 특정 산업에 의존한 지역 구조가 재정과 공공서비스에 영향을 줄 수 있다는 점을 보여줍니다.",
+"발표자 2입니다. 탄소 규제, 철강 전환 압력, 지역 재정 변화는 광양이 산업 전환을 준비해야 하는 이유입니다.",
+"철강을 버리는 것이 아니라, 철강의 방식을 바꾸는 것이 전환의 핵심입니다. 기술 전환과 사람의 준비가 함께 이루어져야 광양의 미래가 열립니다.",
+"첫 번째 전환 기술은 수소환원제철입니다. HyREX는 석탄 대신 수소를 활용해 철강 생산 과정의 온실가스 배출을 크게 줄일 수 있는 기술로 논의됩니다.",
+"두 번째는 미래 소재와 에너지 산업입니다. 광양은 철강 도시에서 멈추지 않고, 배터리 소재와 에너지 전환 산업으로 확장할 가능성이 있습니다.",
+"세 번째는 광양항과 광양만권의 역할입니다. 광양항은 수소 저장·운송, 친환경 물류, 저탄소 전력 공급과 연결될 가능성이 있습니다.",
+"앞서 말한 산업 변화들의 종착지는 결국 일자리입니다. 공장이 스마트해지면 직접 손으로 기계를 조작하는 일이나 단순 반복 생산 업무는 줄어들 수 있습니다. 하지만 기업의 탄소 배출을 관리하는 ESG 탄소회계, 이차전지 소재 전문가, 수소 인프라 안전관리자, 스마트 공장을 운영하는 데이터 분석 직무처럼 새로운 그린잡도 등장합니다. 핵심은 일자리가 단순히 사라지는 것이 아니라, 필요한 역량이 바뀐다는 점입니다.",
+"여기서 저희가 정말 강조하고 싶은 핵심 개념이 바로 정의로운 전환입니다. 쉽게 말하면, 친환경 경제로 넘어가는 과정에서 기존 산업에서 일하던 분들이 일자리를 잃고 소외되지 않도록 돕자는 뜻입니다. 새로운 기술이 중요하지만, 그 변화에 사람들이 함께 올라탈 수 있는 길을 만드는 것이 더 중요합니다.",
+"광양의 진짜 무기는 최신식 기계만이 아닙니다. 수십 년 동안 뜨거운 현장을 지켜온 숙련 노동자분들의 경험입니다. 이분들의 생산 노하우를 수소, 이차전지, 스마트 공장 같은 새로운 기술과 연결하고, 저탄소 직무로 부드럽게 넘어갈 수 있도록 재교육을 지원하는 것이 광양을 살리는 가장 강력하고 따뜻한 전략입니다.",
+"그렇다면 아직 중학생인 저희 세대는 무엇을 준비해야 할까요? 딱 세 가지입니다. 첫째, 산업 변화가 환경과 지역에 어떤 영향을 주는지 읽는 환경 감수성입니다. 둘째, 인공지능과 수소, 이차전지, 데이터를 겁내지 않고 다루는 기술 리터러시입니다. 셋째, 철강과 에너지, 데이터를 연결해 새로운 답을 찾아내는 창의융합적 사고입니다. 앞으로는 암기보다 변화 속에서 질문하고 문제를 해결하는 힘이 진짜 경쟁력이 될 것입니다.",
+"저희가 이 방대한 연구를 할 수 있었던 건 저희끼리만 잘해서가 아닙니다. 교수님, 멘토 대학생 선배들, 그리고 지역사회가 함께 도와주셨기 때문입니다. 저는 이게 기후위기를 극복하는 가장 좋은 답이라고 생각합니다. 아무리 좋은 기술이 있어도 지자체, 기업, 교육계가 하나의 팀이 되어 움직여야 광양의 성공적인 전환을 이뤄낼 수 있습니다.",
+"이제 마무리하겠습니다. 수소로 철을 만들고, 배터리 공장을 짓고, 새로운 기술을 도입하는 일은 모두 중요합니다. 하지만 기술은 도구일 뿐 스스로 방향을 정하지 않습니다. 광양이 과거의 도시에 머물지, 세계가 주목하는 친환경 에너지 도시로 나아갈지는 지금 이 변화를 마주한 우리의 선택에 달려 있습니다. 우리 동네 광양의 푸른 내일을 위해 우리는 어떤 선택을 할까요? 이것으로 B3조 발표를 마치겠습니다. 감사합니다."
+]
+</script>
+
+</head>
+<body data-mood="dark" data-transition="fade-slide" data-autoplay="off">
+<script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const isPresent = params.get('present') === '1' || params.get('final') === '1';
+    document.body.dataset.present = isPresent ? '1' : '0';
+  })();
+</script>
+
+<!-- =====================================================================
+     DECK
+===================================================================== -->
+<deck-stage width="1920" height="1080">
+
+  <!-- ================= 01 COVER ================= -->
+  <section data-label="01 Cover">
+    <div class="slide-num mono">01 / 16</div>
+    <div class="slide-inner end">
+      <div class="eyebrow"><span class="dot"></span><span>2026</span></div>
+      <h1 class="display" style="margin-top: 40px;">
+        기후,<br/>
+        기술, 그리고<br/>
+        <span class="accent">광양의 미래</span>.
+      </h1>
+      <div class="row gap-48" style="margin-top: 64px; align-items: flex-end; justify-content: space-between;">
+        <p class="body-lg" style="max-width: 800px;">
+          탄소 규제가 광양의 산업과 일자리 지도를 바꾸고 있습니다.<br/>
+          중학생인 우리는 무엇을 준비해야 할까요?
+        </p>
+        <div class="col gap-12" style="text-align: right; white-space: nowrap;">
+          <div class="small mono dim">PRESENTED BY</div>
+          <div class="small mono">염초롱 · 정혜린 · 정유주</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 HOOK ================= -->
+  <section data-label="02 Hook">
+    <div class="slide-num mono">02 / 16</div>
+    <div class="footer-mark">QUESTION</div>
+    <div class="slide-inner center">
+      <h1 class="display" style="text-align: left;">
+        <span class="dim">지구 반대편의</span><br/>
+        <span class="dim">정책 하나가</span><br/>
+        내 미래의 직업을<br/>
+        바꿀 수 있을까?
+      </h1>
+      <p class="body-lg" style="margin-top: 64px;">— 답은, 이미 바뀌기 시작했습니다.</p>
+    </div>
+  </section>
+
+  <!-- ================= 03 GWANGYANG INDUSTRY ================= -->
+  <section data-label="03 Gwangyang">
+    <div class="bg-layer vignette">
+      <div class="grid-bg" aria-hidden="true"></div>
+    </div>
+    <div class="slide-num mono">03 / 16</div>
+    <div class="slide-inner gwangyang-field-slide">
+      <div class="gwangyang-field-copy">
+        <div class="eyebrow"><span class="dot"></span><span>현장 — 광양 산업 구조</span></div>
+        <h2 class="h1" style="margin-top: 32px;">
+        광양은 <span style="color: var(--carbon);">철강</span>과 <span style="color: var(--accent);">항만</span>으로<br/>
+        성장한 도시입니다.
+        </h2>
+        <div class="industry-chips">
+          <span class="industry-chip">광양제철소 · 생산</span>
+          <span class="industry-chip">광양항 · 물류</span>
+          <span class="industry-chip">광양만권 산업단지 · 고용</span>
+        </div>
+        <p class="body-lg" style="margin-top: 34px;">
+          철강은 생산, 항만은 물류.<br/>
+          광양 일자리의 핵심 기반입니다.
+        </p>
+        <p class="field-link">
+          탄소 규제는 지역경제와<br/>
+          일자리 문제로 이어집니다.
+        </p>
+      </div>
+      <div class="gwangyang-image-card" aria-label="밤의 항만과 제철소, 산업단지를 표현한 다크 산업 도시 이미지"></div>
+    </div>
+  </section>
+
+  <!-- ================= 04 CBAM ================= -->
+  <section data-label="04 CBAM">
+    <div class="slide-num mono">04 / 16</div>
+    <div class="footer-mark">정책 — 변화의 시작</div>
+    <div class="slide-inner center">
+      <div class="tag"><span class="dot"></span> EU REGULATION · 2026</div>
+      <h1 class="display" style="margin-top: 40px;">
+        탄소가 <span class="accent">비용</span>이 되는 시대.
+      </h1>
+      <p class="h3 mute" style="margin-top: 24px;">EU 탄소국경조정제도 — Carbon Border Adjustment Mechanism</p>
+      <p class="body-lg" style="margin-top: 64px; max-width: 1300px;">
+        탄소 배출이 많은 제품에 탄소 비용을 반영하는 제도입니다.<br/>
+        철강처럼 배출량이 큰 산업은 수출 과정에서 비용 부담이 커질 가능성이 있습니다.
+      </p>
+    </div>
+    <div class="source-note">출처: 산업연구원, EU 탄소국경조정제도의 국내 철강 수출입 영향 및 시사점, 2024</div>
+  </section>
+
+  <!-- ================= 05 DATA: TAX TREND ================= -->
+  <section data-label="05 Gwangyang Tax Trend">
+    <div class="slide-num mono">05 / 16</div>
+    <div class="footer-mark">데이터 — 광양 지역 경제</div>
+    <div class="slide-inner tax-trend-slide">
+      <div class="eyebrow"><span class="dot"></span><span>DATA · GWANGYANG TAX</span></div>
+
+      <div class="tax-trend-layout">
+        <div class="tax-trend-copy">
+          <h2 class="h2">
+            산업 의존 구조는<br/>
+            지역 재정으로 드러납니다.
+          </h2>
+
+          <div class="tax-period">
+            <p class="small mono">광양시 전체 지방세 징수액</p>
+            <p class="small mono dim">2022 → 2024</p>
+          </div>
+
+          <div class="tax-number-pair">
+            <span class="tax-old">1,121억</span>
+            <span class="tax-arrow">→</span>
+            <span class="tax-new countdown-number accent"
+                  data-from="1121"
+                  data-to="246"
+                  data-suffix="억"
+                  data-duration="1100">246억</span>
+          </div>
+
+          <p class="body-lg tax-drop accent">약 78% 감소.</p>
+
+          <p class="body tax-posco-note">
+            포스코 광양제철소 지방소득세도<br/>
+            876억 → 155억 → 78억으로 감소했습니다.
+          </p>
+
+          <p class="body tax-insight">
+            이 수치는 기후변화의 직접 결과로 단정할 수는 없지만,<br/>
+            특정 산업에 의존한<br/>
+            지역 구조가 재정과 공공서비스에 영향을 줄 수 있음을 보여줍니다.
+          </p>
+        </div>
+
+        <div class="tax-trend-card">
+          <div class="tax-card-head">
+            <div>
+              <p class="small mono dim">지방세·기업 납부액 감소 추이</p>
+            </div>
+          </div>
+
+          <svg class="tax-line-chart" viewBox="0 0 820 430" aria-label="광양시 전체 지방세와 포스코 광양제철소 지방소득세 감소 추이">
+            <line class="tax-grid" x1="70" y1="80" x2="760" y2="80" />
+            <line class="tax-grid" x1="70" y1="180" x2="760" y2="180" />
+            <line class="tax-grid" x1="70" y1="280" x2="760" y2="280" />
+            <line class="tax-axis" x1="70" y1="350" x2="760" y2="350" />
+
+            <polygon class="tax-area" points="90,62 405,245 720,287 720,330 405,310 90,125" />
+
+            <polyline class="tax-line total" points="90,62 405,245 720,287" />
+            <polyline class="tax-line posco" points="90,125 405,310 720,330" />
+
+            <g class="tax-markers total">
+              <circle cx="90" cy="62" r="9" />
+              <circle cx="405" cy="245" r="9" />
+              <circle cx="720" cy="287" r="9" />
+            </g>
+            <g class="tax-markers posco">
+              <circle cx="90" cy="125" r="9" />
+              <circle cx="405" cy="310" r="9" />
+              <circle cx="720" cy="330" r="9" />
+            </g>
+
+            <g class="tax-labels total">
+              <text x="90" y="36" text-anchor="middle">1,121억</text>
+              <text x="405" y="222" text-anchor="middle">409억</text>
+              <text x="720" y="264" text-anchor="middle">246억</text>
+            </g>
+            <g class="tax-labels posco">
+              <text x="90" y="155" text-anchor="middle">876억</text>
+              <text x="405" y="340" text-anchor="middle">155억</text>
+              <text x="720" y="360" text-anchor="middle">78억</text>
+            </g>
+
+            <text class="tax-year" x="90" y="398" text-anchor="middle">2022</text>
+            <text class="tax-year" x="405" y="398" text-anchor="middle">2023</text>
+            <text class="tax-year" x="720" y="398" text-anchor="middle">2024</text>
+          </svg>
+
+          <div class="tax-legend">
+            <span><i class="legend-total"></i>광양시 전체 지방세 징수액</span>
+            <span><i class="legend-posco"></i>포스코 광양제철소 지방소득세</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="source-note">출처: 연합뉴스, 여수·광양산단 기업 영업부진에 지방세 급감, 2024</div>
+  </section>
+
+  <!-- ================= 06 ALREADY ================= -->
+  <section data-label="06 Already">
+    <div class="slide-num mono">06 / 16</div>
+    <div class="slide-inner center">
+      <h1 class="display">
+        <span class="dim">먼 미래의 이야기가</span><br/>
+        <span class="dim">아닙니다.</span><br/>
+        이미, <span class="accent">시작되었습니다.</span>
+      </h1>
+      <p class="body-lg" style="margin-top: 56px; max-width: 1220px;">
+        탄소 규제, 철강 전환 압력, 지역 재정 변화는 광양이 산업 전환을 준비해야 하는 이유입니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 07 PIVOT ================= -->
+  <section data-label="07 Pivot">
+    <div class="slide-num mono">07 / 16</div>
+    <div class="footer-mark">전환 — 위기와 기회</div>
+    <div class="slide-inner center">
+      <p class="h3 mute">그러나 같은 변화 속에서,</p>
+      <h1 class="display" style="margin-top: 24px;">
+        철강을 버리는 것이 아니라,<br/>
+        <span class="accent">철강의 방식</span>을<br/>
+        바꾸는 것입니다.
+      </h1>
+      <p class="body-lg" style="margin-top: 48px; max-width: 1180px;">
+        사라지는 자리에서 새로운 산업이 자라기 위해서는 기술 전환과 사람의 준비가 함께 필요합니다.<br/>
+        광양의 전환은 기존 기반을 버리는 일이 아니라, 생산 방식을 바꾸는 과정입니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 08 NEW INDUSTRY 1 — HYDROGEN ================= -->
+  <section data-label="08 Hydrogen">
+    <div class="slide-num mono">08 / 16</div>
+    <div class="slide-inner split hyrex-layout">
+      <!-- left: photo -->
+      <div class="hyrex-media">
+        <div class="hydrogen-visual hyrex-visual" aria-hidden="true"></div>
+      </div>
+      <!-- right: text -->
+      <div class="hyrex-copy">
+        <div class="tag"><span class="dot"></span> NEW INDUSTRY · 01</div>
+        <h2 class="h1" style="margin-top: 32px;">수소환원제철.</h2>
+        <p class="body-lg" style="margin-top: 32px;">석탄 대신 <span class="accent">수소</span>로 철을 만드는 기술.</p>
+        <p class="body" style="margin-top: 24px;">
+          <span class="accent">HyREX</span>는 철광석을 환원하는 과정에서<br/>
+          탄소 기반 환원제를 수소로 대체해<br/>
+          철강 생산의 탄소 배출을 줄이려는 기술입니다.
+        </p>
+        <div class="hyrex-formula" aria-label="철광석 더하기 수소는 철과 물이 됩니다">
+          철광석 + <span class="accent">H₂</span> → 철 + <span class="accent">H₂O</span>
+        </div>
+        <hr class="rule" style="margin: 36px 0 28px;" />
+        <div class="stack-sm" style="max-width: 760px;">
+          <p class="small mono dim">현실 과제</p>
+          <div class="challenge-grid">
+            <div class="challenge-card">
+              <p class="h3">상용화</p>
+              <p class="small">대규모 공정 검증</p>
+            </div>
+            <div class="challenge-card">
+              <p class="h3">수소 공급</p>
+              <p class="small">안정적·저비용 공급망</p>
+            </div>
+            <div class="challenge-card">
+              <p class="h3">전력 인프라</p>
+              <p class="small">저탄소 전력 확보</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="source-note">출처: 포스코 지속가능경영보고서, 포스코 탈탄소 로드맵</div>
+  </section>
+
+  <!-- ================= 09 NEW INDUSTRY 2 — BATTERY ================= -->
+  <section data-label="09 Battery">
+    <div class="slide-num mono">09 / 16</div>
+    <div class="slide-inner split battery-layout" style="flex-direction: row-reverse;">
+      <div class="battery-visual-wrap">
+        <div class="hydrogen-complex-visual" aria-hidden="true"></div>
+      </div>
+      <div class="battery-copy">
+        <div class="tag"><span class="dot"></span> NEW INDUSTRY · 02</div>
+        <h2 class="h1" style="margin-top: 32px;">철강 도시에서,<br/>미래 산업 거점으로.</h2>
+        <p class="body-lg" style="margin-top: 32px;">
+          광양의 강점은 철강 하나가 아니라,<br/>
+          철강·항만·산업단지를 연결할 수 있다는 점입니다.
+        </p>
+        <div class="industry-axis-chips">
+          <span class="industry-axis-chip">철강 기반</span>
+          <span class="industry-axis-chip">소재 산업</span>
+          <span class="industry-axis-chip">에너지 전환</span>
+        </div>
+        <hr class="rule" style="margin: 40px 0 34px;" />
+        <div class="stack-sm platform-direction">
+          <p class="small mono dim">핵심 방향</p>
+          <p class="h3" style="font-weight: 500;">
+            철강을 버리는 것이 아니라,<br/>
+            철강 위에 <span class="accent">수소·소재·재생에너지</span>를 연결하는 산업 플랫폼.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="source-note">출처: 포스코퓨처엠 광양 전구체 공장 자료, 광양시 이차전지 특화단지 자료</div>
+  </section>
+
+  <!-- ================= 10 GLOBAL CASES ================= -->
+  <section data-label="10 Global Cases">
+    <div class="slide-num mono">10 / 16</div>
+    <div class="slide-inner system-slide">
+      <div class="eyebrow"><span class="dot"></span><span>GLOBAL · LOW-CARBON INDUSTRY</span></div>
+      <h2 class="h2 system-title">
+        세계는 이미<br/>
+        저탄소 산업 지도를<br/>
+        다시 그리고 있습니다.
+      </h2>
+      <p class="body-lg case-subtitle">
+        광양이 볼 것은 국가 이름이 아니라,<br/>
+        전환의 방식입니다.
+      </p>
+
+      <div class="case-grid">
+        <div class="system-card case-card">
+          <p class="case-number">01</p>
+          <p class="case-model">공정 전환</p>
+          <p class="case-name">스웨덴 HYBRIT</p>
+          <p class="case-desc">제철소 안에서 탄소를 줄이는 모델</p>
+        </div>
+        <div class="system-card case-card">
+          <p class="case-number">02</p>
+          <p class="case-model">항만 허브</p>
+          <p class="case-name">네덜란드 로테르담항</p>
+          <p class="case-desc">항만을 수소·에너지 물류 거점으로 바꾸는 모델</p>
+        </div>
+        <div class="system-card case-card">
+          <p class="case-number">03</p>
+          <p class="case-model">국가 전략</p>
+          <p class="case-name">일본 수소사회</p>
+          <p class="case-desc">수소 수요와 인프라를 정부가 함께 설계하는 모델</p>
+        </div>
+      </div>
+
+      <div class="case-summary-box">
+        <div>
+          <p class="summary-label warning">공통 한계</p>
+          <p class="summary-value">비용 · 안정적 수소 공급 · 대규모 인프라</p>
+        </div>
+        <div>
+          <p class="summary-label">광양의 시사점</p>
+          <p class="summary-value">하나의 기술보다, <strong>광양제철소·광양항·지역 인재</strong>를 묶는 시스템이 필요합니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="source-note">출처: HYBRIT, KOTRA 로테르담 자료, 일본 수소정책 자료</div>
+  </section>
+
+  <!-- ================= 11 JOBS SYSTEM ================= -->
+  <section data-label="11 Jobs">
+    <div class="slide-num mono">11 / 16</div>
+    <div class="footer-mark">개념도 — 산업 전환에 따른 직무 변화</div>
+    <div class="slide-inner system-slide typo-slide">
+      <div class="eyebrow"><span class="dot"></span><span>WORK · IN TRANSITION</span></div>
+      <h2 class="h2 system-title typo-title">
+        일자리는 사라지는 것이 아니라,<br/>
+        <span class="accent-2">성격이 바뀝니다.</span>
+      </h2>
+
+      <div class="jobs-system-grid">
+        <div class="x-list down system-card jobs-list-card mini-card">
+          <p class="small mono accent">감소 가능성이 있는 직무</p>
+          <div class="x-item">직접 기계 조작 업무</div>
+          <div class="x-item">단순 반복 생산 업무</div>
+          <div class="x-item">화석연료 기반 전통 직무</div>
+        </div>
+
+        <svg class="x-diagram" viewBox="0 0 360 360" aria-label="직무 변화 개념도">
+          <defs>
+            <marker id="arrow-carbon" viewBox="0 0 14 14" refX="11" refY="7" markerWidth="11" markerHeight="11" orient="auto">
+              <path d="M3 3 L11 7 L3 11" fill="none" stroke="#FF6B35" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+            </marker>
+            <marker id="arrow-human" viewBox="0 0 14 14" refX="11" refY="7" markerWidth="11" markerHeight="11" orient="auto">
+              <path d="M3 3 L11 7 L3 11" fill="none" stroke="#91F7BA" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+            </marker>
+          </defs>
+          <path class="x-arrow" d="M55 70 L295 290" stroke="var(--carbon)" marker-end="url(#arrow-carbon)" />
+          <path class="x-arrow" d="M55 290 L295 70" stroke="var(--human)" marker-end="url(#arrow-human)" />
+          <circle cx="180" cy="180" r="52" fill="rgba(7,8,9,0.86)" stroke="rgba(245,245,247,0.18)" />
+          <text x="180" y="172" text-anchor="middle" fill="rgba(245,245,247,0.72)" font-size="17" font-family="A2G Body">역량의</text>
+          <text x="180" y="202" text-anchor="middle" fill="#91f7ba" font-size="25" font-family="A2G Body" font-weight="700">전환</text>
+        </svg>
+
+        <div class="x-list up system-card jobs-list-card mini-card">
+          <p class="small mono accent-2">증가 가능성이 있는 직무</p>
+          <div class="x-item">ESG·데이터 탄소 관리</div>
+          <div class="x-item">이차전지 소재 전문가</div>
+          <div class="x-item">수소 인프라 안전관리자</div>
+          <div class="x-item">스마트 공장 데이터 분석</div>
+        </div>
+      </div>
+
+      <p class="body-lg system-tight-note emphasis-line" style="--accent: var(--human);">
+        일자리가 단순히 줄어드는 것이 아니라,<br/>
+        필요한 역량이 바뀌고 있습니다.
+      </p>
+    </div>
+    <div class="source-note">출처: 한국고용정보원, 정의로운 전환과 녹색일자리 논의의 확장, 2023 / 고용노동부 주요 업종 일자리 전망 자료</div>
+  </section>
+
+  <!-- ================= 12 JUST TRANSITION INTRO ================= -->
+  <section data-label="12 Just Transition Intro">
+    <div class="slide-num mono">12 / 16</div>
+    <div class="footer-mark">핵심 개념 — 정의로운 전환</div>
+    <div class="slide-inner system-slide typo-slide">
+      <div class="eyebrow"><span class="dot"></span><span>PEOPLE · JUST TRANSITION</span></div>
+      <h2 class="h2 system-title typo-title">
+        친환경 전환은<br/>
+        <span class="accent-2">사람을 남겨두면 안 됩니다.</span>
+      </h2>
+
+      <div class="jt-concept-layout">
+        <div class="jt-copy">
+          <p class="body-lg">
+            정의로운 전환은 친환경 경제로 넘어가는 과정에서<br/>
+            기존 산업 노동자가 소외되지 않도록 돕는 전략입니다.
+          </p>
+          <p class="body-lg system-tight-note">
+            새로운 기술보다 중요한 것은,<br/>
+            그 변화에 함께 올라탈 수 있는 길을 만드는 일입니다.
+          </p>
+        </div>
+
+        <div class="jt-flow" aria-label="정의로운 전환의 구조">
+          <p class="jt-flow-title">정의로운 전환의 구조</p>
+          <div class="jt-flow-stack">
+            <div class="jt-flow-card step-1 mini-card">
+              <p class="jt-step-number">01</p>
+              <div>
+                <p class="jt-step-title">기존 산업 노동자</p>
+                <p class="jt-step-desc">숙련과 생계를 보호한다</p>
+              </div>
+            </div>
+            <div class="jt-flow-arrow" aria-hidden="true">↓</div>
+            <div class="jt-flow-card step-2 mini-card">
+              <p class="jt-step-number">02</p>
+              <div>
+                <p class="jt-step-title">재교육·직무 전환</p>
+                <p class="jt-step-desc">새 기술에 적응할 길을 만든다</p>
+              </div>
+            </div>
+            <div class="jt-flow-arrow" aria-hidden="true">↓</div>
+            <div class="jt-flow-card step-3 mini-card">
+              <p class="jt-step-number">03</p>
+              <div>
+                <p class="jt-step-title">미래 일자리</p>
+                <p class="jt-step-desc">소외 없는 전환을 만든다</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="jt-bottom-note">
+        전환의 성공은 기술의 속도가 아니라,<br/>
+        사람이 함께 이동할 수 있는 구조에 달려 있습니다.
+      </p>
+    </div>
+    <div class="source-note">출처: 한국고용정보원, 정의로운 전환과 녹색일자리 논의의 확장, 2023</div>
+  </section>
+
+  <!-- ================= 13 JUST TRANSITION ================= -->
+  <section data-label="13 Just Transition">
+    <div class="slide-num mono">13 / 16</div>
+    <div class="footer-mark">전략 — 사람 중심 전환</div>
+    <div class="slide-inner system-slide typo-slide">
+      <div class="eyebrow"><span class="dot"></span><span>GWANGYANG · HUMAN SKILL</span></div>
+      <h2 class="h2 system-title typo-title">
+        광양의 진짜 무기는<br/>
+        <span class="accent-2">사람의 경험</span>입니다.
+      </h2>
+
+      <p class="human-skill-subtitle typo-sub">
+        수십 년 현장에서 쌓인 숙련을<br/>
+        새로운 저탄소 직무와 연결하는 것이 전환의 핵심입니다.
+      </p>
+
+      <div class="skill-pipeline" aria-label="숙련 노동자의 경험을 저탄소 직무로 연결하는 3단계 전환 파이프라인">
+        <div class="skill-card mini-card">
+          <p class="skill-step">01</p>
+          <p class="skill-card-title">현장 경험</p>
+          <p class="skill-card-key">수십 년의 생산 노하우</p>
+          <p class="skill-card-desc">뜨거운 현장에서 쌓인 숙련은 광양의 중요한 자산입니다.</p>
+          <span class="pipeline-arrow" aria-hidden="true"></span>
+        </div>
+        <div class="skill-card mini-card">
+          <p class="skill-step">02</p>
+          <p class="skill-card-title">전환 지원</p>
+          <p class="skill-card-key">저탄소 직무 재교육</p>
+          <p class="skill-card-desc">수소·이차전지·스마트 공장 기술로 직무를 확장합니다.</p>
+          <span class="pipeline-arrow" aria-hidden="true"></span>
+        </div>
+        <div class="skill-card mini-card">
+          <p class="skill-step">03</p>
+          <p class="skill-card-title">지역 경쟁력</p>
+          <p class="skill-card-key">기술과 숙련의 결합</p>
+          <p class="skill-card-desc">새 기술과 사람의 경험이 결합될 때 광양의 전환이 빨라집니다.</p>
+        </div>
+      </div>
+
+      <div class="skill-result-band">
+        숙련은 낡은 방식이 아니라, <strong>광양 전환의 출발점</strong>입니다.
+      </div>
+
+      <p class="skill-closing-note">
+        기존 노동자의 경험을 새 기술과 연결하는 일,<br/>
+        그것이 광양을 살리는 현실적이고 따뜻한 전략입니다.
+      </p>
+    </div>
+    <div class="source-note">출처: 한국고용정보원, 정의로운 전환과 녹색일자리 논의의 확장, 2023</div>
+  </section>
+
+  <!-- ================= 14 FUTURE CAPABILITIES ================= -->
+  <section data-label="14 Capabilities">
+    <div class="slide-num mono">14 / 16</div>
+    <div class="footer-mark">준비 — 중학생의 미래 역량</div>
+    <div class="slide-inner system-slide typo-slide">
+      <div class="eyebrow"><span class="dot"></span><span>SKILLS · WHAT WE PREPARE</span></div>
+      <h2 class="h2 system-title typo-title">
+        중학생인 우리는<br/>
+        <span class="accent-2">세 가지를 준비합니다.</span>
+      </h2>
+
+      <div class="capability-grid">
+        <div class="system-card capability-card mini-card">
+          <p class="small mono accent">01</p>
+          <p class="h3" style="margin-top: 18px; font-weight: 500;">환경 감수성</p>
+          <p class="body" style="margin-top: 18px;">산업 변화가 환경과 지역에 미치는 영향 읽기</p>
+        </div>
+        <div class="system-card capability-card mini-card">
+          <p class="small mono accent">02</p>
+          <p class="h3" style="margin-top: 18px; font-weight: 500;">기술 리터러시</p>
+          <p class="body" style="margin-top: 18px;">AI·수소·이차전지·데이터를 겁내지 않고 다루는 힘</p>
+        </div>
+        <div class="system-card capability-card mini-card">
+          <p class="small mono accent">03</p>
+          <p class="h3" style="margin-top: 18px; font-weight: 500;">창의융합적 사고</p>
+          <p class="body" style="margin-top: 18px;">철강·에너지·데이터를 연결해 새 답을 찾는 능력</p>
+        </div>
+      </div>
+
+      <p class="body-lg system-tight-note emphasis-line" style="--accent: var(--human);">
+        앞으로의 경쟁력은 암기보다,<br/>
+        변화 속에서 질문하고 문제를 해결하는 힘입니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 15 GWANGYANG TEAMPLAY ================= -->
+  <section data-label="15 Teamplay">
+    <div class="slide-num mono">15 / 16</div>
+    <div class="footer-mark">협력 — 광양 전환 팀플레이</div>
+    <div class="slide-inner system-slide typo-slide">
+      <div class="eyebrow"><span class="dot"></span><span>TEAM · GWANGYANG TRANSITION</span></div>
+      <h2 class="h2 system-title typo-title">
+        좋은 기술도,<br/>
+        <span class="accent-2">함께 움직여야 성공합니다.</span>
+      </h2>
+
+      <div class="blueprint-map">
+        <svg class="blueprint-lines" viewBox="0 0 1680 460" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M840 150 L840 170" />
+          <path d="M620 365 L665 265" />
+          <path d="M1060 365 L1015 265" />
+        </svg>
+        <div class="blueprint-center">
+          <p class="h3" style="font-weight: 600;">광양 전환<br/>팀플레이</p>
+        </div>
+        <div class="blueprint-node n1 mini-card">
+          <p class="small mono accent">01</p>
+          <p class="h3" style="margin-top: 12px; font-weight: 500;">지자체·기업</p>
+          <p class="body" style="margin-top: 12px;">산업 전환 전략과 현장 지원</p>
+        </div>
+        <div class="blueprint-node n2 mini-card">
+          <p class="small mono accent">02</p>
+          <p class="h3" style="margin-top: 12px; font-weight: 500;">대학·멘토</p>
+          <p class="body" style="margin-top: 12px;">전문 지식과 피드백</p>
+        </div>
+        <div class="blueprint-node n3 mini-card">
+          <p class="small mono accent">03</p>
+          <p class="h3" style="margin-top: 12px; font-weight: 500;">교육계·학생</p>
+          <p class="body" style="margin-top: 12px;">미래 진로 교육과 탐구</p>
+        </div>
+      </div>
+
+      <p class="body-lg system-tight-note emphasis-line">
+        기후위기를 넘는 답은 혼자 만드는 기술이 아니라,<br/>
+        지역이 하나의 팀이 되어 움직이는 힘입니다.
+      </p>
+    </div>
+    <div class="source-note">출처: 본 연구 종합</div>
+  </section>
+
+  <!-- ================= 16 CLOSING ================= -->
+  <section data-label="16 Closing">
+    <div class="slide-num mono">16 / 16</div>
+    <div class="slide-inner center">
+      <div class="eyebrow"><span class="dot"></span><span>CHOICE · FINAL QUESTION</span></div>
+      <h1 class="display">
+        방향은,<br/>
+        <span class="accent">우리가</span> 정합니다.
+      </h1>
+      <p class="body-lg" style="margin-top: 56px; max-width: 1220px;">
+        기술은 도구일 뿐,<br/>
+        스스로 방향을 정하지 않습니다.<br/><br/>
+        광양이 과거의 도시에 머물지,<br/>
+        친환경 에너지 도시로 나아갈지는<br/>
+        지금 이 변화를 마주한 우리의 선택에 달려 있습니다.
+      </p>
+      <p class="h3 accent" style="margin-top: 40px; font-weight: 500;">
+        우리 동네 광양의 푸른 내일을 위해,<br/>
+        우리는 어떤 선택을 할까요?
+      </p>
+      <hr class="rule" style="margin: 72px 0 48px 0; max-width: 600px;" />
+      <div class="row gap-80" style="align-items: flex-end; justify-content: space-between;">
+        <div class="stack-sm">
+          <p class="small mono dim">PRESENTED BY</p>
+          <p class="h3" style="font-weight: 500; font-size: calc(34px * var(--t-scale)); line-height: 1.15;">염초롱 · 정혜린 · 정유주</p>
+        </div>
+        <div class="stack-sm" style="text-align: right;">
+          <p class="small mono dim">Q & A</p>
+          <p class="h3" style="font-weight: 500; font-size: calc(34px * var(--t-scale)); line-height: 1.15;">질문 환영합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<div class="autoplay-indicator">▶ AUTOPLAY · 8s</div>
+
+<!-- ================== SCRIPTS ================== -->
+<script src="deck-stage.js?v=20260521-gwangyang-final"></script>
+<script src="image-slot.js?v=20260521-gwangyang-final"></script>
+
+<!-- Chapter navigation inside every slide canvas -->
+<script>
+  (function () {
+    const chapters = [
+      { key: 'intro', label: '도입', start: 1 },
+      { key: 'crisis', label: '위기', start: 3 },
+      { key: 'transition', label: '전환', start: 7 },
+      { key: 'platform', label: '확장', start: 9 },
+      { key: 'jobs', label: '일자리', start: 11 },
+      { key: 'choice', label: '선택', start: 12 },
+    ];
+
+    function getChapterBySlide(slideNumber) {
+      if (slideNumber >= 1 && slideNumber <= 2) return 'intro';
+      if (slideNumber >= 3 && slideNumber <= 6) return 'crisis';
+      if (slideNumber >= 7 && slideNumber <= 8) return 'transition';
+      if (slideNumber >= 9 && slideNumber <= 10) return 'platform';
+      if (slideNumber === 11) return 'jobs';
+      return 'choice';
+    }
+
+    function goToSlide(targetSlide) {
+      const deck = document.querySelector('deck-stage');
+      if (deck && typeof deck.goTo === 'function') {
+        deck.goTo(targetSlide - 1);
+      } else {
+        window.location.hash = '#/' + targetSlide;
+      }
+    }
+
+    function createNav(activeChapter) {
+      const nav = document.createElement('nav');
+      nav.className = 'nav-shell';
+      nav.setAttribute('aria-label', '발표 챕터 네비게이션');
+
+      const brand = document.createElement('div');
+      brand.className = 'nav-brand';
+      brand.textContent = '광양창의융합교육 B3조';
+      nav.appendChild(brand);
+
+      const tabs = document.createElement('div');
+      tabs.className = 'nav-tabs';
+      chapters.forEach((chapter) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'nav-tab' + (chapter.key === activeChapter ? ' active' : '');
+        button.dataset.chapter = chapter.key;
+        button.textContent = chapter.label;
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          goToSlide(chapter.start);
+        });
+        tabs.appendChild(button);
+      });
+      nav.appendChild(tabs);
+      return nav;
+    }
+
+    function createPageTurnButton(direction, slideNumber, totalSlides) {
+      const isPrev = direction === 'prev';
+      const targetSlide = isPrev ? slideNumber - 1 : slideNumber + 1;
+      const disabled = targetSlide < 1 || targetSlide > totalSlides;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'page-turn page-turn-' + direction;
+      button.setAttribute('aria-label', isPrev ? '이전 슬라이드' : '다음 슬라이드');
+      if (disabled) button.disabled = true;
+      button.innerHTML = isPrev
+        ? '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M24 10 14 20l10 10" /></svg>'
+        : '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="m16 10 10 10-10 10" /></svg>';
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!disabled) goToSlide(targetSlide);
+      });
+      return button;
+    }
+
+    function installChapterNav() {
+      const deck = document.querySelector('deck-stage');
+      if (!deck) return;
+      const slides = deck.querySelectorAll(':scope > section');
+      slides.forEach((section, index) => {
+        const slideNumber = index + 1;
+        if (!section.querySelector(':scope > .nav-shell')) {
+          section.insertBefore(createNav(getChapterBySlide(slideNumber)), section.firstChild);
+        }
+        if (!section.querySelector(':scope > .page-turn-prev')) {
+          section.appendChild(createPageTurnButton('prev', slideNumber, slides.length));
+        }
+        if (!section.querySelector(':scope > .page-turn-next')) {
+          section.appendChild(createPageTurnButton('next', slideNumber, slides.length));
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', installChapterNav, { once: true });
+    } else {
+      installChapterNav();
+    }
+  })();
+</script>
+
+<!-- Autoplay handler + animation retrigger -->
+<script>
+  (function () {
+    const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    const formatNumber = (n) => Math.round(n).toLocaleString('ko-KR');
+
+    function animateCount(el) {
+      const from = Number(el.dataset.from || 0);
+      const to = Number(el.dataset.to || 0);
+      const suffix = el.dataset.suffix || '';
+      const duration = Number(el.dataset.duration || 900);
+      const delay = Number(el.dataset.delay || 0);
+
+      const setFinal = () => { el.textContent = formatNumber(to) + suffix; };
+      if (!Number.isFinite(from) || !Number.isFinite(to) || reduceMotion()) {
+        setFinal();
+        return;
+      }
+
+      el.textContent = formatNumber(from) + suffix;
+      const run = () => {
+        const start = performance.now();
+        function frame(now) {
+          const p = Math.min(1, (now - start) / duration);
+          const v = from + (to - from) * easeOutCubic(p);
+          el.textContent = formatNumber(v) + suffix;
+          if (p < 1) requestAnimationFrame(frame);
+          else setFinal();
+        }
+        requestAnimationFrame(frame);
+      };
+      if (delay > 0) setTimeout(run, delay);
+      else run();
+    }
+
+    function animateTaxTrend(slide) {
+      const trend = slide.querySelector('.tax-trend-slide');
+      if (!trend) return;
+
+      trend.classList.remove('tax-animated', 'tax-ready');
+      const lines = [...slide.querySelectorAll('.tax-line')];
+      const reveal = slide.querySelectorAll('.tax-area, .tax-markers, .tax-labels, .tax-drop');
+
+      if (reduceMotion()) {
+        lines.forEach((line) => {
+          line.style.strokeDasharray = '';
+          line.style.strokeDashoffset = '';
+        });
+        trend.classList.add('tax-ready');
+        return;
+      }
+
+      reveal.forEach((el) => {
+        el.style.transition = 'none';
+        el.style.opacity = '';
+        el.style.transform = '';
+      });
+
+      lines.forEach((line) => {
+        const length = line.getTotalLength ? line.getTotalLength() : 0;
+        line.style.transition = 'none';
+        line.style.strokeDasharray = String(length);
+        line.style.strokeDashoffset = String(length);
+      });
+
+      void trend.offsetWidth;
+
+      reveal.forEach((el) => { el.style.transition = ''; });
+      lines.forEach((line) => {
+        line.style.transition = '';
+        line.style.strokeDashoffset = '0';
+      });
+
+      setTimeout(() => {
+        trend.classList.add('tax-animated');
+      }, 120);
+    }
+
+    function animateTaxSlide(slide) {
+      if (!slide) return;
+      slide.querySelectorAll('.countdown-number').forEach(animateCount);
+      if (slide.matches('[data-label="05 Gwangyang Tax Trend"], [data-label="05 Gwangyang Tax"], [data-label="05 Tax Drop"]')) {
+        animateTaxTrend(slide);
+      }
+    }
+
+    // Re-trigger slide-inner CSS animation on every slide change so navigating
+    // back also plays the transition.
+    document.addEventListener('slidechange', (e) => {
+      const slide = e.detail.slide;
+      if (!slide) return;
+      const inner = slide.querySelector(':scope > .slide-inner');
+      const bg    = slide.querySelector(':scope > .bg-layer');
+      [inner, bg].forEach((el) => {
+        if (!el) return;
+        el.style.animation = 'none';
+        // force reflow
+        void el.offsetWidth;
+        el.style.animation = '';
+      });
+      animateTaxSlide(slide);
+    });
+
+    requestAnimationFrame(() => {
+      animateTaxSlide(document.querySelector('deck-stage > section[data-deck-active]'));
+    });
+
+    let timer = null;
+    function startAutoplay() {
+      stopAutoplay();
+      timer = setInterval(() => {
+        const deck = document.querySelector('deck-stage');
+        if (!deck) return;
+        const slides = deck.querySelectorAll(':scope > section');
+        let idx = 0;
+        slides.forEach((s, i) => { if (s.hasAttribute('data-deck-active')) idx = i; });
+        const next = (idx + 1) % slides.length;
+        if (deck.goTo) deck.goTo(next);
+      }, 8000);
+    }
+    function stopAutoplay() { if (timer) { clearInterval(timer); timer = null; } }
+    window.__setAutoplay = (on) => {
+      document.body.setAttribute('data-autoplay', on ? 'on' : 'off');
+      if (on) startAutoplay(); else stopAutoplay();
+    };
+  })();
+</script>
+
+<div id="tweaks-root"></div>
+<script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const isPresent = params.get('present') === '1' || params.get('final') === '1';
+    if (isPresent) return;
+
+    const load = (src, attrs = {}) => new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = src;
+      Object.entries(attrs).forEach(([key, value]) => script.setAttribute(key, value));
+      script.onload = resolve;
+      script.onerror = reject;
+      document.body.appendChild(script);
+    });
+
+    load('https://unpkg.com/react@18.3.1/umd/react.development.js', {
+      integrity: 'sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L',
+      crossorigin: 'anonymous',
+    })
+      .then(() => load('https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js', {
+        integrity: 'sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm',
+        crossorigin: 'anonymous',
+      }))
+      .then(() => load('https://unpkg.com/@babel/standalone@7.29.0/babel.min.js', {
+        integrity: 'sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y',
+        crossorigin: 'anonymous',
+      }))
+      .then(() => {
+        const panel = document.createElement('script');
+        panel.type = 'text/babel';
+        panel.src = 'tweaks-panel.jsx?v=20260521-standalone';
+        document.body.appendChild(panel);
+        const app = document.createElement('script');
+        app.type = 'text/babel';
+        app.src = 'tweaks-app.jsx?v=20260521-industrial';
+        document.body.appendChild(app);
+        setTimeout(() => {
+          if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
+            window.Babel.transformScriptTags();
+          }
+        }, 0);
+      })
+      .catch((err) => {
+        console.warn('Tweaks UI failed to load:', err);
+      });
+  })();
+</script>
+
+</body>
+</html>

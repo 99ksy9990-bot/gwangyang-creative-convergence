@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
-<title>기후, 기술, 그리고 광양의 미래</title>
+<title>기후변화, 일자리, 그리고 광양의 미래</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <!-- Pretendard -->
@@ -94,12 +94,17 @@
     position: relative;
   }
   deck-stage > section:nth-of-type(4),
-  deck-stage > section:nth-of-type(5),
-  deck-stage > section:nth-of-type(6) {
+  deck-stage > section:nth-of-type(5) {
     --stage-a: var(--carbon);
     --stage-b: var(--carbon-dark);
     --accent: var(--carbon);
     --accent-2: var(--transition);
+  }
+  deck-stage > section:nth-of-type(6) {
+    --stage-a: var(--transition);
+    --stage-b: var(--transition-soft);
+    --accent: var(--transition);
+    --accent-2: var(--transition-soft);
   }
   deck-stage > section:nth-of-type(7),
   deck-stage > section:nth-of-type(8),
@@ -2307,7 +2312,6 @@
   /* presentation cleanup */
   body[data-present="1"] .page-turn,
   body[data-present="1"] .autoplay-indicator,
-  body[data-present="1"] #tweaks-root,
   body[data-present="1"] [class*="thumbnail"],
   body[data-present="1"] [class*="thumb"],
   body[data-present="1"] [aria-label*="Reset"],
@@ -2755,7 +2759,7 @@
 <!-- Speaker notes for the host preview -->
 <script type="application/json" id="speaker-notes">
 [
-"발표자 1입니다. 저희가 오늘 발표할 주제는 '기후, 기술, 그리고 광양의 미래'입니다. 탄소 규제가 광양의 산업과 일자리 지도를 바꾸는 흐름을 살펴보겠습니다.",
+"발표자 1입니다. 저희가 오늘 발표할 주제는 '기후변화, 일자리, 그리고 광양의 미래'입니다. 탄소 규제가 광양의 산업과 일자리 지도를 바꾸는 흐름을 살펴보겠습니다.",
 "먼저 질문으로 시작하겠습니다. 지구 반대편의 정책 하나가 내 미래의 직업을 바꿀 수 있을까요? 답은, 이미 바뀌기 시작했다는 것입니다.",
 "광양은 광양제철소와 광양항을 중심으로 성장해 온 대표적인 산업 도시입니다. 하지만 탄소 규제와 산업 전환은 이 구조에도 변화를 요구하고 있습니다.",
 "그 변화의 핵심 중 하나가 EU 탄소국경조정제도, CBAM입니다. 철강처럼 배출량이 큰 산업은 수출 과정에서 비용 부담이 커질 가능성이 있습니다.",
@@ -2786,7 +2790,7 @@
 <!-- =====================================================================
      DECK
 ===================================================================== -->
-<deck-stage width="1920" height="1080">
+<deck-stage width="1920" height="1080" no-rail>
 
   <!-- ================= 01 COVER ================= -->
   <section data-label="01 Cover">
@@ -2794,8 +2798,8 @@
     <div class="slide-inner end">
       <div class="eyebrow"><span class="dot"></span><span>2026</span></div>
       <h1 class="display" style="margin-top: 40px;">
-        기후,<br/>
-        기술, 그리고<br/>
+        기후변화,<br/>
+        일자리, 그리고<br/>
         <span class="accent">광양의 미래</span>.
       </h1>
       <div class="row gap-48" style="margin-top: 64px; align-items: flex-end; justify-content: space-between;">
@@ -3293,7 +3297,7 @@
     const chapters = [
       { key: 'intro', label: '도입', start: 1 },
       { key: 'crisis', label: '위기', start: 3 },
-      { key: 'transition', label: '전환', start: 7 },
+      { key: 'transition', label: '전환', start: 6 },
       { key: 'platform', label: '확장', start: 9 },
       { key: 'jobs', label: '일자리', start: 11 },
       { key: 'choice', label: '선택', start: 12 },
@@ -3301,8 +3305,8 @@
 
     function getChapterBySlide(slideNumber) {
       if (slideNumber >= 1 && slideNumber <= 2) return 'intro';
-      if (slideNumber >= 3 && slideNumber <= 6) return 'crisis';
-      if (slideNumber >= 7 && slideNumber <= 8) return 'transition';
+      if (slideNumber >= 3 && slideNumber <= 5) return 'crisis';
+      if (slideNumber >= 6 && slideNumber <= 8) return 'transition';
       if (slideNumber >= 9 && slideNumber <= 10) return 'platform';
       if (slideNumber === 11) return 'jobs';
       return 'choice';
@@ -3518,55 +3522,6 @@
       document.body.setAttribute('data-autoplay', on ? 'on' : 'off');
       if (on) startAutoplay(); else stopAutoplay();
     };
-  })();
-</script>
-
-<div id="tweaks-root"></div>
-<script>
-  (function () {
-    const params = new URLSearchParams(window.location.search);
-    const isPresent = params.get('present') === '1' || params.get('final') === '1';
-    if (isPresent) return;
-
-    const load = (src, attrs = {}) => new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.src = src;
-      Object.entries(attrs).forEach(([key, value]) => script.setAttribute(key, value));
-      script.onload = resolve;
-      script.onerror = reject;
-      document.body.appendChild(script);
-    });
-
-    load('https://unpkg.com/react@18.3.1/umd/react.development.js', {
-      integrity: 'sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L',
-      crossorigin: 'anonymous',
-    })
-      .then(() => load('https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js', {
-        integrity: 'sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm',
-        crossorigin: 'anonymous',
-      }))
-      .then(() => load('https://unpkg.com/@babel/standalone@7.29.0/babel.min.js', {
-        integrity: 'sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y',
-        crossorigin: 'anonymous',
-      }))
-      .then(() => {
-        const panel = document.createElement('script');
-        panel.type = 'text/babel';
-        panel.src = 'tweaks-panel.jsx?v=20260521-standalone';
-        document.body.appendChild(panel);
-        const app = document.createElement('script');
-        app.type = 'text/babel';
-        app.src = 'tweaks-app.jsx?v=20260521-industrial';
-        document.body.appendChild(app);
-        setTimeout(() => {
-          if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
-            window.Babel.transformScriptTags();
-          }
-        }, 0);
-      })
-      .catch((err) => {
-        console.warn('Tweaks UI failed to load:', err);
-      });
   })();
 </script>
 

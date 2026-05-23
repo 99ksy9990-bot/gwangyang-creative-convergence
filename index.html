@@ -572,8 +572,10 @@
     background: rgba(255,107,53,0.09);
     color: rgba(255,184,146,0.92);
     font-family: var(--font-mono);
-    font-size: calc(17px * var(--t-scale));
+    font-size: calc(23px * var(--t-scale));
+    font-weight: 760;
     line-height: 1;
+    transition: color 420ms ease, border-color 420ms ease, background 420ms ease;
   }
   .tax-value {
     font-family: var(--font-disp);
@@ -582,15 +584,16 @@
     white-space: nowrap;
   }
   .tax-old {
-    font-size: calc(78px * var(--t-scale));
+    font-size: calc(98px * var(--t-scale));
     font-weight: 760;
     line-height: 0.95;
     color: rgba(245,245,247,0.50);
     text-shadow: 0 0 28px rgba(255,255,255,0.08);
+    transition: color 420ms ease, text-shadow 420ms ease;
   }
   .countdown-number,
   .tax-new {
-    font-size: calc(86px * var(--t-scale));
+    font-size: calc(98px * var(--t-scale));
     font-weight: 800;
     line-height: 0.95;
   }
@@ -1594,6 +1597,70 @@
     margin-top: 22px;
     max-width: 1080px;
   }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-year-stat.end {
+    display: none;
+  }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-number-pair {
+    grid-template-columns: max-content;
+    grid-template-areas:
+      "start-chip"
+      "start-value";
+  }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-trend-slide.tax-finalized .tax-year-stat.start .tax-year-chip {
+    border-color: rgba(255,107,53,0.56);
+    background: rgba(255,107,53,0.13);
+    color: #ff9a5e;
+  }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-trend-slide.tax-finalized .tax-year-stat.start .tax-value {
+    color: var(--carbon);
+    text-shadow: 0 0 28px rgba(255,107,53,0.18);
+  }
+  section[data-label="15 Teamplay"] .slide-inner {
+    padding-top: 158px;
+  }
+  section[data-label="15 Teamplay"] .typo-title {
+    max-width: 760px !important;
+    position: relative;
+    z-index: 2;
+  }
+  .teamplay-visual {
+    position: absolute;
+    left: 92px;
+    top: 465px;
+    width: 1080px;
+    height: 252px;
+    transform: none;
+    background: url("assets/images/gwangyang-teamplay-horizontal.png") center 52% / cover no-repeat;
+    filter: brightness(0.96) saturate(1.05) contrast(1.02);
+    opacity: 0.96;
+    z-index: 1;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    mask-image:
+      radial-gradient(ellipse at 50% 58%, #000 0%, #000 48%, rgba(0,0,0,0.72) 62%, transparent 82%),
+      linear-gradient(90deg, transparent 0%, #000 18%, #000 82%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 24%, #000 78%, transparent 100%);
+    mask-composite: intersect;
+  }
+  .teamplay-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 58%, transparent 0%, rgba(7,8,9,0.10) 54%, rgba(7,8,9,0.72) 86%),
+      linear-gradient(90deg, rgba(7,8,9,0.82), rgba(7,8,9,0.04) 26%, rgba(7,8,9,0.04) 74%, rgba(7,8,9,0.82)),
+      linear-gradient(180deg, rgba(7,8,9,0.76), transparent 30%, transparent 70%, rgba(7,8,9,0.82));
+  }
+  section[data-label="15 Teamplay"] .teamplay-note {
+    position: absolute;
+    left: 104px;
+    bottom: 210px;
+    max-width: 1050px;
+    margin-top: 0;
+    font-size: calc(28px * var(--t-scale));
+    line-height: 1.42;
+    z-index: 2;
+  }
 
   /* rear typography system: keep 11-15 closer to the cinematic opening */
   .typo-slide {
@@ -1925,20 +1992,25 @@
   }
   .gwangyang-image-card {
     position: absolute;
-    left: 1040px;
-    top: 340px;
-    width: 690px;
-    height: 440px;
+    left: 1007px;
+    top: 341px;
+    width: 774px;
+    height: 500px;
     min-height: 0;
     margin-top: 0;
     aspect-ratio: auto;
     overflow: hidden;
-    border-radius: 24px;
-    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 0;
+    border: 0;
     background: url("assets/images/gwangyang-industrial-port-generated.png") center center / cover no-repeat;
+    mix-blend-mode: screen;
+    mask-image:
+      radial-gradient(ellipse at 50% 54%, #000 0%, #000 54%, rgba(0,0,0,0.72) 70%, transparent 92%),
+      linear-gradient(90deg, transparent 0%, #000 11%, #000 89%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 10%, #000 88%, transparent 100%);
+    mask-composite: intersect;
     box-shadow:
-      0 30px 90px rgba(0,0,0,0.45),
-      0 0 70px rgba(255,107,53,0.08);
+      0 0 92px rgba(255,107,53,0.08);
   }
   .gwangyang-image-card::before {
     content: "";
@@ -1955,7 +2027,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    box-shadow: none;
     pointer-events: none;
   }
   .flow-visual {
@@ -2189,28 +2261,34 @@
   }
   .hydrogen-complex-visual {
     position: absolute;
-    left: 980px;
-    top: 300px;
-    width: 760px;
-    height: 485px;
+    left: 1045px;
+    top: 306px;
+    width: 748px;
+    height: 550px;
     overflow: hidden;
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 22px;
+    border: 0;
+    border-radius: 0;
     box-shadow:
-      0 32px 90px rgba(0,0,0,0.46),
       0 0 72px rgba(34,211,238,0.08);
     background:
-      url("assets/images/gwangyang-industry-platform-generated.png") center center / cover no-repeat;
+      url("assets/images/gwangyang-industry-platform-v3.png") center 56% / cover no-repeat;
     filter: brightness(0.92) saturate(1.05) contrast(1.02);
+    mix-blend-mode: screen;
+    mask-image:
+      radial-gradient(ellipse at 52% 52%, #000 0%, #000 55%, rgba(0,0,0,0.72) 70%, transparent 92%),
+      linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%),
+      linear-gradient(180deg, transparent 0%, #000 10%, #000 88%, transparent 100%);
+    mask-composite: intersect;
   }
   .hydrogen-complex-visual::after {
     content: "";
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(circle at 62% 48%, rgba(34,211,238,0.11), transparent 38%),
-      linear-gradient(90deg, rgba(0,0,0,0.22), rgba(0,0,0,0.02)),
-      linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.18));
+      radial-gradient(circle at 62% 48%, rgba(34,211,238,0.10), transparent 38%),
+      radial-gradient(ellipse at 50% 52%, transparent 0%, rgba(7,8,9,0.08) 58%, rgba(7,8,9,0.70) 92%),
+      linear-gradient(90deg, rgba(7,8,9,0.70), rgba(7,8,9,0.02) 28%, rgba(7,8,9,0.02) 72%, rgba(7,8,9,0.70)),
+      linear-gradient(180deg, rgba(7,8,9,0.68), transparent 30%, transparent 72%, rgba(7,8,9,0.78));
     pointer-events: none;
   }
   .battery-layout {
@@ -2377,6 +2455,21 @@
     font-size: calc(28px * var(--t-scale));
     line-height: 1.42;
   }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-trend-copy .h2 {
+    font-size: calc(76px * var(--t-scale));
+    line-height: 1.08;
+  }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-number-pair {
+    margin-top: 75px;
+  }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-trend-card {
+    height: 620px;
+    box-sizing: border-box;
+    padding: 24px 28px 24px;
+  }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-line-chart {
+    height: 500px;
+  }
 
   section[data-label="10 Global Cases"] {
     background: #020608;
@@ -2517,25 +2610,210 @@
     color: color-mix(in srgb, var(--carbon) 86%, rgba(245,245,247,0.3));
   }
   section[data-label="11 Jobs"] .x-list.up > .small {
-    color: color-mix(in srgb, var(--transition) 82%, rgba(245,245,247,0.38));
+    color: color-mix(in srgb, var(--human) 86%, rgba(245,245,247,0.34));
   }
   section[data-label="11 Jobs"] .typo-title .accent-2 {
-    color: var(--transition);
-    text-shadow: 0 0 28px rgba(34,211,238,0.20);
+    color: var(--human);
+    text-shadow: 0 0 28px rgba(145,247,186,0.18);
+  }
+  section[data-label="11 Jobs"] .typo-title {
+    margin-top: 22px;
+    font-size: calc(76px * var(--t-scale)) !important;
+    line-height: 1.05 !important;
+  }
+  section[data-label="11 Jobs"] .slide-inner {
+    padding-top: 184px;
   }
   section[data-label="11 Jobs"] .jobs-list-card .x-item {
     font-size: calc(25px * var(--t-scale));
     line-height: 1.35;
   }
   section[data-label="11 Jobs"] .x-list.up .x-item::before {
-    background: var(--transition);
+    background: var(--human);
   }
-  section[data-label="11 Jobs"] .x-diagram {
-    height: 160px;
-    opacity: 0.50;
+  section[data-label="11 Jobs"] .jobs-system-grid {
+    margin-top: 32px;
+    max-width: 1620px;
+    grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+    gap: 38px;
+    align-items: stretch;
+    position: relative;
   }
-  section[data-label="11 Jobs"] .x-diagram .x-arrow {
-    stroke-width: 3;
+  section[data-label="11 Jobs"] .jobs-list-card {
+    height: 238px;
+    padding: 30px 38px;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    row-gap: 18px;
+    align-content: stretch;
+    position: relative;
+    z-index: 1;
+    border-radius: 18px !important;
+  }
+  section[data-label="11 Jobs"] .jobs-list-card::before {
+    display: none;
+  }
+  section[data-label="11 Jobs"] .x-list.down {
+    border-color: rgba(255,107,53,0.24) !important;
+  }
+  section[data-label="11 Jobs"] .x-list.up {
+    border-color: rgba(145,247,186,0.24) !important;
+  }
+  section[data-label="11 Jobs"] .jobs-list-card .x-item {
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+  section[data-label="11 Jobs"] .jobs-card-title {
+    margin: 0;
+    font-family: var(--font-disp);
+    font-size: calc(38px * var(--t-scale));
+    line-height: 1.12;
+    font-weight: 820;
+    color: var(--fg);
+    word-break: keep-all;
+  }
+  section[data-label="11 Jobs"] .jobs-card-desc {
+    margin: 0;
+    max-width: 520px;
+    font-size: calc(22px * var(--t-scale));
+    line-height: 1.40;
+    color: rgba(245,245,247,0.54);
+    word-break: keep-all;
+  }
+  section[data-label="11 Jobs"] .jobs-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 0;
+    align-self: end;
+  }
+  section[data-label="11 Jobs"] .jobs-tag {
+    min-width: 100px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    font-size: calc(18px * var(--t-scale));
+    line-height: 1.08;
+    text-align: center;
+    color: var(--carbon);
+  }
+  section[data-label="11 Jobs"] .x-list.up .jobs-tag {
+    color: var(--human);
+  }
+  section[data-label="11 Jobs"] .x-list.up .jobs-tag-row {
+    gap: 16px;
+  }
+  section[data-label="11 Jobs"] .x-list.up .jobs-tag {
+    min-width: 112px;
+  }
+  section[data-label="11 Jobs"] .jobs-bridge {
+    height: 238px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    color: rgba(245,245,247,0.42);
+    transform: translateY(38px);
+  }
+  .bridge-kicker {
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: calc(18px * var(--t-scale));
+    line-height: 1.42;
+    color: rgba(245,245,247,0.92);
+    font-weight: 800;
+    letter-spacing: 0;
+    text-align: center;
+  }
+  .bridge-flow {
+    width: 56px;
+    min-height: 72px;
+    border: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    font-family: var(--font-disp);
+    font-size: 0;
+  }
+  .bridge-flow span {
+    display: none;
+  }
+  .bridge-flow i {
+    position: relative;
+    width: 4px;
+    height: 64px;
+    background: linear-gradient(180deg, rgba(255,107,53,0.18), var(--human));
+  }
+  .bridge-flow i::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: auto;
+    bottom: -1px;
+    top: auto;
+    width: 18px;
+    height: 18px;
+    border-right: 2px solid var(--human);
+    border-bottom: 2px solid var(--human);
+    transform: translateX(-50%) rotate(45deg);
+  }
+  .bridge-note {
+    margin-top: 16px;
+    max-width: 90px;
+    text-align: center;
+    font-size: calc(17px * var(--t-scale));
+    line-height: 1.34;
+    color: rgba(245,245,247,0.92);
+    font-weight: 800;
+    word-break: keep-all;
+  }
+  section[data-label="11 Jobs"] .emerging-jobs-title {
+    margin-top: 38px;
+    font-size: calc(23px * var(--t-scale));
+    color: rgba(245,245,247,0.44);
+  }
+  section[data-label="11 Jobs"] .emerging-jobs-grid {
+    margin-top: -2px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    max-width: 1620px;
+  }
+  section[data-label="11 Jobs"] .emerging-job-card {
+    min-height: 88px;
+    padding: 18px 24px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    background: rgba(255,255,255,0.018);
+    box-sizing: border-box;
+  }
+  section[data-label="11 Jobs"] .emerging-job-card .h3 {
+    font-size: calc(25px * var(--t-scale));
+    line-height: 1.16;
+    color: rgba(245,245,247,0.94);
+  }
+  section[data-label="11 Jobs"] .emerging-job-card .body {
+    margin-top: 8px;
+    font-size: calc(17px * var(--t-scale));
+    color: rgba(245,245,247,0.48);
+  }
+  section[data-label="11 Jobs"] .jobs-bottom-band {
+    margin-top: 22px;
+    max-width: 1620px;
+    min-height: 78px;
+    padding: 16px 34px 16px 38px;
+    border-left: 5px solid var(--human);
+    border-radius: 0 16px 16px 0;
+    background: linear-gradient(90deg, rgba(38,214,120,0.14), rgba(38,214,120,0.07));
+    box-sizing: border-box;
+    font-size: calc(25px * var(--t-scale));
+    line-height: 1.38;
+    color: rgba(245,245,247,0.88);
+    word-break: keep-all;
   }
 
   section[data-label="12 Just Transition Intro"] .jt-concept-layout {
@@ -2614,13 +2892,18 @@
     text-shadow: 0 0 30px rgba(145,247,186,0.18);
   }
   section[data-label="12 Just Transition Intro"] .jt-support-lines {
-    margin-top: 58px;
+    position: absolute;
+    left: 120px;
+    bottom: 209px;
+    margin-top: 0;
+    padding-left: 22px;
+    border-left: 3px solid var(--human);
     display: grid;
     gap: 0;
     max-width: 1540px;
-    color: rgba(245,245,247,0.62);
-    font-size: calc(26px * var(--t-scale));
-    line-height: 1.45;
+    color: rgba(245,245,247,0.70);
+    font-size: calc(28px * var(--t-scale));
+    line-height: 1.42;
     word-break: keep-all;
   }
   section[data-label="12 Just Transition Intro"] .jt-support-lines p {
@@ -2751,26 +3034,7 @@
   }
 </style>
 
-<!-- Speaker notes for the host preview -->
-<script type="application/json" id="speaker-notes">
-[
-"발표자 1입니다. 저희가 오늘 발표할 주제는 '기후변화, 일자리, 그리고 광양의 미래'입니다. 탄소 규제가 광양의 산업과 일자리 지도를 바꾸는 흐름을 살펴보겠습니다.",
-"먼저 질문으로 시작하겠습니다. 지구 반대편의 정책 하나가 내 미래의 직업을 바꿀 수 있을까요? 답은, 이미 바뀌기 시작했다는 것입니다.",
-"광양은 광양제철소와 광양항을 중심으로 성장해 온 대표적인 산업 도시입니다. 하지만 탄소 규제와 산업 전환은 이 구조에도 변화를 요구하고 있습니다.",
-"그 변화의 핵심 중 하나가 EU 탄소국경조정제도, CBAM입니다. 철강처럼 배출량이 큰 산업은 수출 과정에서 비용 부담이 커질 가능성이 있습니다.",
-"광양의 산업 의존도는 숫자로도 확인할 수 있습니다. 광양시 전체 지방세 징수액은 2022년 1,121억 원에서 2023년 409억 원, 2024년 246억 원으로 줄었습니다. 포스코 광양제철소 지방소득세도 2022년 876억 원에서 2023년 155억 원, 2024년 78억 원으로 감소했습니다. 이 수치를 기후변화의 직접 결과로 단정할 수는 없지만, 산업 의존 구조의 취약성을 보여줍니다.",
-"발표자 2입니다. 탄소 규제, 철강 전환 압력, 지역 재정 변화는 광양이 산업 전환을 준비해야 하는 이유입니다.",
-"철강을 버리는 것이 아니라, 철강의 방식을 바꾸는 것이 전환의 핵심입니다. 기술 전환과 사람의 준비가 함께 이루어져야 광양의 미래가 열립니다.",
-"첫 번째 전환 기술은 수소환원제철입니다. HyREX는 석탄 대신 수소를 활용해 철강 생산 과정의 온실가스 배출을 크게 줄일 수 있는 기술로 논의됩니다.",
-"두 번째는 미래 소재와 에너지 산업입니다. 광양은 철강 도시에서 멈추지 않고, 배터리 소재와 에너지 전환 산업으로 확장할 가능성이 있습니다.",
-"세 번째는 광양항과 광양만권의 역할입니다. 광양항은 수소 저장·운송, 친환경 물류, 저탄소 전력 공급과 연결될 가능성이 있습니다.",
-"앞서 말한 산업 변화들의 종착지는 결국 일자리입니다. 공장이 스마트해지면 직접 손으로 기계를 조작하는 일이나 단순 반복 생산 업무는 줄어들 수 있습니다. 하지만 기업의 탄소 배출을 관리하는 ESG 탄소회계, 이차전지 소재 전문가, 수소 인프라 안전관리자, 스마트 공장을 운영하는 데이터 분석 직무처럼 새로운 그린잡도 등장합니다. 핵심은 일자리가 단순히 사라지는 것이 아니라, 필요한 역량이 바뀐다는 점입니다.",
-"여기서 저희가 정말 강조하고 싶은 핵심 개념이 바로 정의로운 전환입니다. 쉽게 말하면, 친환경 경제로 넘어가는 과정에서 기존 산업에서 일하던 분들이 일자리를 잃고 소외되지 않도록 돕자는 뜻입니다. 새로운 기술이 중요하지만, 그 변화에 사람들이 함께 올라탈 수 있는 길을 만드는 것이 더 중요합니다.",
-"그렇다면 아직 중학생인 저희 세대는 무엇을 준비해야 할까요? 딱 세 가지입니다. 첫째, 산업 변화가 환경과 지역에 어떤 영향을 주는지 읽는 환경 감수성입니다. 둘째, 인공지능과 수소, 이차전지, 데이터를 겁내지 않고 다루는 기술 리터러시입니다. 셋째, 철강과 에너지, 데이터를 연결해 새로운 답을 찾아내는 창의융합적 사고입니다. 앞으로는 암기보다 변화 속에서 질문하고 문제를 해결하는 힘이 진짜 경쟁력이 될 것입니다.",
-"저희가 이 방대한 연구를 할 수 있었던 건 저희끼리만 잘해서가 아닙니다. 교수님, 멘토 대학생 선배들, 그리고 지역사회가 함께 도와주셨기 때문입니다. 저는 이게 기후위기를 극복하는 가장 좋은 답이라고 생각합니다. 아무리 좋은 기술이 있어도 지자체, 기업, 교육계가 하나의 팀이 되어 움직여야 광양의 성공적인 전환을 이뤄낼 수 있습니다.",
-"이제 마무리하겠습니다. 수소로 철을 만들고, 배터리 공장을 짓고, 새로운 기술을 도입하는 일은 모두 중요합니다. 하지만 기술은 도구일 뿐, 스스로 방향을 정하지 않습니다. 지금 이 변화를 마주한 우리의 선택에 달려 있습니다. 우리 동네 광양의 푸른 내일을 위해 우리는 어떤 선택을 할까요? 이것으로 B3조 발표를 마치겠습니다. 감사합니다."
-]
-</script>
+
 
 </head>
 <body data-mood="dark" data-transition="fade-slide" data-autoplay="off">
@@ -2794,8 +3058,8 @@
       <div class="eyebrow"><span class="dot"></span><span>2026</span></div>
       <h1 class="display" style="margin-top: 40px;">
         기후변화,<br/>
-        일자리, 그리고<br/>
-        <span class="accent">광양의 미래</span>.
+        일자리,<br/>
+        그리고 <span class="accent">광양의 미래</span>.
       </h1>
       <div class="row gap-48" style="margin-top: 64px; align-items: flex-end; justify-content: space-between;">
         <p class="body-lg" style="max-width: 800px;">
@@ -2836,7 +3100,7 @@
     <div class="slide-num mono">03 / 15</div>
     <div class="slide-inner gwangyang-field-slide">
       <div class="gwangyang-field-copy">
-        <div class="eyebrow"><span class="dot"></span><span>현장 — 광양 산업 구조</span></div>
+        <div class="eyebrow"><span class="dot"></span><span>SITE · GWANGYANG INDUSTRY</span></div>
         <h2 class="h1" style="margin-top: 32px;">
         광양은 <span style="color: var(--carbon);">철강</span>과 <span style="color: var(--accent);">항만</span>으로<br/>
         성장한 도시입니다.
@@ -2888,13 +3152,17 @@
         <div class="tax-trend-copy">
           <h2 class="h2">
             산업 의존 구조는<br/>
-            지역 재정으로 드러납니다.
+            <span class="accent">지역 재정</span>으로 드러납니다.
           </h2>
 
           <div class="tax-number-pair">
             <div class="tax-year-stat start">
-              <span class="tax-year-chip">2022년</span>
-              <span class="tax-value tax-old">1,121억</span>
+              <span class="tax-year-chip" data-initial="2022년" data-final="2024년">2022년</span>
+              <span class="tax-value tax-old countdown-number"
+                    data-from="1121"
+                    data-to="246"
+                    data-suffix="억"
+                    data-duration="2100">1,121억</span>
             </div>
             <div class="tax-year-stat end">
               <span class="tax-year-chip">2024년</span>
@@ -3065,9 +3333,9 @@
         <div class="stack-sm platform-direction">
           <p class="small mono dim">핵심 방향</p>
           <p class="h3" style="font-weight: 500;">
-            철강을 버리는 것이 아니라, 철강 위에<br/>
-            <span class="accent">수소·소재·재생에너지</span>를 얹는<br/>
-            <span class="platform-nowrap">산업 플랫폼입니다.</span>
+            철강을 버리는 것이 아니라,<br/>
+            철강 위에
+            <span class="platform-nowrap"><span class="accent">수소·소재·재생에너지</span>를 얹는 산업 플랫폼입니다.</span>
           </p>
         </div>
       </div>
@@ -3124,47 +3392,64 @@
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>WORK · IN TRANSITION</span></div>
       <h2 class="h2 system-title typo-title">
-        일자리는 사라지는 것이 아니라,<br/>
+        일자리는 사라지는 것이 아니라<br/>
         <span class="accent-2">성격이 바뀝니다.</span>
       </h2>
 
       <div class="jobs-system-grid">
         <div class="x-list down system-card jobs-list-card mini-card">
-          <p class="small mono accent">감소 가능성이 있는 업무</p>
-          <div class="x-item">단순 반복 생산직</div>
-          <div class="x-item">화석연료 기반 전통 직무</div>
-          <div class="x-item">직접 기계 조작 업무</div>
+          <p class="small mono accent">지금의 직무</p>
+          <p class="jobs-card-title">용광로 작업자</p>
+          <p class="jobs-card-desc">코크스와 철광석을 고로에 투입해 쇳물을 만드는 전통 제철 공정</p>
+          <div class="jobs-tag-row" aria-label="현재 직무의 핵심 조건">
+            <span class="jobs-tag">화석연료</span>
+            <span class="jobs-tag">고탄소</span>
+            <span class="jobs-tag">반복 조작</span>
+          </div>
         </div>
 
-        <svg class="x-diagram" viewBox="0 0 360 360" aria-label="직무 변화 개념도">
-          <defs>
-            <marker id="arrow-carbon" viewBox="0 0 14 14" refX="11" refY="7" markerWidth="11" markerHeight="11" orient="auto">
-              <path d="M3 3 L11 7 L3 11" fill="none" stroke="#FF6B35" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
-            </marker>
-            <marker id="arrow-human" viewBox="0 0 14 14" refX="11" refY="7" markerWidth="11" markerHeight="11" orient="auto">
-              <path d="M3 3 L11 7 L3 11" fill="none" stroke="#67E8F9" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
-            </marker>
-          </defs>
-          <path class="x-arrow" d="M55 70 L295 290" stroke="var(--carbon)" marker-end="url(#arrow-carbon)" />
-          <path class="x-arrow" d="M55 290 L295 70" stroke="var(--transition)" marker-end="url(#arrow-human)" />
-          <circle cx="180" cy="180" r="52" fill="rgba(7,8,9,0.86)" stroke="rgba(245,245,247,0.18)" />
-          <text x="180" y="172" text-anchor="middle" fill="rgba(245,245,247,0.72)" font-size="17" font-family="A2G Body">성격의</text>
-          <text x="180" y="202" text-anchor="middle" fill="#67E8F9" font-size="25" font-family="A2G Body" font-weight="700">변화</text>
-        </svg>
+        <div class="jobs-bridge" aria-label="TASK에서 SKILL로 바뀌는 직무 변화">
+          <div class="bridge-kicker">기술<br/>전환</div>
+          <div class="bridge-flow">
+            <span>TASK</span>
+            <i aria-hidden="true"></i>
+            <span>SKILL</span>
+          </div>
+          <div class="bridge-note">같은<br/>현장</div>
+        </div>
 
         <div class="x-list up system-card jobs-list-card mini-card">
-          <p class="small mono accent-2">증가 가능성이 있는 직무</p>
-          <div class="x-item">ESG·데이터 탄소 관리</div>
-          <div class="x-item">이차전지 소재 전문가</div>
-          <div class="x-item">수소 인프라 안전관리자</div>
-          <div class="x-item">스마트 공장 데이터 분석</div>
+          <p class="small mono accent-2">미래의 직무</p>
+          <p class="jobs-card-title">수소 설비 운영자</p>
+          <p class="jobs-card-desc">HyREX 수소환원제철 설비를 모니터링하고 제어하는 공정 전문가</p>
+          <div class="jobs-tag-row" aria-label="미래 직무의 핵심 조건">
+            <span class="jobs-tag">수소·청정</span>
+            <span class="jobs-tag">저탄소</span>
+            <span class="jobs-tag">데이터 제어</span>
+          </div>
         </div>
       </div>
 
-      <p class="body-lg system-tight-note emphasis-line" style="--accent: var(--human);">
-        일자리가 단순히 줄어드는 것이 아니라,<br/>
-        필요한 역량이 바뀌고 있습니다.
-      </p>
+      <p class="emerging-jobs-title">함께 늘어나는 직무들</p>
+      <div class="emerging-jobs-grid" aria-label="함께 늘어나는 미래 직무">
+        <div class="emerging-job-card">
+          <p class="h3">ESG 탄소 관리</p>
+          <p class="body">데이터로 탄소 배출 측정·보고</p>
+        </div>
+        <div class="emerging-job-card">
+          <p class="h3">이차전지 소재</p>
+          <p class="body">배터리 핵심 소재 연구·생산</p>
+        </div>
+        <div class="emerging-job-card">
+          <p class="h3">수소 안전관리</p>
+          <p class="body">수소 인프라 운영·안전 점검</p>
+        </div>
+        <div class="emerging-job-card">
+          <p class="h3">스마트공장 분석</p>
+          <p class="body">공정 데이터 모니터링·최적화</p>
+        </div>
+      </div>
+
     </div>
     <div class="source-note">출처: 한국고용정보원, 정의로운 전환과 녹색일자리 논의의 확장, 2023 / 고용노동부 주요 업종 일자리 전망 자료</div>
   </section>
@@ -3232,15 +3517,16 @@
     <div class="slide-num mono">14 / 15</div>
     <div class="footer-mark">협력 — 광양 전환 팀플레이</div>
     <div class="slide-inner system-slide typo-slide">
+      <div class="teamplay-visual" aria-hidden="true"></div>
       <div class="eyebrow"><span class="dot"></span><span>TEAM · GWANGYANG TRANSITION</span></div>
       <h2 class="h2 system-title typo-title">
         좋은 기술도,<br/>
         <span class="accent-2">함께 움직여야 성공합니다.</span>
       </h2>
 
-      <p class="body-lg system-tight-note emphasis-line">
+      <p class="body-lg system-tight-note emphasis-line teamplay-note" style="--accent: var(--human);">
         기후위기를 넘는 답은 혼자 만드는 기술이 아니라,<br/>
-        지역이 하나의 팀이 되어 움직이는 힘입니다.
+        지자체, 교육계·학생, 기업이 하나의 팀이 되어 움직이는 힘입니다.
       </p>
     </div>
     <div class="source-note">출처: 본 연구 종합</div>
@@ -3261,10 +3547,10 @@
         지금 이 변화를 마주한 우리의 선택에 달려 있습니다.
       </p>
       <p class="h3 accent" style="margin-top: 40px; font-weight: 500;">
-        우리 동네 광양의 푸른 내일을 위해,<br/>
-        우리는 어떤 선택을 할까요?
+        광양의 내일을 바꾸는 선택은,<br/>
+        지금 우리의 질문에서 시작됩니다.
       </p>
-      <hr class="rule" style="margin: 72px 0 48px 0; max-width: 600px;" />
+      <hr class="rule" style="margin: 72px 0 8px 0; max-width: 600px; transform: translateY(9px);" />
       <div class="row gap-80" style="align-items: flex-end; justify-content: space-between;">
         <div class="stack-sm">
           <p class="small mono dim">PRESENTED BY</p>
@@ -3427,6 +3713,30 @@
       else run();
     }
 
+    function resetTaxFocus(slide) {
+      if (!slide || !slide.matches('[data-label="05 Gwangyang Tax Trend"], [data-label="05 Gwangyang Tax"], [data-label="05 Tax Drop"]')) return;
+      const trend = slide.querySelector('.tax-trend-slide');
+      const chip = slide.querySelector('.tax-year-stat.start .tax-year-chip');
+      const value = slide.querySelector('.tax-year-stat.start .tax-value');
+      if (trend) trend.classList.remove('tax-finalized');
+      if (chip) chip.textContent = chip.dataset.initial || '2022년';
+      if (value) value.textContent = formatNumber(Number(value.dataset.from || 1121)) + (value.dataset.suffix || '');
+      slide.dataset.taxStep = 'initial';
+    }
+
+    function playTaxFocus(slide) {
+      if (!slide || slide.dataset.taxStep === 'final') return false;
+      const trend = slide.querySelector('.tax-trend-slide');
+      const chip = slide.querySelector('.tax-year-stat.start .tax-year-chip');
+      const value = slide.querySelector('.tax-year-stat.start .tax-value');
+      if (!trend || !chip || !value) return false;
+      slide.dataset.taxStep = 'final';
+      chip.textContent = chip.dataset.final || '2024년';
+      trend.classList.add('tax-finalized');
+      animateCount(value);
+      return true;
+    }
+
     function animateTaxTrend(slide) {
       const trend = slide.querySelector('.tax-trend-slide');
       if (!trend) return;
@@ -3472,11 +3782,57 @@
 
     function animateTaxSlide(slide) {
       if (!slide) return;
-      slide.querySelectorAll('.countdown-number').forEach(animateCount);
+      resetTaxFocus(slide);
       if (slide.matches('[data-label="05 Gwangyang Tax Trend"], [data-label="05 Gwangyang Tax"], [data-label="05 Tax Drop"]')) {
         animateTaxTrend(slide);
       }
     }
+
+    function getActiveSlide() {
+      return document.querySelector('deck-stage > section[data-deck-active]');
+    }
+
+    function interceptTaxStep(event) {
+      const slide = getActiveSlide();
+      if (!slide || !slide.matches('[data-label="05 Gwangyang Tax Trend"], [data-label="05 Gwangyang Tax"], [data-label="05 Tax Drop"]')) return;
+      if (slide.dataset.taxStep === 'final') return;
+      let isNext = false;
+      if (event.type === 'keydown') {
+        isNext = ['ArrowRight', 'PageDown', ' ', 'Spacebar', 'Enter'].includes(event.key);
+      } else if (event.type === 'click') {
+        isNext = !!event.target.closest('.page-turn-next');
+      }
+      if (!isNext) return;
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+      playTaxFocus(slide);
+    }
+
+    function installTaxStepNavigationGuard() {
+      const deck = document.querySelector('deck-stage');
+      if (!deck || typeof deck.goTo !== 'function' || deck.dataset.taxGuardInstalled === '1') return;
+      const originalGoTo = deck.goTo.bind(deck);
+      deck.goTo = function guardedGoTo(targetIndex, ...rest) {
+        const slide = getActiveSlide();
+        const currentIndex = slide ? [...deck.querySelectorAll(':scope > section')].indexOf(slide) : -1;
+        if (
+          slide &&
+          slide.matches('[data-label="05 Gwangyang Tax Trend"], [data-label="05 Gwangyang Tax"], [data-label="05 Tax Drop"]') &&
+          slide.dataset.taxStep !== 'final' &&
+          Number(targetIndex) > currentIndex
+        ) {
+          playTaxFocus(slide);
+          return;
+        }
+        return originalGoTo(targetIndex, ...rest);
+      };
+      deck.dataset.taxGuardInstalled = '1';
+    }
+
+    document.addEventListener('keydown', interceptTaxStep, true);
+    document.addEventListener('click', interceptTaxStep, true);
+    requestAnimationFrame(installTaxStepNavigationGuard);
 
     // Re-trigger slide-inner CSS animation on every slide change so navigating
     // back also plays the transition.

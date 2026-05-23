@@ -3580,7 +3580,7 @@
       { key: 'transition', label: '전환', start: 6 },
       { key: 'platform', label: '확장', start: 9 },
       { key: 'jobs', label: '일자리', start: 11 },
-      { key: 'choice', label: '선택', start: 12 },
+      { key: 'choice', label: '선택', start: 13 },
     ];
 
     function getChapterBySlide(slideNumber) {
@@ -3588,7 +3588,7 @@
       if (slideNumber >= 3 && slideNumber <= 5) return 'crisis';
       if (slideNumber >= 6 && slideNumber <= 8) return 'transition';
       if (slideNumber >= 9 && slideNumber <= 10) return 'platform';
-      if (slideNumber === 11) return 'jobs';
+      if (slideNumber >= 11 && slideNumber <= 12) return 'jobs';
       return 'choice';
     }
 

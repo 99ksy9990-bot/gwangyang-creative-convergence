@@ -397,7 +397,7 @@
     position: absolute; bottom: 56px; left: 120px;
     font-family: var(--font-mono);
     font-size: calc(18px * var(--t-scale));
-    color: var(--fg-dim);
+    color: rgba(244,244,245,0.45);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -409,7 +409,7 @@
     font-family: var(--font-mono);
     font-size: calc(16px * var(--t-scale));
     line-height: 1.55;
-    color: var(--fg-dim);
+    color: rgba(244,244,245,0.45);
     text-align: right;
     letter-spacing: 0.02em;
     z-index: 2;
@@ -576,6 +576,11 @@
     font-weight: 760;
     line-height: 1;
     transition: color 420ms ease, border-color 420ms ease, background 420ms ease;
+  }
+  section[data-label="04 CBAM"] .tag {
+    align-self: flex-start;
+    width: 1260px;
+    box-sizing: border-box;
   }
   .tax-value {
     font-family: var(--font-disp);
@@ -1616,12 +1621,139 @@
     text-shadow: 0 0 28px rgba(255,107,53,0.18);
   }
   section[data-label="15 Teamplay"] .slide-inner {
-    padding-top: 158px;
+    padding-top: 124px;
   }
   section[data-label="15 Teamplay"] .typo-title {
-    max-width: 760px !important;
+    max-width: 820px !important;
     position: relative;
     z-index: 2;
+  }
+  section[data-label="15 Teamplay"] .teamplay-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 38px;
+    width: 1680px;
+    margin-top: 46px;
+    z-index: 2;
+  }
+  section[data-label="15 Teamplay"] .teamplay-layout::before,
+  section[data-label="15 Teamplay"] .teamplay-layout::after {
+    content: "";
+    position: absolute;
+    top: 214px;
+    width: 38px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(145,247,186,0.20), rgba(145,247,186,0.72), rgba(145,247,186,0.20));
+    box-shadow: 0 0 18px rgba(145,247,186,0.20);
+  }
+  section[data-label="15 Teamplay"] .teamplay-layout::before { left: calc(33.333% - 19px); }
+  section[data-label="15 Teamplay"] .teamplay-layout::after { left: calc(66.666% - 19px); }
+  section[data-label="15 Teamplay"] .teamplay-card {
+    position: relative;
+    min-height: 430px;
+    padding: 34px 34px 34px 98px;
+    border: 1px solid rgba(145,247,186,0.24);
+    border-radius: 18px;
+    background:
+      radial-gradient(circle at 94% 10%, rgba(145,247,186,0.085), transparent 38%),
+      linear-gradient(180deg, rgba(255,255,255,0.032), rgba(255,255,255,0.012));
+    box-shadow:
+      inset 0 0 0 1px rgba(145,247,186,0.08),
+      0 26px 80px rgba(0,0,0,0.22);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  section[data-label="15 Teamplay"] .teamplay-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      linear-gradient(180deg, rgba(7,8,9,0.58), rgba(7,8,9,0.15) 46%, rgba(7,8,9,0.68)),
+      linear-gradient(90deg, rgba(7,8,9,0.16), rgba(7,8,9,0.22) 62%, rgba(7,8,9,0.54));
+    pointer-events: none;
+  }
+  section[data-label="15 Teamplay"] .teamplay-card::before {
+    display: none;
+  }
+  section[data-label="15 Teamplay"] .teamplay-card-num {
+    position: absolute;
+    left: 36px;
+    top: 34px;
+    width: auto;
+    color: rgba(245,245,247,0.58);
+    font-size: calc(25px * var(--t-scale));
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    z-index: 2;
+  }
+  section[data-label="15 Teamplay"] .teamplay-card-image {
+    position: absolute;
+    left: 50%;
+    top: 150px;
+    width: 398px;
+    height: 252px;
+    transform: translateX(-50%);
+    border-radius: 16px;
+    background-position: center 54%;
+    background-size: cover;
+    opacity: 0.88;
+    filter: saturate(1.08) contrast(1.08) brightness(0.92);
+    mix-blend-mode: screen;
+    z-index: 0;
+    pointer-events: none;
+    mask-image:
+      linear-gradient(90deg, transparent 0%, #000 22%, #000 100%),
+      radial-gradient(ellipse at 54% 52%, #000 0%, #000 62%, transparent 86%);
+    mask-composite: intersect;
+  }
+  section[data-label="15 Teamplay"] .teamplay-government { background-image: url("assets/images/team-government-upload.png"); }
+  section[data-label="15 Teamplay"] .teamplay-education { background-image: url("assets/images/team-education-upload.png"); }
+  section[data-label="15 Teamplay"] .teamplay-company { background-image: url("assets/images/team-company-upload.png"); }
+  section[data-label="15 Teamplay"] .teamplay-card-copy {
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    row-gap: 18px;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    max-width: none;
+  }
+  section[data-label="15 Teamplay"] .teamplay-card-title {
+    margin: 0;
+    color: rgba(245,245,247,0.96);
+    font-family: var(--font-disp);
+    font-size: calc(38px * var(--t-scale));
+    line-height: 1.1;
+    font-weight: 820;
+    text-shadow: none;
+  }
+  section[data-label="15 Teamplay"] .teamplay-card-sub {
+    margin: 0;
+    color: rgba(245,245,247,0.54);
+    font-size: calc(22px * var(--t-scale));
+    line-height: 1.38;
+    font-weight: 500;
+    word-break: keep-all;
+  }
+  section[data-label="15 Teamplay"] .teamplay-chip-row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    align-self: start;
+  }
+  section[data-label="15 Teamplay"] .teamplay-chip {
+    min-width: 72px;
+    padding: 7px 11px;
+    border-radius: 999px;
+    border: 2px solid rgba(245,245,247,0.72);
+    color: rgba(245,245,247,0.94);
+    font-size: calc(17px * var(--t-scale));
+    line-height: 1.08;
+    text-align: center;
+    font-weight: 650;
   }
   .teamplay-visual {
     position: absolute;
@@ -2880,15 +3012,18 @@
   }
   section[data-label="12 Just Transition Intro"] .jt-title-line.white {
     color: rgba(245,245,247,0.96);
-    font-size: calc(94px * var(--t-scale));
+    font-size: calc(82px * var(--t-scale));
   }
   section[data-label="12 Just Transition Intro"] .jt-title-line.gray {
     color: rgba(245,245,247,0.38);
-    font-size: calc(94px * var(--t-scale));
+    font-size: calc(82px * var(--t-scale));
+  }
+  section[data-label="12 Just Transition Intro"] .jt-title-line .white-word {
+    color: rgba(245,245,247,0.96);
   }
   section[data-label="12 Just Transition Intro"] .jt-title-line.green {
     color: var(--human);
-    font-size: calc(94px * var(--t-scale));
+    font-size: calc(82px * var(--t-scale));
     text-shadow: 0 0 30px rgba(145,247,186,0.18);
   }
   section[data-label="12 Just Transition Intro"] .jt-support-lines {
@@ -3077,9 +3212,9 @@
   <!-- ================= 02 HOOK ================= -->
   <section data-label="02 Hook">
     <div class="slide-num mono">02 / 15</div>
-    <div class="footer-mark">QUESTION</div>
     <div class="slide-inner center">
-      <h1 class="display" style="text-align: left;">
+      <div class="eyebrow"><span class="dot"></span><span>QUESTION</span></div>
+      <h1 class="display" style="text-align: left; margin-top: 32px;">
         <span class="dim">지구 반대편의</span><br/>
         <span class="dim">정책 하나가</span><br/>
         내 미래의 직업을<br/>
@@ -3087,7 +3222,7 @@
       </h1>
       <p class="body-lg" style="margin-top: 64px;">
         그 정책의 이름이 바로 CBAM입니다.<br/>
-        그리고 CBAM의 첫 번째 표적이 철강입니다.
+        그리고 첫 번째 압박은 철강에서 시작됩니다.
       </p>
     </div>
   </section>
@@ -3111,8 +3246,8 @@
           <span class="industry-chip">광양만권 산업단지 · 고용</span>
         </div>
         <p class="body-lg" style="margin-top: 34px;">
-          철강은 생산, 항만은 물류.<br/>
-          광양 일자리의 핵심 기반입니다.
+          철강은 생산을, 항만은 물류를 맡아<br/>
+          광양의 산업과 일자리를 지탱해 왔습니다.
         </p>
         <p class="field-link">
           탄소 규제는 지역경제와<br/>
@@ -3334,8 +3469,8 @@
           <p class="small mono dim">핵심 방향</p>
           <p class="h3" style="font-weight: 500;">
             철강을 버리는 것이 아니라,<br/>
-            철강 위에
-            <span class="platform-nowrap"><span class="accent">수소·소재·재생에너지</span>를 얹는 산업 플랫폼입니다.</span>
+            철강을 중심으로
+            <span class="platform-nowrap"><span class="accent">수소·소재·재생에너지</span>를 연결하는 전략입니다.</span>
           </p>
         </div>
       </div>
@@ -3399,7 +3534,7 @@
       <div class="jobs-system-grid">
         <div class="x-list down system-card jobs-list-card mini-card">
           <p class="small mono accent">지금의 직무</p>
-          <p class="jobs-card-title">용광로 작업자</p>
+          <p class="jobs-card-title">고로 공정 운영자</p>
           <p class="jobs-card-desc">코크스와 철광석을 고로에 투입해 쇳물을 만드는 전통 제철 공정</p>
           <div class="jobs-tag-row" aria-label="현재 직무의 핵심 조건">
             <span class="jobs-tag">화석연료</span>
@@ -3463,8 +3598,8 @@
       <h2 class="h2 just-transition-title">
         <span class="jt-title-line green">정의로운 전환은</span>
         <span class="jt-title-line gray">친환경 경제로 넘어가는 과정에서</span>
-        <span class="jt-title-line white">기존 산업 노동자가 소외되지 않도록 돕는</span>
-        <span class="jt-title-line white">전략입니다.</span>
+        <span class="jt-title-line gray">기존 산업 노동자가 <span class="white-word">소외되지 않도록</span></span>
+        <span class="jt-title-line gray">돕는 전략입니다.</span>
       </h2>
 
       <div class="jt-support-lines">
@@ -3517,17 +3652,50 @@
     <div class="slide-num mono">14 / 15</div>
     <div class="footer-mark">협력 — 광양 전환 팀플레이</div>
     <div class="slide-inner system-slide typo-slide">
-      <div class="teamplay-visual" aria-hidden="true"></div>
       <div class="eyebrow"><span class="dot"></span><span>TEAM · GWANGYANG TRANSITION</span></div>
       <h2 class="h2 system-title typo-title">
         좋은 기술도,<br/>
         <span class="accent-2">함께 움직여야 성공합니다.</span>
       </h2>
 
-      <p class="body-lg system-tight-note emphasis-line teamplay-note" style="--accent: var(--human);">
-        기후위기를 넘는 답은 혼자 만드는 기술이 아니라,<br/>
-        지자체, 교육계·학생, 기업이 하나의 팀이 되어 움직이는 힘입니다.
-      </p>
+      <div class="teamplay-layout" aria-label="지자체, 교육계와 학생, 기업의 협력 구조">
+        <div class="teamplay-card">
+          <div class="teamplay-card-num mono">01</div>
+          <div class="teamplay-card-image teamplay-government" aria-hidden="true"></div>
+          <div class="teamplay-card-copy">
+            <p class="teamplay-card-title">지자체</p>
+            <div class="teamplay-chip-row" aria-label="지자체 역할">
+              <span class="teamplay-chip">정책</span>
+              <span class="teamplay-chip">예산</span>
+              <span class="teamplay-chip">인프라</span>
+            </div>
+          </div>
+        </div>
+        <div class="teamplay-card">
+          <div class="teamplay-card-num mono">02</div>
+          <div class="teamplay-card-image teamplay-company" aria-hidden="true"></div>
+          <div class="teamplay-card-copy">
+            <p class="teamplay-card-title">기업</p>
+            <div class="teamplay-chip-row" aria-label="기업 역할">
+              <span class="teamplay-chip">기술</span>
+              <span class="teamplay-chip">투자</span>
+              <span class="teamplay-chip">고용</span>
+            </div>
+          </div>
+        </div>
+        <div class="teamplay-card">
+          <div class="teamplay-card-num mono">03</div>
+          <div class="teamplay-card-image teamplay-education" aria-hidden="true"></div>
+          <div class="teamplay-card-copy">
+            <p class="teamplay-card-title">교육계 · 학생</p>
+            <div class="teamplay-chip-row" aria-label="교육계와 학생 역할">
+              <span class="teamplay-chip">학습</span>
+              <span class="teamplay-chip">진로</span>
+              <span class="teamplay-chip">역량</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="source-note">출처: 본 연구 종합</div>
   </section>

@@ -1699,14 +1699,14 @@
     border-radius: 16px;
     background-position: center 54%;
     background-size: cover;
-    opacity: 0.88;
-    filter: saturate(1.08) contrast(1.08) brightness(0.92);
+    opacity: 1;
+    filter: saturate(1.22) contrast(1.20) brightness(1.10);
     mix-blend-mode: screen;
     z-index: 0;
     pointer-events: none;
     mask-image:
-      linear-gradient(90deg, transparent 0%, #000 22%, #000 100%),
-      radial-gradient(ellipse at 54% 52%, #000 0%, #000 62%, transparent 86%);
+      linear-gradient(90deg, transparent 0%, #000 12%, #000 100%),
+      radial-gradient(ellipse at 54% 52%, #000 0%, #000 72%, transparent 92%);
     mask-composite: intersect;
   }
   section[data-label="15 Teamplay"] .teamplay-government { background-image: url("assets/images/team-government-upload.png"); }
@@ -2904,34 +2904,50 @@
     word-break: keep-all;
   }
   section[data-label="11 Jobs"] .emerging-jobs-title {
-    margin-top: 38px;
-    font-size: calc(23px * var(--t-scale));
-    color: rgba(245,245,247,0.44);
+    margin-top: 42px;
+    max-width: 1450px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: calc(22px * var(--t-scale));
+    color: rgba(145,247,186,0.52);
+    letter-spacing: 0.01em;
+    text-align: center;
   }
   section[data-label="11 Jobs"] .emerging-jobs-grid {
-    margin-top: -2px;
+    margin-top: 10px;
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 22px;
-    max-width: 1620px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+    max-width: 1450px;
+    margin-left: auto;
+    margin-right: auto;
   }
   section[data-label="11 Jobs"] .emerging-job-card {
-    min-height: 88px;
-    padding: 18px 24px;
-    border: 1px solid rgba(255,255,255,0.12);
+    min-height: 100px;
+    padding: 20px 26px;
+    border: 1px solid rgba(145,247,186,0.14);
     border-radius: 16px;
-    background: rgba(255,255,255,0.018);
+    background:
+      radial-gradient(circle at 88% 18%, rgba(79,195,247,0.06), transparent 42%),
+      rgba(255,255,255,0.014);
     box-sizing: border-box;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.025);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
   section[data-label="11 Jobs"] .emerging-job-card .h3 {
-    font-size: calc(25px * var(--t-scale));
+    font-size: calc(24px * var(--t-scale));
     line-height: 1.16;
-    color: rgba(245,245,247,0.94);
+    color: rgba(145,247,186,0.86);
   }
   section[data-label="11 Jobs"] .emerging-job-card .body {
     margin-top: 8px;
     font-size: calc(17px * var(--t-scale));
-    color: rgba(245,245,247,0.48);
+    line-height: 1.36;
+    color: rgba(245,245,247,0.46);
+    word-break: keep-all;
   }
   section[data-label="11 Jobs"] .jobs-bottom-band {
     margin-top: 22px;
@@ -3019,7 +3035,8 @@
     font-size: calc(82px * var(--t-scale));
   }
   section[data-label="12 Just Transition Intro"] .jt-title-line .white-word {
-    color: rgba(245,245,247,0.96);
+    color: var(--human);
+    text-shadow: 0 0 30px rgba(145,247,186,0.18);
   }
   section[data-label="12 Just Transition Intro"] .jt-title-line.green {
     color: var(--human);
@@ -3076,7 +3093,10 @@
     color: rgba(245,245,247,0.90);
   }
   section[data-label="13 Just Transition"] .skill-closing-note {
-    margin-top: 26px;
+    position: absolute;
+    left: 120px;
+    bottom: 209px;
+    margin-top: 0;
     max-width: 1180px;
     font-size: calc(25px * var(--t-scale));
   }
@@ -3101,6 +3121,13 @@
   section[data-label="14 Capabilities"] .capability-card .body {
     font-size: calc(23px * var(--t-scale));
     line-height: 1.42;
+  }
+  section[data-label="14 Capabilities"] .system-tight-note {
+    position: absolute;
+    left: 120px;
+    bottom: 209px;
+    margin-top: 0;
+    max-width: 1180px;
   }
 
   section[data-label="15 Teamplay"] .blueprint-map {
@@ -3574,10 +3601,6 @@
         <div class="emerging-job-card">
           <p class="h3">이차전지 소재</p>
           <p class="body">배터리 핵심 소재 연구·생산</p>
-        </div>
-        <div class="emerging-job-card">
-          <p class="h3">수소 안전관리</p>
-          <p class="body">수소 인프라 운영·안전 점검</p>
         </div>
         <div class="emerging-job-card">
           <p class="h3">스마트공장 분석</p>

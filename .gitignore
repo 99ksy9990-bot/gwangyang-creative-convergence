@@ -4,3 +4,5 @@ dist/
 .env
 screenshots/full-*/
 screenshots/slides-*-*/
+screenshots/all-slides-local-*/
+scraps/unused-assets-*/

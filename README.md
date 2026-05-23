@@ -1,39 +1,59 @@
-# 광양창의융합
+# 광양창의융합 발표자료
 
-기후변화와 산업구조 변화가 미래 일자리에 미치는 영향을 광양 산업 구조 중심으로 발표하는 정적 HTML 슬라이드입니다.
+기후변화, 일자리, 그리고 광양의 미래를 주제로 한 정적 HTML 발표자료입니다.
 
-## Codex 사용 기준
+## 현재 작업 기준
 
-이 문서는 최종 발표 자료의 실행/구성 참고용입니다.
-새 작업에서는 이 기준을 반드시 따르지 말고, 사용자의 현재 요청을 우선합니다.
-디자인이나 내용 수정이 필요하면 현재 파일 상태를 먼저 확인하고 새 기준으로 판단합니다.
+- 최종 발표 파일: `index.html`
+- 발표 보조 스크립트: `deck-stage.js`, `image-slot.js`
+- 로컬 발표 주소: `http://127.0.0.1:4183/index.html?present=1`
+- 수정 원칙: 발표 내용과 스타일은 기본적으로 `index.html`에서 관리합니다.
+- 금지 파일: `deck-stage.js`, `image-slot.js`는 별도 요청 없이는 수정하지 않습니다.
+- 업로드 원칙: 사용자가 "GitHub/Netlify 업데이트"라고 요청할 때만 원격 저장소나 Netlify에 반영합니다.
 
-## 표준 로컬 폴더
+## 로컬 실행
 
-이 저장소는 사용자의 문서 폴더 아래에서 아래 이름으로 관리합니다.
-
-```text
-~/Documents/Codex_프로젝트/02_광양창의융합
-```
-
-## 실행
-
-`index.html`은 로컬 웹 서버로 열어야 JavaScript 파일이 정상적으로 로드됩니다.
+프로젝트 폴더에서 정적 서버를 실행합니다.
 
 ```sh
-python3 -m http.server 4173 --bind 127.0.0.1
+python -m http.server 4183 --bind 127.0.0.1
 ```
 
-Then open:
+발표 모드로 확인할 때는 아래 주소를 엽니다.
 
 ```text
-http://127.0.0.1:4173/
+http://127.0.0.1:4183/index.html?present=1
 ```
 
 ## 주요 파일
 
-- `index.html`: 발표 슬라이드 본문과 스타일
-- `deck-stage.js`: 슬라이드 스테이지 보조 스크립트
-- `tweaks-app.jsx`: 트윅 UI
-- `tweaks-panel.jsx`: 트윅 패널
-- `screenshots/`: 기준 확인용 슬라이드 이미지
+- `index.html`: 발표 슬라이드 본문, 스타일, 발표 모드 보정 스크립트
+- `deck-stage.js`: 슬라이드 스테이지 웹 컴포넌트
+- `image-slot.js`: 이미지 슬롯 웹 컴포넌트
+- `assets/images/`: 발표에 실제 사용되는 이미지
+- `screenshots/`: 로컬 검수용 스크린샷
+- `scraps/`: 사용하지 않는 후보 이미지나 작업 중 산출물 보관
+
+## 배포 메모
+
+현재 GitHub 원격 저장소는 `origin`입니다.
+
+```text
+https://github.com/99ksy9990-bot/gwangyang-creative-convergence.git
+```
+
+Netlify는 정적 사이트로 배포하며, publish root는 프로젝트 루트(`.`)입니다. 로컬에 배포 설정과 작업 규칙을 남겨 두되, 실제 배포 실행은 요청이 있을 때만 진행합니다.
+
+## 배포 전 체크리스트
+
+- `index.html`의 슬라이드 라벨이 `01`부터 `15`까지 이어지는지 확인합니다.
+- 발표에 참조되는 `assets/images/` 파일이 모두 존재하고 Git 추적 대상인지 확인합니다.
+- `deck-stage.js`, `image-slot.js`에 의도하지 않은 변경이 없는지 확인합니다.
+- 로컬 주소 `http://127.0.0.1:4183/index.html?present=1`에서 최종 발표 모드를 확인합니다.
+- GitHub/Netlify 반영은 사용자가 명시적으로 요청한 뒤 진행합니다.
+
+## 산출물 보관 정책
+
+- 발표에 쓰지 않는 후보 이미지는 `scraps/unused-assets-*` 아래에 보관합니다.
+- 전체 슬라이드 검수 스크린샷은 `screenshots/all-slides-local-*` 아래에 보관합니다.
+- 위 보관 폴더들은 `.gitignore`에 포함되어 배포 대상과 섞이지 않습니다.

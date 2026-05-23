@@ -2230,7 +2230,6 @@
   body[data-autoplay="on"] .autoplay-indicator { display: block; }
 
   /* presentation cleanup */
-  body[data-present="1"] .nav-shell,
   body[data-present="1"] .page-turn,
   body[data-present="1"] .autoplay-indicator,
   body[data-present="1"] [class*="thumbnail"],
@@ -2238,6 +2237,9 @@
   body[data-present="1"] [aria-label*="Reset"],
   body[data-present="1"] [aria-label*="Tweaks"] {
     display: none !important;
+  }
+  body[data-present="1"] .nav-shell {
+    display: flex !important;
   }
 
   deck-stage > section::before {

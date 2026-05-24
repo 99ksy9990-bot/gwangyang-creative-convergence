@@ -136,6 +136,17 @@
     --accent: var(--human);
     --accent-2: var(--transition);
   }
+  deck-stage > section[data-label="16 Discussion"] {
+    --stage-a: #FACC15;
+    --stage-b: #38BDF8;
+    --stage-c: #FDE68A;
+    --accent: #FACC15;
+    --accent-2: #38BDF8;
+    background:
+      radial-gradient(circle at 20% 18%, rgba(250,204,21,0.20) 0%, transparent 30%),
+      radial-gradient(circle at 78% 74%, rgba(56,189,248,0.18) 0%, transparent 36%),
+      linear-gradient(135deg, #10120b 0%, #071014 52%, #030405 100%);
+  }
   deck-stage > section::before {
     content: "";
     position: absolute;
@@ -316,6 +327,11 @@
     background: var(--human);
     color: #07100a;
     box-shadow: 0 0 28px rgba(145,247,186,0.22);
+  }
+  .nav-tab[data-chapter="discussion"].active {
+    background: #FACC15;
+    color: #171202;
+    box-shadow: 0 0 30px rgba(250,204,21,0.26);
   }
   .page-turn {
     position: absolute;
@@ -2830,6 +2846,88 @@
     color: var(--human);
     text-shadow: 0 0 22px rgba(145,247,186,0.18);
   }
+  section[data-label="16 Discussion"] .slide-inner {
+    justify-content: flex-start;
+    padding: 198px 120px 86px;
+  }
+  section[data-label="16 Discussion"] .eyebrow {
+    margin-left: 0;
+  }
+  .discussion-kicker {
+    width: fit-content;
+    border: 1px solid rgba(250,204,21,0.36);
+    border-radius: 999px;
+    padding: 13px 22px;
+    background: rgba(250,204,21,0.10);
+    color: #FDE68A;
+    font-family: var(--font-mono);
+    font-size: calc(21px * var(--t-scale));
+    font-weight: 800;
+    line-height: 1;
+  }
+  .discussion-title {
+    margin: 28px 0 56px;
+    max-width: 1320px;
+    font-family: var(--font-disp);
+    font-size: calc(132px * var(--t-scale));
+    line-height: 1.04;
+    font-weight: 750;
+  }
+  .discussion-title .accent {
+    color: #FACC15;
+  }
+  .discussion-question-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px;
+    max-width: 1480px;
+  }
+  .discussion-card {
+    min-height: 292px;
+    border: 1px solid rgba(245,245,247,0.14);
+    border-radius: 8px;
+    padding: 12px 38px 32px;
+    background:
+      linear-gradient(135deg, rgba(245,245,247,0.10), rgba(245,245,247,0.035)),
+      rgba(12,14,14,0.70);
+    box-shadow: 0 30px 70px rgba(0,0,0,0.30);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .discussion-card:nth-child(1) {
+    border-color: rgba(56,189,248,0.34);
+  }
+  .discussion-card:nth-child(2) {
+    border-color: rgba(250,204,21,0.34);
+  }
+  .discussion-card-label {
+    color: color-mix(in srgb, var(--accent) 55%, rgba(245,245,247,0.28));
+    font-family: var(--font-mono);
+    font-size: calc(48px * var(--t-scale));
+    font-weight: 800;
+    line-height: 1;
+  }
+  .discussion-card-copy {
+    margin: 10px 0 0;
+    color: var(--fg);
+    font-size: calc(35px * var(--t-scale));
+    line-height: 1.34;
+    font-weight: 760;
+    word-break: keep-all;
+  }
+  .discussion-card:nth-child(1) .discussion-card-copy strong {
+    color: #7DD3FC;
+  }
+  .discussion-card:nth-child(2) .discussion-card-copy strong {
+    color: #FDE68A;
+  }
+  .discussion-flow {
+    margin-top: 44px;
+    color: var(--fg-muted);
+    font-size: calc(24px * var(--t-scale));
+    line-height: 1.35;
+  }
 </style>
 
 
@@ -2852,7 +2950,7 @@
 
   <!-- ================= 01 COVER ================= -->
   <section data-label="01 Cover">
-    <div class="slide-num mono">01 / 15</div>
+    <div class="slide-num mono">01 / 16</div>
     <div class="slide-inner end">
       <div class="eyebrow"><span class="dot"></span><span>2026</span></div>
       <h1 class="display" style="margin-top: 40px;">
@@ -2875,7 +2973,7 @@
 
   <!-- ================= 02 HOOK ================= -->
   <section data-label="02 Hook">
-    <div class="slide-num mono">02 / 15</div>
+    <div class="slide-num mono">02 / 16</div>
     <div class="slide-inner center">
       <div class="eyebrow"><span class="dot"></span><span>QUESTION</span></div>
       <h1 class="display" style="text-align: left; margin-top: 32px;">
@@ -2896,7 +2994,7 @@
     <div class="bg-layer vignette">
       <div class="grid-bg" aria-hidden="true"></div>
     </div>
-    <div class="slide-num mono">03 / 15</div>
+    <div class="slide-num mono">03 / 16</div>
     <div class="slide-inner gwangyang-field-slide">
       <div class="gwangyang-field-copy">
         <div class="eyebrow"><span class="dot"></span><span>SITE · GWANGYANG INDUSTRY</span></div>
@@ -2924,7 +3022,7 @@
 
   <!-- ================= 04 CBAM ================= -->
   <section data-label="04 CBAM">
-    <div class="slide-num mono">04 / 15</div>
+    <div class="slide-num mono">04 / 16</div>
     <div class="footer-mark">정책 — 변화의 시작</div>
     <div class="slide-inner center">
       <div class="tag"><span class="dot"></span> EU REGULATION · 2026</div>
@@ -2942,7 +3040,7 @@
 
   <!-- ================= 05 DATA: TAX TREND ================= -->
   <section data-label="05 Gwangyang Tax Trend">
-    <div class="slide-num mono">05 / 15</div>
+    <div class="slide-num mono">05 / 16</div>
     <div class="footer-mark">데이터 — 광양 지역 경제</div>
     <div class="slide-inner tax-trend-slide">
       <div class="eyebrow"><span class="dot"></span><span>DATA · GWANGYANG TAX</span></div>
@@ -3036,7 +3134,7 @@
 
   <!-- ================= 06 ALREADY ================= -->
   <section data-label="06 Already">
-    <div class="slide-num mono">06 / 15</div>
+    <div class="slide-num mono">06 / 16</div>
     <div class="slide-inner center">
       <h1 class="display">
         <span class="dim">먼 미래의 이야기가</span><br/>
@@ -3051,7 +3149,7 @@
 
   <!-- ================= 07 PIVOT ================= -->
   <section data-label="07 Pivot">
-    <div class="slide-num mono">07 / 15</div>
+    <div class="slide-num mono">07 / 16</div>
     <div class="footer-mark">전환 — 위기와 기회</div>
     <div class="slide-inner center">
       <p class="h3 mute">그러나 같은 변화 속에서,</p>
@@ -3069,7 +3167,7 @@
 
   <!-- ================= 08 NEW INDUSTRY 1 — HYDROGEN ================= -->
   <section data-label="08 Hydrogen">
-    <div class="slide-num mono">08 / 15</div>
+    <div class="slide-num mono">08 / 16</div>
     <div class="slide-inner split hyrex-layout">
       <!-- left: photo -->
       <div class="hyrex-media">
@@ -3113,7 +3211,7 @@
 
   <!-- ================= 09 NEW INDUSTRY 2 — BATTERY ================= -->
   <section data-label="09 Battery">
-    <div class="slide-num mono">09 / 15</div>
+    <div class="slide-num mono">09 / 16</div>
     <div class="slide-inner split battery-layout" style="flex-direction: row-reverse;">
       <div class="battery-visual-wrap">
         <div class="hydrogen-complex-visual" aria-hidden="true"></div>
@@ -3144,7 +3242,7 @@
 
   <!-- ================= 10 GLOBAL CASES ================= -->
   <section data-label="10 Global Cases">
-    <div class="slide-num mono">10 / 15</div>
+    <div class="slide-num mono">10 / 16</div>
     <div class="global-map-bg" aria-hidden="true"></div>
     <div class="slide-inner system-slide global-map-slide">
       <div class="eyebrow"><span class="dot"></span><span>GLOBAL · LOW-CARBON INDUSTRY</span></div>
@@ -3186,7 +3284,7 @@
 
   <!-- ================= 11 JOBS SYSTEM ================= -->
   <section data-label="11 Jobs">
-    <div class="slide-num mono">11 / 15</div>
+    <div class="slide-num mono">11 / 16</div>
     <div class="footer-mark">개념도 — 산업 전환에 따른 직무 변화</div>
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>WORK · IN TRANSITION</span></div>
@@ -3251,7 +3349,7 @@
 
   <!-- ================= 12 JUST TRANSITION INTRO ================= -->
   <section data-label="12 Just Transition Intro">
-    <div class="slide-num mono">12 / 15</div>
+    <div class="slide-num mono">12 / 16</div>
     <div class="footer-mark">핵심 개념 — 정의로운 전환</div>
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>IN TRANSITION</span></div>
@@ -3273,7 +3371,7 @@
   </section>
   <!-- ================= 13 FUTURE CAPABILITIES ================= -->
   <section data-label="13 Capabilities">
-    <div class="slide-num mono">13 / 15</div>
+    <div class="slide-num mono">13 / 16</div>
     <div class="footer-mark">준비 — 중학생의 미래 역량</div>
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>SKILLS · WHAT WE PREPARE</span></div>
@@ -3309,7 +3407,7 @@
 
   <!-- ================= 14 GWANGYANG TEAMPLAY ================= -->
   <section data-label="14 Teamplay">
-    <div class="slide-num mono">14 / 15</div>
+    <div class="slide-num mono">14 / 16</div>
     <div class="footer-mark">협력 — 광양 전환 팀플레이</div>
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>TEAM · GWANGYANG TRANSITION</span></div>
@@ -3362,9 +3460,9 @@
 
   <!-- ================= 15 CLOSING ================= -->
   <section data-label="15 Closing">
-    <div class="slide-num mono">15 / 15</div>
+    <div class="slide-num mono">15 / 16</div>
     <div class="slide-inner center">
-      <div class="eyebrow"><span class="dot"></span><span>CHOICE · FINAL QUESTION</span></div>
+      <div class="eyebrow"><span class="dot"></span><span>CHOICE</span></div>
       <h1 class="display">
         방향은,<br/>
         <span class="accent">우리가</span> 정합니다.
@@ -3383,10 +3481,37 @@
           <p class="small mono dim">PRESENTED BY</p>
           <p class="h3" style="font-weight: 500; font-size: calc(34px * var(--t-scale)); line-height: 1.15;">정혜린 · 염초롱 · 정유주</p>
         </div>
-        <div class="stack-sm qa-block" style="text-align: right;">
-          <p class="small mono dim">Q & A</p>
-          <p class="h3" style="font-weight: 500; font-size: calc(34px * var(--t-scale)); line-height: 1.15;">질문 환영합니다.</p>
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 16 DISCUSSION ================= -->
+  <section data-label="16 Discussion">
+    <div class="slide-num mono">16 / 16</div>
+    <div class="footer-mark">토론 — 광양창의융합교육 B3조</div>
+    <div class="slide-inner discussion-slide">
+      <div class="eyebrow"><span class="dot"></span><span>DISCUSSION · FINAL QUESTION</span></div>
+      <h1 class="discussion-title">
+        함께 <span class="accent">생각해봅시다.</span>
+      </h1>
+      <div class="discussion-question-grid">
+        <article class="discussion-card">
+          <p class="discussion-card-label">01</p>
+          <p class="discussion-card-copy">
+            미래 직업을 선택할 수 있다면,<br/>
+            나의 흥미와 적성보다<br/>
+            <strong>인공지능(AI) 시대에 살아남을 안정성</strong>을<br/>
+            우선해야 할까요?
+          </p>
+        </article>
+        <article class="discussion-card">
+          <p class="discussion-card-label">02</p>
+          <p class="discussion-card-copy">
+            새로운 산업구조의 변화 속에서<br/>
+            내가 원하는 직업을 얻기 위해<br/>
+            <strong>청소년에게 필요한 역량은 무엇일까요?</strong>
+          </p>
+        </article>
       </div>
     </div>
   </section>
@@ -3409,6 +3534,7 @@
       { key: 'platform', label: '확장', start: 9 },
       { key: 'jobs', label: '일자리', start: 11 },
       { key: 'choice', label: '선택', start: 13 },
+      { key: 'discussion', label: '토론', start: 16 },
     ];
 
     function getChapterBySlide(slideNumber) {
@@ -3417,6 +3543,7 @@
       if (slideNumber >= 6 && slideNumber <= 8) return 'transition';
       if (slideNumber >= 9 && slideNumber <= 10) return 'platform';
       if (slideNumber >= 11 && slideNumber <= 12) return 'jobs';
+      if (slideNumber >= 16) return 'discussion';
       return 'choice';
     }
 
@@ -3773,3 +3900,4 @@
 
 </body>
 </html>
+

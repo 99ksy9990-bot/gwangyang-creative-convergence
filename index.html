@@ -430,6 +430,24 @@
     letter-spacing: 0.02em;
     z-index: 2;
   }
+  .source-note.multi {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 8px;
+    top: calc(100% - 80px);
+    bottom: auto;
+    font-size: calc(16px * var(--t-scale));
+    line-height: 1.55;
+    text-align: left;
+  }
+  .source-note.multi .source-label {
+    grid-row: 1 / -1;
+  }
+  .source-note.multi .source-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
 
   /* typography scale */
   .display {
@@ -2792,7 +2810,6 @@
     margin: 0;
     white-space: nowrap;
   }
-
   section[data-label="13 Capabilities"] .capability-grid {
     margin-top: 60px;
     gap: 34px;
@@ -2979,6 +2996,7 @@
   <!-- ================= 02 HOOK ================= -->
   <section data-label="02 Hook">
     <div class="slide-num mono">02 / 16</div>
+    <div class="footer-mark">도입 — 탄소 규제와 미래 직업</div>
     <div class="slide-inner center">
       <div class="eyebrow"><span class="dot"></span><span>QUESTION</span></div>
       <h1 class="display" style="text-align: left; margin-top: 32px;">
@@ -2992,6 +3010,7 @@
         그리고 첫 번째 압박은 철강에서 시작됩니다.
       </p>
     </div>
+    <div class="source-note">출처: 고용노동부, 「2024년 하반기 주요 업종 일자리 전망 발표」, 2024.07.29</div>
   </section>
 
   <!-- ================= 03 GWANGYANG INDUSTRY ================= -->
@@ -3000,6 +3019,7 @@
       <div class="grid-bg" aria-hidden="true"></div>
     </div>
     <div class="slide-num mono">03 / 16</div>
+    <div class="footer-mark">지역 — 광양 산업 기반</div>
     <div class="slide-inner gwangyang-field-slide">
       <div class="gwangyang-field-copy">
         <div class="eyebrow"><span class="dot"></span><span>SITE · GWANGYANG INDUSTRY</span></div>
@@ -3023,6 +3043,7 @@
       </div>
       <div class="gwangyang-image-card" aria-label="밤의 항만과 제철소, 산업단지를 표현한 다크 산업 도시 이미지"></div>
     </div>
+    <div class="source-note">출처: 관계부처 합동, 「탄소중립·녹색성장 국가전략 및 제1차 국가 기본계획」, 2023</div>
   </section>
 
   <!-- ================= 04 CBAM ================= -->
@@ -3134,12 +3155,13 @@
         산업 의존 구조의 취약성을 보여줍니다.
       </p>
     </div>
-    <div class="source-note">출처: 연합뉴스 손상원, 「여수·광양산단 기업 영업부진에 지방세 급감」, 2024.11.27</div>
+    <div class="source-note">출처: 연합뉴스 손상원, 「여수·광양산단 기업 영업부진에 지방세 급감…지자체 ‘직격탄’」, 2024.11.27</div>
   </section>
 
   <!-- ================= 06 ALREADY ================= -->
   <section data-label="06 Already">
     <div class="slide-num mono">06 / 16</div>
+    <div class="footer-mark">전환 — 광양이 준비해야 하는 이유</div>
     <div class="slide-inner center">
       <h1 class="display">
         <span class="dim">먼 미래의 이야기가</span><br/>
@@ -3150,6 +3172,7 @@
         탄소 규제, 철강 전환 압력, 지역 재정 변화는 광양이 산업 전환을 준비해야 하는 이유입니다.
       </p>
     </div>
+    <div class="source-note">출처: 윤순진, 「한국의 2050 탄소중립 시나리오: 내용과 과제」, 2022.01.17</div>
   </section>
 
   <!-- ================= 07 PIVOT ================= -->
@@ -3167,6 +3190,13 @@
         사라지는 자리에서 새로운 산업이 자라기 위해서는 기술 전환과 사람의 준비가 함께 필요합니다.<br/>
         광양의 전환은 기존 기반을 버리는 일이 아니라, 생산 방식을 바꾸는 과정입니다.
       </p>
+    </div>
+    <div class="source-note multi">
+      <span class="source-label">출처:</span>
+      <span class="source-list">
+        <span>대한상공회의소, 「한국경제의 새로운 도약을 위한 탄소중립 전략보고서」, 2023</span>
+        <span>포스코, 「탈탄소 로드맵」, 2026년 5월 20일 접속</span>
+      </span>
     </div>
   </section>
 
@@ -3211,7 +3241,13 @@
         </div>
       </div>
     </div>
-    <div class="source-note">출처: POSCO HyREX 소개, POSCO Group Newsroom 「철강 탈탄소 전략 라인업」, 2025</div>
+    <div class="source-note multi">
+      <span class="source-label">출처:</span>
+      <span class="source-list">
+        <span>포스코, 「탈탄소 로드맵」, 2026년 5월 20일 접속</span>
+        <span>POSCO Group Newsroom, 「From CCUS to HyREX」, 2025.10.29</span>
+      </span>
+    </div>
   </section>
 
   <!-- ================= 09 NEW INDUSTRY 2 — BATTERY ================= -->
@@ -3242,7 +3278,14 @@
         </div>
       </div>
     </div>
-    <div class="source-note">출처: 포스코퓨처엠 이차전지소재 사업 소개, 광양 율촌산단 전구체 공장 보도자료, 2025</div>
+    <div class="source-note multi">
+      <span class="source-label">출처:</span>
+      <span class="source-list">
+        <span>광양시 신산업과, 「이차전지 특화단지 지정 위한 전문가 포럼」, 2026.03.26</span>
+        <span>포스코퓨처엠, 「광양 전구체 공장 준공식」, 2025.06.10</span>
+        <span>포스코퓨처엠, 「이차전지소재 사업 소개」, 2026년 5월 25일 접속</span>
+      </span>
+    </div>
   </section>
 
   <!-- ================= 10 GLOBAL CASES ================= -->
@@ -3284,7 +3327,14 @@
         한계도 분명합니다. 비용, 수소 공급, 대규모 인프라를 함께 풀어야 합니다.
       </p>
     </div>
-    <div class="source-note">출처: HYBRIT fossil-free steel 자료, Port of Rotterdam Hydrogen Hub, 일본 Basic Hydrogen Strategy, 2023</div>
+    <div class="source-note multi">
+      <span class="source-label">출처:</span>
+      <span class="source-list">
+        <span>주스웨덴 대한민국대사관, 「스웨덴 수소환원제철 산업 최근 동향」, 2024.09.10</span>
+        <span>Port of Rotterdam, 「Europe’s Hydrogen Hub」</span>
+        <span>KOTRA, 「일본 수소 산업 정책 동향과 시사점」, 2025.09.25</span>
+      </span>
+    </div>
   </section>
 
   <!-- ================= 11 JOBS SYSTEM ================= -->
@@ -3349,7 +3399,7 @@
       </div>
 
     </div>
-    <div class="source-note">출처: 한국고용정보원 「정의로운 전환과 녹색일자리 논의의 확장」, 2023; 고용노동부 업종별 일자리 전망 자료</div>
+    <div class="source-note">출처: 이은민, 「4차 산업혁명과 산업구조의 변화」, 2016</div>
   </section>
 
   <!-- ================= 12 JUST TRANSITION INTRO ================= -->
@@ -3372,7 +3422,7 @@
         </p>
       </div>
     </div>
-    <div class="source-note">출처: 한국고용정보원 「정의로운 전환과 녹색일자리 논의의 확장」, 『지역산업과 고용』, 2023년 여름호</div>
+    <div class="source-note">출처: 여형범, 「정의로운 전환과 녹색일자리 논의의 확장」, 2023</div>
   </section>
   <!-- ================= 13 FUTURE CAPABILITIES ================= -->
   <section data-label="13 Capabilities">
@@ -3407,6 +3457,13 @@
         앞으로의 경쟁력은 암기보다,<br/>
         변화 속에서 질문하고 문제를 해결하는 힘입니다.
       </p>
+    </div>
+    <div class="source-note multi">
+      <span class="source-label">출처:</span>
+      <span class="source-list">
+        <span>교육부, 「2022 개정 교육과정 총론」, 2022</span>
+        <span>한국직업능력연구원, 「미래 직업세계와 진로교육 방향」, 2022</span>
+      </span>
     </div>
   </section>
 

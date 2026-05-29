@@ -340,17 +340,17 @@
     width: 68px;
     height: 68px;
     border-radius: 999px;
-    border: 1px solid rgba(245,245,247,0.14);
-    background: rgba(10,10,12,0.58);
-    color: rgba(245,245,247,0.78);
+    border: 1px solid rgba(245,245,247,0.24);
+    background: rgba(10,10,12,0.72);
+    color: rgba(245,245,247,0.92);
     display: grid;
     place-items: center;
-    z-index: 24;
+    z-index: 80;
     cursor: pointer;
     box-shadow: 0 18px 46px rgba(0,0,0,0.28);
     backdrop-filter: blur(16px) saturate(130%);
     -webkit-backdrop-filter: blur(16px) saturate(130%);
-    opacity: 0.62;
+    opacity: 0.86;
     transition: opacity 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
   }
   .page-turn:hover {
@@ -363,14 +363,13 @@
     outline: 3px solid var(--accent);
     outline-offset: 4px;
   }
-  .page-turn svg {
-    width: 34px;
-    height: 34px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+  .page-turn-symbol {
+    display: block;
+    font-family: var(--font-head);
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1;
+    transform: translateY(-3px);
   }
   .page-turn-prev { left: 36px; }
   .page-turn-next { right: 36px; }
@@ -378,8 +377,8 @@
     opacity: 0.14;
     pointer-events: none;
   }
-  .page-turn {
-    display: none !important;
+  @media print {
+    .page-turn { display: none !important; }
   }
 
   /* eyebrow / chrome */
@@ -2264,7 +2263,6 @@
   body[data-autoplay="on"] .autoplay-indicator { display: block; }
 
   /* presentation cleanup */
-  body[data-present="1"] .page-turn,
   body[data-present="1"] .autoplay-indicator,
   body[data-present="1"] [class*="thumbnail"],
   body[data-present="1"] [class*="thumb"],
@@ -3657,8 +3655,8 @@
       button.setAttribute('aria-label', isPrev ? '이전 슬라이드' : '다음 슬라이드');
       if (disabled) button.disabled = true;
       button.innerHTML = isPrev
-        ? '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M24 10 14 20l10 10" /></svg>'
-        : '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="m16 10 10 10-10 10" /></svg>';
+        ? '<span class="page-turn-symbol" aria-hidden="true">&lt;</span>'
+        : '<span class="page-turn-symbol" aria-hidden="true">&gt;</span>';
       button.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
@@ -3693,7 +3691,7 @@
   })();
 </script>
 
-<!-- Mobile present-mode tap/swipe navigation -->
+<!-- Present-mode click/touch/wheel navigation -->
 <script>
   (function () {
     const params = new URLSearchParams(location.search);
@@ -3703,6 +3701,7 @@
     let startX = 0;
     let startY = 0;
     let startTime = 0;
+    let wheelLocked = false;
 
     function getDeck() {
       return document.querySelector('deck-stage');
@@ -3729,6 +3728,22 @@
 
     function isInteractiveTarget(target) {
       return !!target.closest('button, a, input, textarea, select, .nav-shell, .page-turn');
+    }
+
+    function handleWheel(event) {
+      if (isInteractiveTarget(event.target)) return;
+      const absX = Math.abs(event.deltaX);
+      const absY = Math.abs(event.deltaY);
+      const primaryDelta = absY >= absX ? event.deltaY : event.deltaX;
+      if (Math.abs(primaryDelta) < 5) return;
+
+      event.preventDefault();
+      if (wheelLocked) return;
+      wheelLocked = true;
+      advanceSlide(primaryDelta > 0 ? 1 : -1);
+      window.setTimeout(() => {
+        wheelLocked = false;
+      }, 100);
     }
 
     document.addEventListener('touchstart', (event) => {
@@ -3758,6 +3773,8 @@
         else if (ratio < 0.42) advanceSlide(-1);
       }
     }, { passive: true });
+
+    document.addEventListener('wheel', handleWheel, { passive: false });
   })();
 </script>
 
@@ -3962,4 +3979,3 @@
 
 </body>
 </html>
-

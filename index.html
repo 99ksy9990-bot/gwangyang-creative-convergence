@@ -333,54 +333,6 @@
     color: #171202;
     box-shadow: 0 0 30px rgba(250,204,21,0.26);
   }
-  .page-turn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 68px;
-    height: 68px;
-    border-radius: 999px;
-    border: 1px solid rgba(245,245,247,0.24);
-    background: rgba(10,10,12,0.72);
-    color: rgba(245,245,247,0.92);
-    display: grid;
-    place-items: center;
-    z-index: 80;
-    cursor: pointer;
-    box-shadow: 0 18px 46px rgba(0,0,0,0.28);
-    backdrop-filter: blur(16px) saturate(130%);
-    -webkit-backdrop-filter: blur(16px) saturate(130%);
-    opacity: 0.86;
-    transition: opacity 160ms ease, background 160ms ease, border-color 160ms ease, transform 160ms ease;
-  }
-  .page-turn:hover {
-    opacity: 1;
-    background: rgba(17,20,24,0.82);
-    border-color: rgba(245,245,247,0.24);
-    transform: translateY(-50%) scale(1.04);
-  }
-  .page-turn:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 4px;
-  }
-  .page-turn-symbol {
-    display: block;
-    font-family: var(--font-head);
-    font-size: 42px;
-    font-weight: 500;
-    line-height: 1;
-    transform: translateY(-3px);
-  }
-  .page-turn-prev { left: 36px; }
-  .page-turn-next { right: 36px; }
-  .page-turn[disabled] {
-    opacity: 0.14;
-    pointer-events: none;
-  }
-  @media print {
-    .page-turn { display: none !important; }
-  }
-
   /* eyebrow / chrome */
   .eyebrow {
     font-family: var(--font-mono);
@@ -3645,26 +3597,6 @@
       return nav;
     }
 
-    function createPageTurnButton(direction, slideNumber, totalSlides) {
-      const isPrev = direction === 'prev';
-      const targetSlide = isPrev ? slideNumber - 1 : slideNumber + 1;
-      const disabled = targetSlide < 1 || targetSlide > totalSlides;
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'page-turn page-turn-' + direction;
-      button.setAttribute('aria-label', isPrev ? '이전 슬라이드' : '다음 슬라이드');
-      if (disabled) button.disabled = true;
-      button.innerHTML = isPrev
-        ? '<span class="page-turn-symbol" aria-hidden="true">&lt;</span>'
-        : '<span class="page-turn-symbol" aria-hidden="true">&gt;</span>';
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        if (!disabled) goToSlide(targetSlide);
-      });
-      return button;
-    }
-
     function installChapterNav() {
       const deck = document.querySelector('deck-stage');
       if (!deck) return;
@@ -3674,12 +3606,7 @@
         if (!section.querySelector(':scope > .nav-shell')) {
           section.insertBefore(createNav(getChapterBySlide(slideNumber)), section.firstChild);
         }
-        if (!section.querySelector(':scope > .page-turn-prev')) {
-          section.appendChild(createPageTurnButton('prev', slideNumber, slides.length));
-        }
-        if (!section.querySelector(':scope > .page-turn-next')) {
-          section.appendChild(createPageTurnButton('next', slideNumber, slides.length));
-        }
+        section.querySelectorAll(':scope > .page-turn').forEach((button) => button.remove());
       });
     }
 
@@ -3727,7 +3654,7 @@
     }
 
     function isInteractiveTarget(target) {
-      return !!target.closest('button, a, input, textarea, select, .nav-shell, .page-turn');
+      return !!target.closest('button, a, input, textarea, select, .nav-shell');
     }
 
     function handleWheel(event) {
@@ -3900,8 +3827,6 @@
       let isNext = false;
       if (event.type === 'keydown') {
         isNext = ['ArrowRight', 'PageDown', ' ', 'Spacebar', 'Enter'].includes(event.key);
-      } else if (event.type === 'click') {
-        isNext = !!event.target.closest('.page-turn-next');
       }
       if (!isNext) return;
       event.preventDefault();

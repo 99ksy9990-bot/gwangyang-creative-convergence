@@ -25,6 +25,27 @@ python -m http.server 4183 --bind 127.0.0.1
 http://127.0.0.1:4183/index.html?present=1
 ```
 
+## Zoom 공유용 Audience 앱 모드
+
+Zoom 공유용 Audience 창은 일반 브라우저가 아니라 Edge 앱 모드로 여는 것을 권장합니다.
+
+실행창에서 아래 명령어를 입력하세요.
+
+```bat
+msedge --app="https://gwangyang-creative-convergence.netlify.app/index.html?present=1#/1"
+```
+
+이렇게 열면 주소창, 탭, 북마크바 없이 슬라이드만 보이는 창이 열립니다.
+Zoom에서는 이 Audience 앱 창만 공유하세요.
+
+## 발표 화면 주소
+
+- Audience / Zoom 공유용: `https://gwangyang-creative-convergence.netlify.app/index.html?present=1#/1`
+- 진행자 콘솔 / Audience 따라가기 전용: `https://gwangyang-creative-convergence.netlify.app/index.html?present=1&script=1#/1`
+- 학생용 대본 보기 / 자유 이동 가능: `https://gwangyang-creative-convergence.netlify.app/index.html?present=1&script=1&local=1#/1`
+
+진행자 콘솔은 Audience를 따라가기만 하며, 학생용 대본 보기는 발표 화면에 영향을 주지 않습니다.
+
 ## 주요 파일
 
 - `index.html`: 발표 슬라이드 본문, 스타일, 발표 모드 보정 스크립트
@@ -46,7 +67,7 @@ Netlify는 정적 사이트로 배포하며, publish root는 프로젝트 루트
 
 ## 배포 전 체크리스트
 
-- `index.html`의 슬라이드 라벨이 `01`부터 `15`까지 이어지는지 확인합니다.
+- `index.html`의 슬라이드 라벨이 `01`부터 `16`까지 이어지는지 확인합니다.
 - 발표에 참조되는 `assets/images/` 파일이 모두 존재하고 Git 추적 대상인지 확인합니다.
 - `deck-stage.js`, `image-slot.js`에 의도하지 않은 변경이 없는지 확인합니다.
 - 로컬 주소 `http://127.0.0.1:4183/index.html?present=1`에서 최종 발표 모드를 확인합니다.

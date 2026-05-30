@@ -4238,10 +4238,12 @@
     const isLocalScriptMode = isScriptMode && params.get('local') === '1';
     const channelName = 'gwangyang-creative-convergence-slide-sync';
     const storageKey = 'gwangyang-creative-convergence-slide-sync';
+    const remoteSyncEndpoint = 'https://gwangyang-creative-convergence.netlify.app/.netlify/functions/slide-sync';
     const clientId = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
     let channel = null;
     let remoteApplying = false;
     let activeSlide = null;
+    let lastRemoteSlideAt = 0;
 
     function normalizeSlide(index) {
       const numeric = Number(index);
@@ -4280,6 +4282,7 @@
       } catch (error) {
         // localStorage can be unavailable in restricted browser contexts.
       }
+      sendRemoteSlideChange(message);
     }
 
     function getStoredSlide() {
@@ -4292,6 +4295,43 @@
         // Ignore unavailable or malformed localStorage values.
       }
       return null;
+    }
+
+    function sendRemoteSlideChange(message) {
+      if (isScriptMode || !remoteSyncEndpoint) return;
+      try {
+        fetch(remoteSyncEndpoint, {
+          method: 'POST',
+          mode: 'cors',
+          cache: 'no-store',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(message),
+          keepalive: true
+        }).catch(() => {});
+      } catch (error) {
+        // Network sync is a convenience fallback; local sync still works.
+      }
+    }
+
+    async function pollRemoteSlideChange() {
+      if (isLocalScriptMode || !remoteSyncEndpoint) return;
+      try {
+        const response = await fetch(remoteSyncEndpoint + '?t=' + Date.now(), {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store'
+        });
+        if (!response.ok) return;
+        const message = await response.json();
+        if (!message || message.type !== 'slide-change') return;
+        if (message.sourceId === clientId || message.at <= lastRemoteSlideAt) return;
+        lastRemoteSlideAt = message.at;
+        remoteApplying = true;
+        setCurrentSlide(message.index, { broadcast: false, fromRemote: true });
+        remoteApplying = false;
+      } catch (error) {
+        // Ignore transient network issues during the presentation.
+      }
     }
 
     function setCurrentSlide(index, options = {}) {
@@ -4402,6 +4442,11 @@
           // Ignore malformed storage messages.
         }
       });
+
+      if (isScriptMode) {
+        pollRemoteSlideChange();
+        setInterval(pollRemoteSlideChange, 800);
+      }
     }
 
     function handleHashChange() {

@@ -9,3 +9,6 @@ scraps/unused-assets-*/
 
 # Local Netlify folder
 .netlify
+
+# Local Vercel folder
+.vercel

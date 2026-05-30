@@ -1,0 +1,9 @@
+exports/
+screenshots/
+scraps/
+.netlify/
+netlify/
+node_modules/
+*.bat
+local-site-server.cjs
+local-slide-sync.cjs

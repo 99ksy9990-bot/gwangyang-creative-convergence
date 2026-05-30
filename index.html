@@ -4269,7 +4269,17 @@
     const channelName = 'gwangyang-creative-convergence-slide-sync';
     const storageKey = 'gwangyang-creative-convergence-slide-sync';
     const localSyncEndpoint = 'http://127.0.0.1:4184/slide-sync';
-    const remoteSyncEndpoint = 'https://gwangyang-creative-convergence.netlify.app/.netlify/functions/slide-sync';
+    function getRemoteSyncEndpoint() {
+      const host = location.hostname;
+      if (host === '127.0.0.1' || host === 'localhost') {
+        return 'https://gwangyang-creative-convergence.netlify.app/.netlify/functions/slide-sync';
+      }
+      if (host.endsWith('netlify.app')) {
+        return '/.netlify/functions/slide-sync';
+      }
+      return '/api/slide-sync';
+    }
+    const remoteSyncEndpoint = getRemoteSyncEndpoint();
     const clientId = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
     let channel = null;
     let remoteApplying = false;

@@ -2322,6 +2322,33 @@
     color: #22D3EE;
     font-weight: 850;
   }
+  .console-local-nav {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  body[data-script-local="1"] .console-local-nav {
+    display: flex;
+  }
+  .console-local-nav button {
+    width: 48px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid rgba(145,247,186,0.28);
+    background: rgba(145,247,186,0.10);
+    color: #BEEFD0;
+    font: 800 24px/1 "A2G Script", "A2G Body", sans-serif;
+    cursor: pointer;
+  }
+  .console-local-nav button:active {
+    transform: translateY(1px);
+    background: rgba(145,247,186,0.18);
+  }
+  .console-local-nav button:disabled {
+    cursor: default;
+    opacity: 0.35;
+  }
   body.script-mode .speaker-main {
     display: block;
     min-height: 0;
@@ -2337,6 +2364,9 @@
     padding: 14px 16px;
     background: rgba(15,23,42,0.78);
     box-shadow: 0 16px 42px rgba(0,0,0,0.26);
+    scrollbar-gutter: stable;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
   }
   .console-script-text {
     white-space: pre-wrap;
@@ -4238,12 +4268,14 @@
     const isLocalScriptMode = isScriptMode && params.get('local') === '1';
     const channelName = 'gwangyang-creative-convergence-slide-sync';
     const storageKey = 'gwangyang-creative-convergence-slide-sync';
+    const localSyncEndpoint = 'http://127.0.0.1:4184/slide-sync';
     const remoteSyncEndpoint = 'https://gwangyang-creative-convergence.netlify.app/.netlify/functions/slide-sync';
     const clientId = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
     let channel = null;
     let remoteApplying = false;
     let activeSlide = null;
     let lastRemoteSlideAt = 0;
+    let fastLocalSyncAvailable = true;
 
     function normalizeSlide(index) {
       const numeric = Number(index);
@@ -4297,10 +4329,9 @@
       return null;
     }
 
-    function sendRemoteSlideChange(message) {
-      if (isScriptMode || !remoteSyncEndpoint) return;
+    function postSlideChange(endpoint, message) {
       try {
-        fetch(remoteSyncEndpoint, {
+        fetch(endpoint, {
           method: 'POST',
           mode: 'cors',
           cache: 'no-store',
@@ -4313,16 +4344,42 @@
       }
     }
 
-    async function pollRemoteSlideChange() {
-      if (isLocalScriptMode || !remoteSyncEndpoint) return;
+    function sendRemoteSlideChange(message) {
+      if (isScriptMode) return;
+      postSlideChange(localSyncEndpoint, message);
+      postSlideChange(remoteSyncEndpoint, message);
+    }
+
+    async function readSlideChange(endpoint) {
+      const response = await fetch(endpoint + '?t=' + Date.now(), {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-store'
+      });
+      if (!response.ok) return null;
+      return response.json();
+    }
+
+    async function readBestSlideChange() {
       try {
-        const response = await fetch(remoteSyncEndpoint + '?t=' + Date.now(), {
-          method: 'GET',
-          mode: 'cors',
-          cache: 'no-store'
-        });
-        if (!response.ok) return;
-        const message = await response.json();
+        const message = await readSlideChange(localSyncEndpoint);
+        fastLocalSyncAvailable = true;
+        return message;
+      } catch (error) {
+        fastLocalSyncAvailable = false;
+      }
+
+      try {
+        return await readSlideChange(remoteSyncEndpoint);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    async function pollRemoteSlideChange() {
+      if (isLocalScriptMode) return;
+      try {
+        const message = await readBestSlideChange();
         if (!message || message.type !== 'slide-change') return;
         if (message.sourceId === clientId || message.at <= lastRemoteSlideAt) return;
         lastRemoteSlideAt = message.at;
@@ -4332,6 +4389,13 @@
       } catch (error) {
         // Ignore transient network issues during the presentation.
       }
+    }
+
+    async function runRemoteSlidePolling() {
+      if (isLocalScriptMode) return;
+      await pollRemoteSlideChange();
+      const delay = fastLocalSyncAvailable ? 80 : 800;
+      setTimeout(runRemoteSlidePolling, delay);
     }
 
     function setCurrentSlide(index, options = {}) {
@@ -4377,6 +4441,52 @@
       box.style.overflowY = text.scrollHeight > box.clientHeight ? 'auto' : 'hidden';
     }
 
+    function updateLocalNavButtons(index) {
+      const root = document.getElementById('speaker-console');
+      if (!root || !isLocalScriptMode) return;
+      const slideNo = normalizeSlide(index);
+      const prev = root.querySelector('[data-local-nav="prev"]');
+      const next = root.querySelector('[data-local-nav="next"]');
+      if (prev) prev.disabled = slideNo <= 1;
+      if (next) next.disabled = slideNo >= totalSlides;
+    }
+
+    function attachLocalNavigation(root) {
+      if (!root || !isLocalScriptMode || root.dataset.localNavReady === '1') return;
+      root.dataset.localNavReady = '1';
+
+      root.querySelectorAll('[data-local-nav]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const delta = button.dataset.localNav === 'next' ? 1 : -1;
+          setCurrentSlide(getCurrentSlideFromHash() + delta, { broadcast: false, allowScriptLocal: true });
+        });
+      });
+
+      let startX = 0;
+      let startY = 0;
+      let startTime = 0;
+      const shouldIgnoreSwipe = (target) => target.closest('button, input, textarea, select, a');
+
+      root.addEventListener('touchstart', (event) => {
+        if (event.touches.length !== 1 || shouldIgnoreSwipe(event.target)) return;
+        const touch = event.touches[0];
+        startX = touch.clientX;
+        startY = touch.clientY;
+        startTime = Date.now();
+      }, { passive: true });
+
+      root.addEventListener('touchend', (event) => {
+        if (!startTime || shouldIgnoreSwipe(event.target)) return;
+        const touch = event.changedTouches[0];
+        const dx = touch.clientX - startX;
+        const dy = touch.clientY - startY;
+        const elapsed = Date.now() - startTime;
+        startTime = 0;
+        if (elapsed > 700 || Math.abs(dx) < 56 || Math.abs(dy) > 90) return;
+        setCurrentSlide(getCurrentSlideFromHash() + (dx < 0 ? 1 : -1), { broadcast: false, allowScriptLocal: true });
+      }, { passive: true });
+    }
+
     function ensureSpeakerConsole() {
       const root = document.getElementById('speaker-console');
       if (!root) return null;
@@ -4391,6 +4501,10 @@
             <h1 id="speaker-current-title" class="console-title"></h1>
           </div>
           <div class="console-speaker">현재 발표자 <strong id="speaker-current-speaker"></strong></div>
+          <div class="console-local-nav" aria-label="학생용 대본 페이지 이동">
+            <button type="button" data-local-nav="prev" aria-label="이전 슬라이드">&lt;</button>
+            <button type="button" data-local-nav="next" aria-label="다음 슬라이드">&gt;</button>
+          </div>
         </header>
         <main class="speaker-main">
           <div class="console-script" role="region" aria-label="현재 슬라이드 대본">
@@ -4413,7 +4527,14 @@
       root.querySelector('#speaker-current-title').textContent = current.title;
       root.querySelector('#speaker-current-speaker').textContent = current.speaker;
       root.querySelector('#speaker-script-text').textContent = current.script.trim();
-      requestAnimationFrame(fitScriptText);
+      const scriptBox = root.querySelector('.console-script');
+      if (scriptBox) scriptBox.scrollTop = 0;
+      updateLocalNavButtons(slideNo);
+      attachLocalNavigation(root);
+      requestAnimationFrame(() => {
+        fitScriptText();
+        if (scriptBox) scriptBox.scrollTop = 0;
+      });
     }
 
     function listenSlideChange() {
@@ -4444,8 +4565,7 @@
       });
 
       if (isScriptMode) {
-        pollRemoteSlideChange();
-        setInterval(pollRemoteSlideChange, 800);
+        runRemoteSlidePolling();
       }
     }
 

@@ -4330,6 +4330,15 @@
     }
 
     function postSlideChange(endpoint, message) {
+      if (endpoint === localSyncEndpoint && navigator.sendBeacon) {
+        try {
+          const body = new Blob([JSON.stringify(message)], { type: 'text/plain;charset=UTF-8' });
+          if (navigator.sendBeacon(endpoint, body)) return;
+        } catch (error) {
+          // Fall back to fetch below.
+        }
+      }
+
       try {
         fetch(endpoint, {
           method: 'POST',
@@ -4364,7 +4373,7 @@
       try {
         const message = await readSlideChange(localSyncEndpoint);
         fastLocalSyncAvailable = true;
-        return message;
+        if (message && Number(message.at) > lastRemoteSlideAt) return message;
       } catch (error) {
         fastLocalSyncAvailable = false;
       }
@@ -4394,7 +4403,7 @@
     async function runRemoteSlidePolling() {
       if (isLocalScriptMode) return;
       await pollRemoteSlideChange();
-      const delay = fastLocalSyncAvailable ? 80 : 800;
+      const delay = fastLocalSyncAvailable ? 60 : 120;
       setTimeout(runRemoteSlidePolling, delay);
     }
 

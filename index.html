@@ -4121,6 +4121,21 @@
       return true;
     }
 
+    function blockDirectDiscussionReveal(event, delta) {
+      const slide = getActiveSlide();
+      if (
+        delta <= 0 ||
+        !isDiscussionRevealSlide(slide) ||
+        slide.dataset.discussionRevealed === '1'
+      ) {
+        return false;
+      }
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+      return true;
+    }
+
     function installGoToGuard() {
       const deck = getDeck();
       if (!deck || typeof deck.goTo !== 'function' || deck.dataset.discussionGuardInstalled === '1') return;
@@ -4149,7 +4164,9 @@
 
     document.addEventListener('click', (event) => {
       if (isInteractiveTarget(event.target)) return;
-      stopForDiscussion(event, clickDelta(event));
+      const delta = clickDelta(event);
+      if (blockDirectDiscussionReveal(event, delta)) return;
+      stopForDiscussion(event, delta);
     }, true);
 
     document.addEventListener('wheel', (event) => {
@@ -4180,7 +4197,9 @@
       }
       if (elapsed < 450 && Math.abs(dx) < 16 && Math.abs(dy) < 16) {
         const ratio = touch.clientX / window.innerWidth;
-        stopForDiscussion(event, ratio > 0.58 ? 1 : (ratio < 0.42 ? -1 : 0));
+        const delta = ratio > 0.58 ? 1 : (ratio < 0.42 ? -1 : 0);
+        if (blockDirectDiscussionReveal(event, delta)) return;
+        stopForDiscussion(event, delta);
       }
     }, { passive: false, capture: true });
 
@@ -4636,7 +4655,7 @@
       },
       {
         no: 16,
-        speaker: "공동",
+        speaker: "염초롱",
         title: "토론 질문 1 — 흥미·적성과 안정성",
         script: `마지막으로, 발표 내용을 바탕으로 함께 생각해 볼 첫 번째 질문을 준비했습니다.
 정답을 맞히는 시간이 아니라, 각자의 진로와 연결해 생각해 보는 시간입니다.
@@ -4648,7 +4667,7 @@
       },
       {
         no: 17,
-        speaker: "공동",
+        speaker: "정혜린",
         title: "토론 질문 2 — 청소년에게 필요한 역량",
         script: `이어서 두 번째 질문입니다.
 새로운 산업구조의 변화 속에서 내가 원하는 직업을 얻기 위해 청소년에게 필요한 역량은 무엇일까요?
@@ -4661,7 +4680,7 @@
       },
       {
         no: 18,
-        speaker: "공동",
+        speaker: "정유주",
         title: "전체 최종 마무리 멘트",
         script: `오늘 발표와 토론을 통해 저희가 말하고 싶었던 것은, 미래 직업이 정해진 답처럼 주어지는 것이 아니라는 점입니다.
 기후 변화와 AI, 친환경 산업은 분명히 직업의 모습을 바꾸고 있습니다. 하지만 그 변화 속에서 무엇을 선택하고, 어떤 역량을 준비할지는 저희에게 달려 있다고 생각합니다.

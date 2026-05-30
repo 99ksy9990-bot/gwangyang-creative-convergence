@@ -18,7 +18,7 @@ function setHeaders(res) {
 function normalizeSlide(index) {
   const numeric = Number(index);
   if (!Number.isFinite(numeric)) return 1;
-  return Math.max(1, Math.min(16, Math.round(numeric)));
+  return Math.max(1, Math.min(18, Math.round(numeric)));
 }
 
 function parseBody(body) {

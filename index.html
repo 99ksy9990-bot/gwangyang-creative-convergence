@@ -143,7 +143,8 @@
     --accent: var(--human);
     --accent-2: var(--transition);
   }
-  deck-stage > section[data-label="16 Discussion"] {
+  deck-stage > section[data-label="16 Discussion Q1"],
+  deck-stage > section[data-label="17 Discussion Q2"] {
     --stage-a: #FACC15;
     --stage-b: #38BDF8;
     --stage-c: #FDE68A;
@@ -153,6 +154,12 @@
       radial-gradient(circle at 20% 18%, rgba(250,204,21,0.20) 0%, transparent 30%),
       radial-gradient(circle at 78% 74%, rgba(56,189,248,0.18) 0%, transparent 36%),
       linear-gradient(135deg, #10120b 0%, #071014 52%, #030405 100%);
+  }
+  deck-stage > section[data-label="18 Final Closing"] {
+    --stage-a: var(--human);
+    --stage-b: var(--transition);
+    --accent: var(--human);
+    --accent-2: var(--transition);
   }
   deck-stage > section::before {
     content: "";
@@ -2956,6 +2963,23 @@
     color: rgba(245,245,247,0.86);
     text-shadow: none;
   }
+  .closing-qa-cue {
+    position: absolute;
+    right: 120px;
+    bottom: 92px;
+    min-width: 136px;
+    padding: 15px 26px 16px;
+    border: 1px solid rgba(145,247,186,0.46);
+    border-radius: 999px;
+    background: rgba(145,247,186,0.11);
+    color: var(--human);
+    font-family: var(--font-mono);
+    font-size: calc(30px * var(--t-scale));
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    box-shadow: 0 0 32px rgba(145,247,186,0.14);
+  }
   .qa-block {
     padding: 18px 24px;
     border-left: 3px solid rgba(145,247,186,0.62);
@@ -2965,11 +2989,13 @@
     color: var(--human);
     text-shadow: 0 0 22px rgba(145,247,186,0.18);
   }
-  section[data-label="16 Discussion"] .slide-inner {
+  section[data-label="16 Discussion Q1"] .slide-inner,
+  section[data-label="17 Discussion Q2"] .slide-inner {
     justify-content: flex-start;
     padding: 198px 120px 86px;
   }
-  section[data-label="16 Discussion"] .eyebrow {
+  section[data-label="16 Discussion Q1"] .eyebrow,
+  section[data-label="17 Discussion Q2"] .eyebrow {
     margin-left: 0;
   }
   .discussion-kicker {
@@ -3000,6 +3026,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 34px;
     max-width: 1480px;
+  }
+  .discussion-question-grid.single {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 1320px;
   }
   .discussion-card {
     min-height: 292px;
@@ -3045,6 +3075,136 @@
   }
   .discussion-card:nth-child(2) .discussion-card-copy strong {
     color: #FDE68A;
+  }
+  .discussion-reveal-section[data-discussion-revealed="1"] .discussion-question-state {
+    display: none;
+  }
+  .discussion-reveal-section:not([data-discussion-revealed="1"]) .discussion-answer-state {
+    display: none;
+  }
+  .discussion-answer-panel {
+    max-width: 1510px;
+    min-height: 430px;
+    border: 1px solid rgba(245,245,247,0.16);
+    border-radius: 8px;
+    background:
+      linear-gradient(135deg, rgba(245,245,247,0.096), rgba(245,245,247,0.030)),
+      rgba(10,12,12,0.78);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.34);
+    padding: 42px 48px 46px;
+    box-sizing: border-box;
+  }
+  .discussion-answer-kicker {
+    margin: 0 0 28px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: calc(23px * var(--t-scale));
+    font-weight: 800;
+    letter-spacing: 0.08em !important;
+  }
+  .discussion-answer-table {
+    display: grid;
+    border-top: 2px solid rgba(245,245,247,0.62);
+  }
+  .discussion-answer-row {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 30px;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(245,245,247,0.22);
+  }
+  .discussion-answer-label {
+    margin: 0;
+    color: rgba(245,245,247,0.70);
+    font-size: calc(25px * var(--t-scale));
+    line-height: 1.32;
+    font-weight: 700;
+    word-break: keep-all;
+  }
+  .discussion-answer-copy {
+    margin: 0;
+    color: rgba(245,245,247,0.88);
+    font-size: calc(27px * var(--t-scale));
+    line-height: 1.42;
+    font-weight: 500;
+    word-break: keep-all;
+  }
+  .discussion-answer-copy strong {
+    color: var(--accent-2);
+    font-weight: 700;
+  }
+  .discussion-skill-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+  }
+  .discussion-skill-card {
+    min-height: 188px;
+    padding: 26px 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(245,245,247,0.14);
+    background: rgba(255,255,255,0.035);
+  }
+  .discussion-skill-card .mono {
+    margin: 0;
+    color: var(--accent);
+    font-size: calc(19px * var(--t-scale));
+    font-weight: 800;
+  }
+  .discussion-skill-card h3 {
+    margin: 14px 0 12px;
+    color: rgba(245,245,247,0.92);
+    font-size: calc(32px * var(--t-scale));
+    line-height: 1.18;
+  }
+  .discussion-skill-card p:last-child {
+    margin: 0;
+    color: rgba(245,245,247,0.66);
+    font-size: calc(22px * var(--t-scale));
+    line-height: 1.42;
+    word-break: keep-all;
+  }
+  .discussion-answer-summary {
+    margin: 28px 0 0;
+    padding-left: 24px;
+    border-left: 3px solid var(--accent-2);
+    color: rgba(245,245,247,0.78);
+    font-size: calc(25px * var(--t-scale));
+    line-height: 1.46;
+    word-break: keep-all;
+  }
+  .discussion-step-hint {
+    margin-top: 34px;
+    color: rgba(245,245,247,0.44);
+    font-size: calc(21px * var(--t-scale));
+    line-height: 1.35;
+  }
+  section[data-label="18 Final Closing"] .slide-inner.center {
+    align-items: flex-start;
+    justify-content: center;
+    padding: 180px 140px 110px;
+    text-align: left;
+  }
+  .final-closing-title {
+    margin: 28px 0 0;
+    max-width: 1120px;
+    font-family: var(--font-disp);
+    font-size: calc(92px * var(--t-scale));
+    line-height: 1.08;
+    font-weight: 760;
+  }
+  .final-closing-body {
+    margin-top: 56px;
+    max-width: 1420px;
+    color: rgba(245,245,247,0.78);
+    font-size: calc(34px * var(--t-scale));
+    line-height: 1.54;
+    font-weight: 500;
+    word-break: keep-all;
+  }
+  .final-closing-body strong {
+    color: var(--human);
+    font-weight: 700;
   }
   .discussion-flow {
     margin-top: 44px;
@@ -3105,7 +3265,7 @@
 
   <!-- ================= 01 COVER ================= -->
   <section data-label="01 Cover">
-    <div class="slide-num mono">01 / 16</div>
+    <div class="slide-num mono">01 / 18</div>
     <div class="slide-inner end">
       <div class="eyebrow"><span class="dot"></span><span>2026</span></div>
       <h1 class="display" style="margin-top: 40px;">
@@ -3128,7 +3288,7 @@
 
   <!-- ================= 02 HOOK ================= -->
   <section data-label="02 Hook">
-    <div class="slide-num mono">02 / 16</div>
+    <div class="slide-num mono">02 / 18</div>
     <div class="footer-mark">도입 — 탄소 규제와 미래 직업</div>
     <div class="slide-inner center">
       <div class="eyebrow"><span class="dot"></span><span>QUESTION</span></div>
@@ -3151,7 +3311,7 @@
     <div class="bg-layer vignette">
       <div class="grid-bg" aria-hidden="true"></div>
     </div>
-    <div class="slide-num mono">03 / 16</div>
+    <div class="slide-num mono">03 / 18</div>
     <div class="footer-mark">지역 — 광양 산업 기반</div>
     <div class="slide-inner gwangyang-field-slide">
       <div class="gwangyang-field-copy">
@@ -3181,7 +3341,7 @@
 
   <!-- ================= 04 CBAM ================= -->
   <section data-label="04 CBAM">
-    <div class="slide-num mono">04 / 16</div>
+    <div class="slide-num mono">04 / 18</div>
     <div class="footer-mark">정책 — 변화의 시작</div>
     <div class="slide-inner center">
       <div class="tag"><span class="dot"></span> EU REGULATION · 2026</div>
@@ -3199,7 +3359,7 @@
 
   <!-- ================= 05 DATA: TAX TREND ================= -->
   <section data-label="05 Gwangyang Tax Trend">
-    <div class="slide-num mono">05 / 16</div>
+    <div class="slide-num mono">05 / 18</div>
     <div class="footer-mark">데이터 — 광양 지역 경제</div>
     <div class="slide-inner tax-trend-slide">
       <div class="eyebrow"><span class="dot"></span><span>DATA · GWANGYANG TAX</span></div>
@@ -3293,7 +3453,7 @@
 
   <!-- ================= 06 ALREADY ================= -->
   <section data-label="06 Already">
-    <div class="slide-num mono">06 / 16</div>
+    <div class="slide-num mono">06 / 18</div>
     <div class="footer-mark">전환 — 광양이 준비해야 하는 이유</div>
     <div class="slide-inner center">
       <h1 class="display">
@@ -3310,7 +3470,7 @@
 
   <!-- ================= 07 PIVOT ================= -->
   <section data-label="07 Pivot">
-    <div class="slide-num mono">07 / 16</div>
+    <div class="slide-num mono">07 / 18</div>
     <div class="footer-mark">전환 — 위기와 기회</div>
     <div class="slide-inner center">
       <p class="h3 mute">그러나 같은 변화 속에서,</p>
@@ -3335,7 +3495,7 @@
 
   <!-- ================= 08 NEW INDUSTRY 1 — HYDROGEN ================= -->
   <section data-label="08 Hydrogen">
-    <div class="slide-num mono">08 / 16</div>
+    <div class="slide-num mono">08 / 18</div>
     <div class="slide-inner split hyrex-layout">
       <!-- left: photo -->
       <div class="hyrex-media">
@@ -3385,7 +3545,7 @@
 
   <!-- ================= 09 NEW INDUSTRY 2 — BATTERY ================= -->
   <section data-label="09 Battery">
-    <div class="slide-num mono">09 / 16</div>
+    <div class="slide-num mono">09 / 18</div>
     <div class="slide-inner split battery-layout" style="flex-direction: row-reverse;">
       <div class="battery-visual-wrap">
         <div class="hydrogen-complex-visual" aria-hidden="true"></div>
@@ -3423,7 +3583,7 @@
 
   <!-- ================= 10 GLOBAL CASES ================= -->
   <section data-label="10 Global Cases">
-    <div class="slide-num mono">10 / 16</div>
+    <div class="slide-num mono">10 / 18</div>
     <div class="global-map-bg" aria-hidden="true"></div>
     <div class="slide-inner system-slide global-map-slide">
       <div class="eyebrow"><span class="dot"></span><span>GLOBAL · LOW-CARBON INDUSTRY</span></div>
@@ -3472,7 +3632,7 @@
 
   <!-- ================= 11 JOBS SYSTEM ================= -->
   <section data-label="11 Jobs">
-    <div class="slide-num mono">11 / 16</div>
+    <div class="slide-num mono">11 / 18</div>
     <div class="footer-mark">개념도 — 산업 전환에 따른 직무 변화</div>
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>WORK · IN TRANSITION</span></div>
@@ -3537,7 +3697,7 @@
 
   <!-- ================= 12 JUST TRANSITION INTRO ================= -->
   <section data-label="12 Just Transition Intro">
-    <div class="slide-num mono">12 / 16</div>
+    <div class="slide-num mono">12 / 18</div>
     <div class="footer-mark">핵심 개념 — 정의로운 전환</div>
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>IN TRANSITION</span></div>
@@ -3559,7 +3719,7 @@
   </section>
   <!-- ================= 13 FUTURE CAPABILITIES ================= -->
   <section data-label="13 Capabilities">
-    <div class="slide-num mono">13 / 16</div>
+    <div class="slide-num mono">13 / 18</div>
     <div class="footer-mark">준비 — 중학생의 미래 역량</div>
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>SKILLS · WHAT WE PREPARE</span></div>
@@ -3602,7 +3762,7 @@
 
   <!-- ================= 14 GWANGYANG TEAMPLAY ================= -->
   <section data-label="14 Teamplay">
-    <div class="slide-num mono">14 / 16</div>
+    <div class="slide-num mono">14 / 18</div>
     <div class="footer-mark">협력 — 광양 전환 팀플레이</div>
     <div class="slide-inner system-slide typo-slide">
       <div class="eyebrow"><span class="dot"></span><span>TEAM · GWANGYANG TRANSITION</span></div>
@@ -3655,7 +3815,7 @@
 
   <!-- ================= 15 CLOSING ================= -->
   <section data-label="15 Closing">
-    <div class="slide-num mono">15 / 16</div>
+    <div class="slide-num mono">15 / 18</div>
     <div class="slide-inner center">
       <div class="eyebrow"><span class="dot"></span><span>CHOICE</span></div>
       <h1 class="display">
@@ -3678,36 +3838,130 @@
         </div>
       </div>
     </div>
+    <div class="closing-qa-cue">Q&A</div>
   </section>
 
-  <!-- ================= 16 DISCUSSION ================= -->
-  <section data-label="16 Discussion">
-    <div class="slide-num mono">16 / 16</div>
+  <!-- ================= 16 DISCUSSION Q1 ================= -->
+  <section data-label="16 Discussion Q1" class="discussion-reveal-section">
+    <div class="slide-num mono">16 / 18</div>
     <div class="footer-mark">토론 — 광양창의융합교육 B3조</div>
     <div class="slide-inner discussion-slide">
-      <div class="eyebrow"><span class="dot"></span><span>DISCUSSION · FINAL QUESTION</span></div>
-      <h1 class="discussion-title">
-        함께 <span class="accent">생각해봅시다.</span>
-      </h1>
-      <div class="discussion-question-grid">
-        <article class="discussion-card">
-          <p class="discussion-card-label">01</p>
-          <p class="discussion-card-copy">
-            미래 직업을 선택할 수 있다면,<br/>
-            나의 흥미와 적성보다<br/>
-            <strong>인공지능(AI) 시대에 살아남을 안정성</strong>을<br/>
-            우선해야 할까요?
-          </p>
-        </article>
-        <article class="discussion-card">
-          <p class="discussion-card-label">02</p>
-          <p class="discussion-card-copy">
-            새로운 산업구조의 변화 속에서<br/>
-            내가 원하는 직업을 얻기 위해<br/>
-            <strong>청소년에게 필요한 역량은 무엇일까요?</strong>
-          </p>
-        </article>
+      <div class="discussion-question-state">
+        <div class="eyebrow"><span class="dot"></span><span>DISCUSSION · QUESTION 01</span></div>
+        <h1 class="discussion-title">
+          함께 <span class="accent">생각해봅시다.</span>
+        </h1>
+        <div class="discussion-question-grid single">
+          <article class="discussion-card">
+            <p class="discussion-card-label">01</p>
+            <p class="discussion-card-copy">
+              미래 직업을 선택할 수 있다면,<br/>
+              나의 흥미와 적성보다<br/>
+              <strong>인공지능(AI) 시대에 살아남을 안정성</strong>을<br/>
+              우선해야 할까요?
+            </p>
+          </article>
+        </div>
+        <p class="discussion-step-hint">의견 청취 후, 팀 공동의견 발표</p>
       </div>
+      <div class="discussion-answer-state">
+        <div class="eyebrow"><span class="dot"></span><span>TEAM · COMMON OPINION</span></div>
+        <h1 class="discussion-title">
+          팀 <span class="accent">공동의견</span>
+        </h1>
+        <div class="discussion-answer-panel">
+          <p class="discussion-answer-kicker">질문 1 · 흥미와 적성, 그리고 안정성</p>
+          <div class="discussion-answer-table">
+            <div class="discussion-answer-row">
+              <p class="discussion-answer-label">기본 입장</p>
+              <p class="discussion-answer-copy">흥미와 적성을 포기하고 안정성만 선택하는 것은 좋지 않습니다. 하지만 AI 시대에는 안정성의 의미가 달라지므로, 내가 좋아하는 분야가 미래에 어떻게 바뀔지 계속 배우고 적응해야 합니다.</p>
+            </div>
+            <div class="discussion-answer-row">
+              <p class="discussion-answer-label">안정성에 대한 생각</p>
+              <p class="discussion-answer-copy">안정성은 <strong>절대 사라지지 않는 직업</strong>을 찾는 것이 아니라, 산업이 바뀌어도 계속 배우고 새로운 역할로 이동할 수 있는 힘에서 나옵니다.</p>
+            </div>
+            <div class="discussion-answer-row">
+              <p class="discussion-answer-label">흥미·적성에 대한 생각</p>
+              <p class="discussion-answer-copy">흥미와 적성은 진로 선택의 출발점입니다. 좋아하고 잘하는 분야가 있어야 오래 배우고 성장할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 17 DISCUSSION Q2 ================= -->
+  <section data-label="17 Discussion Q2" class="discussion-reveal-section">
+    <div class="slide-num mono">17 / 18</div>
+    <div class="footer-mark">토론 — 광양창의융합교육 B3조</div>
+    <div class="slide-inner discussion-slide">
+      <div class="discussion-question-state">
+        <div class="eyebrow"><span class="dot"></span><span>DISCUSSION · QUESTION 02</span></div>
+        <h1 class="discussion-title">
+          함께 <span class="accent">생각해봅시다.</span>
+        </h1>
+        <div class="discussion-question-grid single">
+          <article class="discussion-card">
+            <p class="discussion-card-label">02</p>
+            <p class="discussion-card-copy">
+              새로운 산업구조의 변화 속에서<br/>
+              내가 원하는 직업을 얻기 위해<br/>
+              <strong>청소년에게 필요한 역량은 무엇일까요?</strong>
+            </p>
+          </article>
+        </div>
+        <p class="discussion-step-hint">의견 청취 후, 팀 공동의견 발표</p>
+      </div>
+      <div class="discussion-answer-state">
+        <div class="eyebrow"><span class="dot"></span><span>TEAM · COMMON OPINION</span></div>
+        <h1 class="discussion-title">
+          팀 <span class="accent">공동의견</span>
+        </h1>
+        <div class="discussion-answer-panel">
+          <p class="discussion-answer-kicker">질문 2 · 청소년에게 필요한 역량</p>
+          <div class="discussion-skill-grid">
+            <article class="discussion-skill-card">
+              <p class="mono">01</p>
+              <h3>환경 감수성</h3>
+              <p>기후 변화가 산업과 지역, 일자리에 어떤 영향을 주는지 이해하는 힘입니다.</p>
+            </article>
+            <article class="discussion-skill-card">
+              <p class="mono">02</p>
+              <h3>기술 리터러시</h3>
+              <p>AI, 수소, 이차전지, 데이터 같은 기술을 어렵다고 피하지 않고 배우는 태도입니다.</p>
+            </article>
+            <article class="discussion-skill-card">
+              <p class="mono">03</p>
+              <h3>창의융합적 사고</h3>
+              <p>환경, 기술, 경제, 지역 문제를 따로 보지 않고 연결해서 해결책을 찾는 힘입니다.</p>
+            </article>
+          </div>
+          <p class="discussion-answer-summary">
+            여기에 소통과 협력, 계속 배우는 태도가 더해져야 원하는 직업을 미래 변화 속에서도 이어갈 수 있다고 생각합니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 18 FINAL CLOSING ================= -->
+  <section data-label="18 Final Closing">
+    <div class="slide-num mono">18 / 18</div>
+    <div class="footer-mark">마무리 — 전체 최종 멘트</div>
+    <div class="slide-inner center">
+      <div class="eyebrow"><span class="dot"></span><span>FINAL · CLOSING</span></div>
+      <h1 class="final-closing-title">
+        전체<br/>
+        <span class="accent">마무리</span>
+      </h1>
+      <p class="final-closing-body">
+        오늘 발표와 토론을 통해 저희가 말하고 싶었던 것은,<br/>
+        <strong>미래 직업이 정해진 답처럼 주어지는 것이 아니라는 점</strong>입니다.
+        기후 변화와 AI, 친환경 산업은 분명히 직업의 모습을 바꾸고 있습니다. 하지만 그 변화 속에서 무엇을 선택하고, 어떤 역량을 준비할지는 저희에게 달려 있다고 생각합니다.<br/><br/>
+        흥미와 적성은 진로의 출발점이고, 미래의 안정성은 변화 속에서도 계속 배우고 적응하는 힘에서 나옵니다.
+        그리고 그 힘은 환경 감수성, 기술 리터러시, 창의융합적 사고에서 시작된다고 생각합니다. 이상으로 B3조 발표와 토론을 마치겠습니다.<br/>
+        감사합니다.
+      </p>
     </div>
   </section>
 
@@ -3802,6 +4056,146 @@
   })();
 </script>
 
+<!-- Discussion slides: first advance reveals team opinion, second advance moves on -->
+<script>
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const isPresent = params.get('present') === '1' || params.get('final') === '1';
+    const isScriptMode = params.get('script') === '1';
+    if (!isPresent || isScriptMode) return;
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+
+    function getDeck() {
+      return document.querySelector('deck-stage');
+    }
+
+    function getActiveSlide() {
+      return document.querySelector('deck-stage > section[data-deck-active]');
+    }
+
+    function isDiscussionRevealSlide(slide) {
+      return !!(slide && slide.classList.contains('discussion-reveal-section'));
+    }
+
+    function setDiscussionReveal(slide, isRevealed) {
+      if (!isDiscussionRevealSlide(slide)) return false;
+      if (isRevealed) {
+        slide.dataset.discussionRevealed = '1';
+      } else {
+        delete slide.dataset.discussionRevealed;
+      }
+      return true;
+    }
+
+    function discussionStep(delta) {
+      const slide = getActiveSlide();
+      if (!isDiscussionRevealSlide(slide)) return false;
+      const isRevealed = slide.dataset.discussionRevealed === '1';
+      if (delta > 0 && !isRevealed) return setDiscussionReveal(slide, true);
+      if (delta < 0 && isRevealed) return setDiscussionReveal(slide, false);
+      return false;
+    }
+
+    function isInteractiveTarget(target) {
+      return !!(target && target.closest && target.closest('button, a, input, textarea, select, .nav-shell'));
+    }
+
+    function clickDelta(event) {
+      const path = typeof event.composedPath === 'function' ? event.composedPath() : [];
+      if (path.some((node) => node && node.classList && node.classList.contains('next'))) return 1;
+      if (path.some((node) => node && node.classList && node.classList.contains('prev'))) return -1;
+      const ratio = event.clientX / window.innerWidth;
+      if (ratio > 0.58) return 1;
+      if (ratio < 0.42) return -1;
+      return 0;
+    }
+
+    function stopForDiscussion(event, delta) {
+      if (!delta || !discussionStep(delta)) return false;
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+      return true;
+    }
+
+    function installGoToGuard() {
+      const deck = getDeck();
+      if (!deck || typeof deck.goTo !== 'function' || deck.dataset.discussionGuardInstalled === '1') return;
+      const originalGoTo = deck.goTo.bind(deck);
+      deck.goTo = function guardedGoTo(targetIndex, ...rest) {
+        const slides = deck.querySelectorAll(':scope > section');
+        const currentSlide = getActiveSlide();
+        const currentIndex = currentSlide ? [...slides].indexOf(currentSlide) : -1;
+        const delta = Number(targetIndex) > currentIndex ? 1 : (Number(targetIndex) < currentIndex ? -1 : 0);
+        if (discussionStep(delta)) return;
+        return originalGoTo(targetIndex, ...rest);
+      };
+      deck.dataset.discussionGuardInstalled = '1';
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+      let delta = 0;
+      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ' || event.key === 'Spacebar' || event.key === 'Enter') {
+        delta = 1;
+      } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+        delta = -1;
+      }
+      stopForDiscussion(event, delta);
+    }, true);
+
+    document.addEventListener('click', (event) => {
+      if (isInteractiveTarget(event.target)) return;
+      stopForDiscussion(event, clickDelta(event));
+    }, true);
+
+    document.addEventListener('wheel', (event) => {
+      if (isInteractiveTarget(event.target)) return;
+      const primaryDelta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+      if (Math.abs(primaryDelta) < 5) return;
+      stopForDiscussion(event, primaryDelta > 0 ? 1 : -1);
+    }, { capture: true, passive: false });
+
+    document.addEventListener('touchstart', (event) => {
+      if (event.touches.length !== 1 || isInteractiveTarget(event.target)) return;
+      const touch = event.touches[0];
+      touchStartX = touch.clientX;
+      touchStartY = touch.clientY;
+      touchStartTime = Date.now();
+    }, { passive: true });
+
+    document.addEventListener('touchend', (event) => {
+      if (!touchStartTime || isInteractiveTarget(event.target)) return;
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+      const elapsed = Date.now() - touchStartTime;
+      touchStartTime = 0;
+      if (Math.abs(dx) > 56 && Math.abs(dy) < 90) {
+        stopForDiscussion(event, dx < 0 ? 1 : -1);
+        return;
+      }
+      if (elapsed < 450 && Math.abs(dx) < 16 && Math.abs(dy) < 16) {
+        const ratio = touch.clientX / window.innerWidth;
+        stopForDiscussion(event, ratio > 0.58 ? 1 : (ratio < 0.42 ? -1 : 0));
+      }
+    }, { passive: false, capture: true });
+
+    document.addEventListener('slidechange', (event) => {
+      document.querySelectorAll('deck-stage > section.discussion-reveal-section').forEach((slide) => {
+        if (slide !== event.detail.slide) delete slide.dataset.discussionRevealed;
+      });
+      installGoToGuard();
+    });
+
+    window.__gwangyangDiscussionStep = discussionStep;
+    requestAnimationFrame(installGoToGuard);
+  })();
+</script>
+
 <!-- Present-mode click/touch/wheel navigation -->
 <script>
   (function () {
@@ -3824,6 +4218,7 @@
     }
 
     function advanceSlide(delta) {
+      if (window.__gwangyangDiscussionStep && window.__gwangyangDiscussionStep(delta)) return;
       const deck = getDeck();
       if (!deck) return;
       const slides = deck.querySelectorAll(':scope > section');
@@ -4236,26 +4631,40 @@
 그것을 어떤 목적으로 사용할지, 그 과정에서 누구도 소외되지 않게 할 수 있을지는 결국 지금 이 변화를 마주한 우리의 선택과 의지에 달려 있습니다.
 방향은 우리가 정합니다.
 여러분은 광양의, 그리고 우리 모두의 미래를 위해 어떤 선택을 하시겠습니까?
-이 질문을 마지막으로 남기며 이상으로 광양창의융합교육 연구 최종 발표를 마치겠습니다.
-저희의 고민과 분석을 끝까지 경청해 주셔서 진심으로 감사합니다.`
+이 질문을 바탕으로 이제 Q&A와 토론으로 이어가겠습니다.
+저희의 발표 내용을 떠올리면서 자유롭게 의견을 나눠주시면 감사하겠습니다.`
       },
       {
         no: 16,
         speaker: "공동",
-        title: "토론 — 광양창의융합교육 B3조",
-        script: `마지막으로, 발표 내용을 바탕으로 함께 생각해 볼 두 가지 질문을 준비했습니다.
+        title: "토론 질문 1 — 흥미·적성과 안정성",
+        script: `마지막으로, 발표 내용을 바탕으로 함께 생각해 볼 첫 번째 질문을 준비했습니다.
 정답을 맞히는 시간이 아니라, 각자의 진로와 연결해 생각해 보는 시간입니다.
-의견을 말씀해 주시면 저희가 발표 내용과 연결해서 답변드리겠습니다.
-첫 번째 질문입니다.
-미래 직업을 선택할 수 있다면, 나의 흥미와 적성보다 인공지능 시대에 살아남을 안정성을 우선해야 할까요?
-두 번째 질문입니다.
+첫 번째 질문입니다. 미래 직업을 선택할 수 있다면, 나의 흥미와 적성보다 인공지능 시대에 살아남을 안정성을 우선해야 할까요?
+먼저 다른 팀원들과 친구들의 의견을 들어보겠습니다.
+(의견 청취 후 팀 공동의견 발표)
+저희 팀의 공동의견은 흥미와 적성을 포기하고 안정성만 선택하는 것은 좋지 않다는 것입니다. 다만 AI 시대에는 안정성의 의미가 달라지기 때문에, 내가 좋아하는 분야가 미래에 어떻게 바뀔지 계속 배우고 적응하는 태도가 필요하다고 보았습니다.
+안정성은 절대 사라지지 않는 직업을 찾는 것이 아니라, 산업이 바뀌어도 계속 배우고 새로운 역할로 이동할 수 있는 힘에서 나온다고 생각합니다. 그리고 흥미와 적성은 진로 선택의 출발점입니다. 좋아하고 잘하는 분야가 있어야 오래 배우고 성장할 수 있기 때문입니다.`
+      },
+      {
+        no: 17,
+        speaker: "공동",
+        title: "토론 질문 2 — 청소년에게 필요한 역량",
+        script: `이어서 두 번째 질문입니다.
 새로운 산업구조의 변화 속에서 내가 원하는 직업을 얻기 위해 청소년에게 필요한 역량은 무엇일까요?
-저희는 발표에서 세 가지를 제시했습니다. 환경 감수성, 기술 리터러시, 창의융합적 사고입니다.
-이 세 가지 외에도 필요하다고 생각하는 역량이 있다면 자유롭게 말씀해 주세요.
-토론을 마무리하며 말씀드리겠습니다.
-오늘 발표와 토론을 통해 저희가 말하고 싶었던 것은, 미래 직업이 정해진 답처럼 주어지는 것이 아니라는 점입니다.
-기후 변화와 인공지능, 친환경 산업은 분명히 직업의 모습을 바꾸고 있습니다.
-하지만 그 변화 속에서 무엇을 선택하고, 어떤 역량을 준비할지는 저희에게 달려 있다고 생각합니다.
+이번에도 먼저 다른 팀원들과 친구들의 의견을 들어보겠습니다.
+(의견 청취 후 팀 공동의견 발표)
+저희 팀은 세 가지 역량이 필요하다고 생각했습니다. 첫째는 환경 감수성입니다. 기후 변화가 산업과 지역, 일자리에 어떤 영향을 주는지 이해하는 힘입니다.
+둘째는 기술 리터러시입니다. AI, 수소, 이차전지, 데이터 같은 기술을 어렵다고 피하지 않고 배우는 태도입니다.
+셋째는 창의융합적 사고입니다. 환경, 기술, 경제, 지역 문제를 따로 보지 않고 연결해서 해결책을 찾는 힘입니다.
+여기에 소통과 협력, 계속 배우는 태도가 더해져야 원하는 직업을 미래 변화 속에서도 이어갈 수 있다고 생각합니다.`
+      },
+      {
+        no: 18,
+        speaker: "공동",
+        title: "전체 최종 마무리 멘트",
+        script: `오늘 발표와 토론을 통해 저희가 말하고 싶었던 것은, 미래 직업이 정해진 답처럼 주어지는 것이 아니라는 점입니다.
+기후 변화와 AI, 친환경 산업은 분명히 직업의 모습을 바꾸고 있습니다. 하지만 그 변화 속에서 무엇을 선택하고, 어떤 역량을 준비할지는 저희에게 달려 있다고 생각합니다.
 흥미와 적성은 진로의 출발점이고, 미래의 안정성은 변화 속에서도 계속 배우고 적응하는 힘에서 나옵니다.
 그리고 그 힘은 환경 감수성, 기술 리터러시, 창의융합적 사고에서 시작된다고 생각합니다.
 이상으로 B3조 발표와 토론을 마치겠습니다. 감사합니다.`

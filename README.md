@@ -67,7 +67,7 @@ Vercel은 정적 사이트로 배포하며, production alias는 `https://gwangya
 
 ## 배포 전 체크리스트
 
-- `index.html`의 슬라이드 라벨이 `01`부터 `16`까지 이어지는지 확인합니다.
+- `index.html`의 슬라이드 라벨이 `01`부터 `18`까지 이어지는지 확인합니다.
 - 발표에 참조되는 `assets/images/` 파일이 모두 존재하고 Git 추적 대상인지 확인합니다.
 - `deck-stage.js`, `image-slot.js`에 의도하지 않은 변경이 없는지 확인합니다.
 - 로컬 주소 `http://127.0.0.1:4183/index.html?present=1`에서 최종 발표 모드를 확인합니다.

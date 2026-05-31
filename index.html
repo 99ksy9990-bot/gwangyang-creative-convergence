@@ -1985,6 +1985,31 @@
   .hyrex-formula .accent {
     text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 30%, transparent);
   }
+  .hyrex-reaction-stack {
+    margin-top: 28px;
+    display: grid;
+    gap: 12px;
+    width: fit-content;
+  }
+  .hyrex-reaction-stack .hyrex-formula {
+    margin-top: 0;
+    min-width: 570px;
+    padding: 14px 20px;
+    font-size: calc(25px * var(--t-scale));
+  }
+  .hyrex-formula-old {
+    border-color: color-mix(in srgb, var(--carbon) 62%, transparent);
+    background: color-mix(in srgb, var(--carbon) 10%, rgba(255,255,255,0.028));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 18px 46px rgba(255,107,53,0.08);
+  }
+  .hyrex-formula-old .carbon-accent {
+    color: var(--carbon);
+    font-weight: 760;
+    text-shadow: 0 0 18px color-mix(in srgb, var(--carbon) 34%, transparent);
+  }
+  .hyrex-formula-new {
+    border-color: color-mix(in srgb, var(--accent) 52%, transparent);
+  }
   .challenge-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2186,6 +2211,431 @@
   .platform-nowrap {
     white-space: nowrap;
   }
+  section[data-label="08 Hydrogen"] .hyrex-copy .body-lg,
+  section[data-label="08 Hydrogen"] .hyrex-reaction-stack,
+  section[data-label="08 Hydrogen"] .hyrex-formula,
+  section[data-label="08 Hydrogen"] .challenge-card,
+  section[data-label="09 Battery"] .axis-term,
+  section[data-label="09 Battery"] .industry-axis-chip,
+  section[data-label="09 Battery"] .platform-direction,
+  section[data-label="09 Battery"] .hydrogen-complex-visual,
+  section[data-label="10 Global Cases"] .map-callout,
+  section[data-label="10 Global Cases"] .map-insight {
+    transition:
+      opacity 260ms ease,
+      filter 260ms ease,
+      transform 260ms ease,
+      color 260ms ease,
+      border-color 260ms ease,
+      background 260ms ease,
+      box-shadow 260ms ease,
+      text-shadow 260ms ease;
+  }
+  section[data-label="01 Cover"] .cover-key,
+  section[data-label="01 Cover"] .cover-carbon,
+  section[data-label="02 Hook"] .hook-policy,
+  section[data-label="02 Hook"] .hook-job,
+  section[data-label="02 Hook"] .hook-change,
+  section[data-label="02 Hook"] .hook-cbam,
+  section[data-label="02 Hook"] .hook-steel,
+  section[data-label="03 Gwangyang"] .gwangyang-steel,
+  section[data-label="03 Gwangyang"] .gwangyang-port,
+  section[data-label="03 Gwangyang"] .industry-chip,
+  section[data-label="03 Gwangyang"] .gwangyang-production,
+  section[data-label="03 Gwangyang"] .gwangyang-logistics,
+  section[data-label="03 Gwangyang"] .gwangyang-economy,
+  section[data-label="03 Gwangyang"] .gwangyang-local-economy,
+  section[data-label="03 Gwangyang"] .gwangyang-job-risk,
+  section[data-label="04 CBAM"] .cbam-carbon,
+  section[data-label="04 CBAM"] .cbam-cost,
+  section[data-label="04 CBAM"] .cbam-emission,
+  section[data-label="04 CBAM"] .cbam-cost-text,
+  section[data-label="04 CBAM"] .cbam-steel,
+  section[data-label="04 CBAM"] .cbam-export,
+  section[data-label="06 Already"] .already-distant,
+  section[data-label="06 Already"] .already-started,
+  section[data-label="06 Already"] .already-factor,
+  section[data-label="07 Pivot"] .pivot-kicker,
+  section[data-label="07 Pivot"] .pivot-keep,
+  section[data-label="07 Pivot"] .pivot-method,
+  section[data-label="07 Pivot"] .pivot-change,
+  section[data-label="07 Pivot"] .pivot-tech,
+  section[data-label="07 Pivot"] .pivot-people,
+  section[data-label="07 Pivot"] .pivot-foundation,
+  section[data-label="07 Pivot"] .pivot-process,
+  section[data-label="11 Jobs"] .jobs-list-card,
+  section[data-label="11 Jobs"] .jobs-bridge,
+  section[data-label="11 Jobs"] .emerging-jobs-title,
+  section[data-label="11 Jobs"] .emerging-job-card,
+  section[data-label="14 Teamplay"] .teamplay-card,
+  section[data-label="14 Teamplay"] .teamplay-layout::before,
+  section[data-label="14 Teamplay"] .teamplay-layout::after {
+    transition:
+      opacity 260ms ease,
+      filter 260ms ease,
+      transform 260ms ease,
+      color 260ms ease,
+      border-color 260ms ease,
+      background 260ms ease,
+      box-shadow 260ms ease,
+      text-shadow 260ms ease;
+  }
+  section[data-label="02 Hook"][data-interaction-step="1"] .hook-cbam,
+  section[data-label="02 Hook"][data-interaction-step="1"] .hook-steel {
+    display: inline-block;
+    transform: translateY(-3px);
+    opacity: 1 !important;
+    font-weight: 780;
+    text-shadow: 0 0 22px currentColor;
+  }
+  section[data-label="02 Hook"][data-interaction-step="1"] .hook-cbam { color: var(--accent); }
+  section[data-label="02 Hook"][data-interaction-step="1"] .hook-steel { color: var(--carbon); }
+  section[data-label="03 Gwangyang"][data-interaction-step="1"] .gwangyang-steel,
+  section[data-label="03 Gwangyang"][data-interaction-step="1"] .gwangyang-chip-steel,
+  section[data-label="03 Gwangyang"][data-interaction-step="1"] .gwangyang-production {
+    display: inline-block;
+    transform: translateY(-3px);
+    opacity: 1 !important;
+    color: var(--carbon) !important;
+    text-shadow: 0 0 22px color-mix(in srgb, var(--carbon) 26%, transparent);
+  }
+  section[data-label="03 Gwangyang"][data-interaction-step="2"] .gwangyang-port,
+  section[data-label="03 Gwangyang"][data-interaction-step="2"] .gwangyang-chip-port,
+  section[data-label="03 Gwangyang"][data-interaction-step="2"] .gwangyang-logistics {
+    display: inline-block;
+    transform: translateY(-3px);
+    opacity: 1 !important;
+    color: var(--accent) !important;
+    text-shadow: 0 0 22px color-mix(in srgb, var(--accent) 26%, transparent);
+  }
+  section[data-label="03 Gwangyang"][data-interaction-step="3"] .gwangyang-chip-jobs,
+  section[data-label="03 Gwangyang"][data-interaction-step="3"] .gwangyang-economy,
+  section[data-label="03 Gwangyang"][data-interaction-step="3"] .gwangyang-local-economy,
+  section[data-label="03 Gwangyang"][data-interaction-step="3"] .gwangyang-job-risk {
+    display: inline-block;
+    transform: translateY(-3px);
+    opacity: 1 !important;
+    color: var(--human);
+    text-shadow: 0 0 22px color-mix(in srgb, var(--human) 26%, transparent);
+  }
+  section[data-label="04 CBAM"][data-interaction-step="1"] .cbam-carbon,
+  section[data-label="04 CBAM"][data-interaction-step="1"] .cbam-emission {
+    display: inline-block;
+    transform: translateY(-4px);
+    color: var(--carbon);
+    opacity: 1 !important;
+    text-shadow: 0 0 26px color-mix(in srgb, var(--carbon) 28%, transparent);
+  }
+  section[data-label="04 CBAM"][data-interaction-step="2"] .cbam-cost,
+  section[data-label="04 CBAM"][data-interaction-step="2"] .cbam-cost-text {
+    display: inline-block;
+    transform: translateY(-4px);
+    color: var(--accent);
+    opacity: 1 !important;
+    text-shadow: 0 0 28px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  section[data-label="04 CBAM"][data-interaction-step="3"] .cbam-steel,
+  section[data-label="04 CBAM"][data-interaction-step="3"] .cbam-export {
+    display: inline-block;
+    transform: translateY(-3px);
+    color: var(--human);
+    opacity: 1 !important;
+    text-shadow: 0 0 24px color-mix(in srgb, var(--human) 26%, transparent);
+  }
+  section[data-label="06 Already"][data-interaction-step]:not([data-interaction-step="0"]) .already-distant,
+  section[data-label="06 Already"][data-interaction-step]:not([data-interaction-step="0"]) .already-started,
+  section[data-label="06 Already"][data-interaction-step]:not([data-interaction-step="0"]) .already-factor,
+  section[data-label="07 Pivot"][data-interaction-step]:not([data-interaction-step="0"]) .pivot-kicker,
+  section[data-label="07 Pivot"][data-interaction-step]:not([data-interaction-step="0"]) .pivot-keep,
+  section[data-label="07 Pivot"][data-interaction-step]:not([data-interaction-step="0"]) .pivot-method,
+  section[data-label="07 Pivot"][data-interaction-step]:not([data-interaction-step="0"]) .pivot-change,
+  section[data-label="07 Pivot"][data-interaction-step]:not([data-interaction-step="0"]) .pivot-tech,
+  section[data-label="07 Pivot"][data-interaction-step]:not([data-interaction-step="0"]) .pivot-people,
+  section[data-label="07 Pivot"][data-interaction-step]:not([data-interaction-step="0"]) .pivot-foundation,
+  section[data-label="07 Pivot"][data-interaction-step]:not([data-interaction-step="0"]) .pivot-process,
+  section[data-label="11 Jobs"][data-interaction-step]:not([data-interaction-step="0"]) .jobs-list-card,
+  section[data-label="11 Jobs"][data-interaction-step]:not([data-interaction-step="0"]) .jobs-bridge,
+  section[data-label="11 Jobs"][data-interaction-step]:not([data-interaction-step="0"]) .emerging-jobs-title,
+  section[data-label="11 Jobs"][data-interaction-step]:not([data-interaction-step="0"]) .emerging-job-card,
+  section[data-label="14 Teamplay"][data-interaction-step]:not([data-interaction-step="0"]) .teamplay-card {
+    animation: none !important;
+  }
+  section[data-label="06 Already"][data-interaction-step="1"] .already-distant {
+    color: var(--fg);
+    opacity: 1 !important;
+    text-shadow: 0 0 26px rgba(245,245,247,0.18);
+  }
+  section[data-label="06 Already"][data-interaction-step="1"] .already-started {
+    opacity: 0.48 !important;
+    filter: saturate(0.72);
+  }
+  section[data-label="06 Already"][data-interaction-step="2"] .already-started {
+    display: inline-block;
+    transform: translateY(-5px);
+    opacity: 1 !important;
+    color: var(--fg);
+    text-shadow: 0 0 30px color-mix(in srgb, var(--accent) 24%, transparent);
+  }
+  section[data-label="06 Already"][data-interaction-step="2"] .already-distant {
+    opacity: 0.46 !important;
+    filter: saturate(0.72);
+  }
+  section[data-label="06 Already"][data-interaction-step="3"] .already-distant,
+  section[data-label="06 Already"][data-interaction-step="3"] .already-started {
+    opacity: 0.54 !important;
+    filter: saturate(0.78);
+  }
+  section[data-label="06 Already"][data-interaction-step="3"] .already-factor {
+    display: inline-block;
+    transform: translateY(-3px);
+    opacity: 1 !important;
+    font-weight: 760;
+    text-shadow: 0 0 20px currentColor;
+  }
+  section[data-label="06 Already"][data-interaction-step="3"] .factor-carbon { color: var(--carbon); }
+  section[data-label="06 Already"][data-interaction-step="3"] .factor-steel { color: var(--accent); }
+  section[data-label="06 Already"][data-interaction-step="3"] .factor-finance { color: var(--human); }
+  section[data-label="07 Pivot"][data-interaction-step="1"] .pivot-keep {
+    display: inline-block;
+    transform: translateY(-4px);
+    color: var(--fg);
+    text-shadow: 0 0 24px rgba(245,245,247,0.18);
+  }
+  section[data-label="07 Pivot"][data-interaction-step="1"] .pivot-method,
+  section[data-label="07 Pivot"][data-interaction-step="1"] .pivot-change {
+    opacity: 0.48 !important;
+    filter: saturate(0.72);
+  }
+  section[data-label="07 Pivot"][data-interaction-step="2"] .pivot-method,
+  section[data-label="07 Pivot"][data-interaction-step="2"] .pivot-change {
+    display: inline-block;
+    transform: translateY(-5px);
+    opacity: 1 !important;
+    color: var(--accent);
+    text-shadow: 0 0 30px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  section[data-label="07 Pivot"][data-interaction-step="2"] .pivot-keep {
+    opacity: 0.48 !important;
+    filter: saturate(0.72);
+  }
+  section[data-label="07 Pivot"][data-interaction-step="3"] .pivot-tech,
+  section[data-label="07 Pivot"][data-interaction-step="3"] .pivot-people,
+  section[data-label="07 Pivot"][data-interaction-step="3"] .pivot-process {
+    display: inline-block;
+    transform: translateY(-3px);
+    opacity: 1 !important;
+    color: var(--human);
+    font-weight: 760;
+    text-shadow: 0 0 20px color-mix(in srgb, var(--human) 24%, transparent);
+  }
+  section[data-label="07 Pivot"][data-interaction-step="3"] .pivot-foundation {
+    color: rgba(245,245,247,0.92);
+    font-weight: 720;
+  }
+  section[data-label="07 Pivot"][data-interaction-step="3"] .pivot-keep,
+  section[data-label="07 Pivot"][data-interaction-step="3"] .pivot-method,
+  section[data-label="07 Pivot"][data-interaction-step="3"] .pivot-change {
+    opacity: 0.52 !important;
+    filter: saturate(0.74);
+  }
+  section[data-label="11 Jobs"][data-interaction-step="2"] .jobs-list-card:not(.down),
+  section[data-label="11 Jobs"][data-interaction-step="2"] .jobs-bridge,
+  section[data-label="11 Jobs"][data-interaction-step="2"] .emerging-jobs-title,
+  section[data-label="11 Jobs"][data-interaction-step="2"] .emerging-job-card {
+    opacity: 0.42 !important;
+    filter: saturate(0.65);
+  }
+  section[data-label="11 Jobs"][data-interaction-step="2"] .x-list.down {
+    transform: translateY(-5px);
+    opacity: 1 !important;
+    border-color: color-mix(in srgb, var(--carbon) 54%, rgba(255,255,255,0.12)) !important;
+    box-shadow: 0 0 34px color-mix(in srgb, var(--carbon) 18%, transparent);
+  }
+  section[data-label="11 Jobs"][data-interaction-step="1"] .jobs-list-card,
+  section[data-label="11 Jobs"][data-interaction-step="1"] .emerging-jobs-title,
+  section[data-label="11 Jobs"][data-interaction-step="1"] .emerging-job-card {
+    opacity: 0.42 !important;
+    filter: saturate(0.65);
+  }
+  section[data-label="11 Jobs"][data-interaction-step="1"] .jobs-bridge {
+    transform: translateY(30px) scale(1.05);
+    opacity: 1 !important;
+    color: var(--accent);
+    text-shadow: 0 0 26px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  section[data-label="11 Jobs"][data-interaction-step="3"] .jobs-list-card:not(.up),
+  section[data-label="11 Jobs"][data-interaction-step="3"] .jobs-bridge,
+  section[data-label="11 Jobs"][data-interaction-step="3"] .emerging-jobs-title,
+  section[data-label="11 Jobs"][data-interaction-step="3"] .emerging-job-card {
+    opacity: 0.42 !important;
+    filter: saturate(0.65);
+  }
+  section[data-label="11 Jobs"][data-interaction-step="3"] .x-list.up {
+    transform: translateY(-5px);
+    opacity: 1 !important;
+    border-color: color-mix(in srgb, var(--human) 58%, rgba(255,255,255,0.12)) !important;
+    box-shadow: 0 0 34px color-mix(in srgb, var(--human) 18%, transparent);
+  }
+  section[data-label="11 Jobs"][data-interaction-step="4"] .jobs-list-card,
+  section[data-label="11 Jobs"][data-interaction-step="4"] .jobs-bridge {
+    opacity: 0.46 !important;
+    filter: saturate(0.66);
+  }
+  section[data-label="11 Jobs"][data-interaction-step="4"] .emerging-jobs-title,
+  section[data-label="11 Jobs"][data-interaction-step="4"] .emerging-job-card {
+    transform: translateY(-4px);
+    opacity: 1 !important;
+    border-color: color-mix(in srgb, var(--human) 42%, rgba(255,255,255,0.12));
+    box-shadow: 0 0 28px color-mix(in srgb, var(--human) 14%, transparent);
+  }
+  section[data-label="14 Teamplay"][data-interaction-step="1"] .teamplay-card:not(:nth-child(1)),
+  section[data-label="14 Teamplay"][data-interaction-step="2"] .teamplay-card:not(:nth-child(2)),
+  section[data-label="14 Teamplay"][data-interaction-step="3"] .teamplay-card:not(:nth-child(3)) {
+    opacity: 0.42 !important;
+    filter: saturate(0.62) brightness(0.82);
+  }
+  section[data-label="14 Teamplay"][data-interaction-step="1"] .teamplay-card:nth-child(1),
+  section[data-label="14 Teamplay"][data-interaction-step="2"] .teamplay-card:nth-child(2),
+  section[data-label="14 Teamplay"][data-interaction-step="3"] .teamplay-card:nth-child(3) {
+    transform: translateY(-6px);
+    opacity: 1 !important;
+    border-color: color-mix(in srgb, var(--human) 64%, rgba(255,255,255,0.12));
+    box-shadow:
+      inset 0 0 0 1px rgba(145,247,186,0.14),
+      0 0 42px color-mix(in srgb, var(--human) 18%, transparent);
+  }
+  section[data-label="14 Teamplay"][data-interaction-step="1"] .teamplay-layout::before,
+  section[data-label="14 Teamplay"][data-interaction-step="1"] .teamplay-layout::after,
+  section[data-label="14 Teamplay"][data-interaction-step="2"] .teamplay-layout::before,
+  section[data-label="14 Teamplay"][data-interaction-step="2"] .teamplay-layout::after {
+    opacity: 0.28;
+  }
+  section[data-label="14 Teamplay"][data-interaction-step="3"] .teamplay-layout::before,
+  section[data-label="14 Teamplay"][data-interaction-step="3"] .teamplay-layout::after {
+    opacity: 1;
+    box-shadow: 0 0 24px rgba(145,247,186,0.34);
+  }
+  section[data-label="14 Teamplay"][data-interaction-step="4"] .teamplay-card {
+    transform: translateY(-7px);
+    opacity: 1 !important;
+    filter: saturate(1.16) brightness(1.06);
+    border-color: color-mix(in srgb, var(--human) 72%, rgba(255,255,255,0.12));
+    background:
+      radial-gradient(circle at 50% 104%, rgba(145,247,186,0.13), transparent 46%),
+      radial-gradient(circle at 94% 10%, rgba(145,247,186,0.10), transparent 38%),
+      linear-gradient(180deg, rgba(255,255,255,0.044), rgba(255,255,255,0.016));
+    box-shadow:
+      inset 0 0 0 1px rgba(145,247,186,0.18),
+      0 0 50px color-mix(in srgb, var(--human) 20%, transparent);
+  }
+  section[data-label="14 Teamplay"][data-interaction-step="4"] .teamplay-layout::before,
+  section[data-label="14 Teamplay"][data-interaction-step="4"] .teamplay-layout::after {
+    opacity: 1;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(145,247,186,0.22), rgba(145,247,186,0.96), rgba(145,247,186,0.22));
+    box-shadow:
+      0 0 28px rgba(145,247,186,0.46),
+      0 0 70px rgba(145,247,186,0.22);
+  }
+  section[data-label="14 Teamplay"][data-interaction-step="4"] .teamplay-chip {
+    background: rgba(145,247,186,0.12);
+    border-color: rgba(145,247,186,0.78);
+    color: rgba(245,245,247,0.98);
+  }
+  section[data-label="14 Teamplay"][data-interaction-step="4"] .typo-title .accent-2 {
+    color: var(--human);
+    text-shadow: 0 0 34px rgba(145,247,186,0.28);
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step]:not([data-interaction-step="0"]) .hyrex-copy .body-lg,
+  section[data-label="08 Hydrogen"][data-interaction-step]:not([data-interaction-step="0"]) .hyrex-formula,
+  section[data-label="08 Hydrogen"][data-interaction-step]:not([data-interaction-step="0"]) .challenge-card {
+    animation: none !important;
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step="1"] .hyrex-formula-old {
+    transform: translateY(-4px);
+    opacity: 1 !important;
+    border-color: color-mix(in srgb, var(--carbon) 82%, transparent);
+    background: color-mix(in srgb, var(--carbon) 14%, rgba(255,255,255,0.035));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 0 34px color-mix(in srgb, var(--carbon) 24%, transparent);
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step="1"] .hyrex-formula-new {
+    opacity: 0.52 !important;
+    filter: saturate(0.74);
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step="1"] .challenge-card {
+    opacity: 0.46 !important;
+    filter: saturate(0.72);
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step="2"] .hyrex-copy .body-lg,
+  section[data-label="08 Hydrogen"][data-interaction-step="2"] .hyrex-formula-new {
+    transform: translateY(-4px);
+    opacity: 1 !important;
+    color: var(--fg);
+    border-color: color-mix(in srgb, var(--accent) 82%, transparent);
+    background: color-mix(in srgb, var(--accent) 9%, rgba(255,255,255,0.035));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.08),
+      0 0 34px color-mix(in srgb, var(--accent) 24%, transparent);
+    text-shadow: 0 0 20px color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step="2"] .hyrex-formula-old {
+    opacity: 0.52 !important;
+    filter: saturate(0.74);
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step="2"] .challenge-card {
+    opacity: 0.46 !important;
+    filter: saturate(0.72);
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step="3"] .hyrex-formula {
+    opacity: 0.58 !important;
+    filter: saturate(0.76);
+  }
+  section[data-label="08 Hydrogen"][data-interaction-step="3"] .challenge-card {
+    transform: translateY(-5px);
+    opacity: 1 !important;
+    border-color: color-mix(in srgb, var(--carbon) 54%, rgba(255,255,255,0.12));
+    background: color-mix(in srgb, var(--carbon) 8%, rgba(255,255,255,0.035));
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.06),
+      0 0 28px color-mix(in srgb, var(--carbon) 16%, transparent);
+  }
+  .axis-term {
+    display: inline-block;
+    padding: 0 0.08em;
+    border-radius: 6px;
+  }
+  section[data-label="09 Battery"][data-interaction-step="1"] .axis-term:not(.axis-steel),
+  section[data-label="09 Battery"][data-interaction-step="2"] .axis-term:not(.axis-port),
+  section[data-label="09 Battery"][data-interaction-step="3"] .axis-term:not(.axis-complex) {
+    opacity: 0.52;
+  }
+  section[data-label="09 Battery"][data-interaction-step="1"] .axis-steel {
+    color: var(--transition-soft);
+    background: color-mix(in srgb, var(--transition-soft) 9%, transparent);
+    text-shadow: 0 0 20px color-mix(in srgb, var(--transition-soft) 32%, transparent);
+  }
+  section[data-label="09 Battery"][data-interaction-step="2"] .axis-port {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 9%, transparent);
+    text-shadow: 0 0 20px color-mix(in srgb, var(--accent) 32%, transparent);
+  }
+  section[data-label="09 Battery"][data-interaction-step="3"] .axis-complex,
+  section[data-label="09 Battery"][data-interaction-step="3"] .platform-direction .accent {
+    color: var(--human);
+    background: color-mix(in srgb, var(--human) 9%, transparent);
+    text-shadow: 0 0 22px color-mix(in srgb, var(--human) 34%, transparent);
+  }
+  section[data-label="09 Battery"][data-interaction-step="3"] .industry-axis-chip,
+  section[data-label="09 Battery"][data-interaction-step="3"] .platform-direction {
+    transform: translateY(-4px);
+    color: rgba(245,245,247,0.82);
+  }
+  section[data-label="09 Battery"][data-interaction-step="3"] .hydrogen-complex-visual {
+    filter: brightness(1.05) saturate(1.22) contrast(1.08);
+    box-shadow: 0 0 82px color-mix(in srgb, var(--human) 18%, transparent);
+  }
   section[data-label="10 Global Cases"] .source-note,
   section[data-label="11 Jobs"] .source-note,
   section[data-label="12 Just Transition Intro"] .source-note,
@@ -2384,6 +2834,20 @@
     font-weight: 300;
     word-break: keep-all;
   }
+  .console-advance-marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.3em;
+    margin: 0 0.18em;
+    color: #91F7BA;
+    font-family: "A2G Script", "A2G Body", var(--font-sans);
+    font-size: 1.22em;
+    line-height: 1;
+    font-weight: 850;
+    text-shadow: 0 0 18px rgba(145,247,186,0.34);
+    vertical-align: -0.06em;
+  }
 
   deck-stage > section::before {
     opacity: 0.42;
@@ -2579,6 +3043,36 @@
   .map-insight strong {
     color: var(--transition-soft);
     font-weight: 760;
+  }
+  section[data-label="10 Global Cases"][data-interaction-step="1"] .map-callout:not(.sweden),
+  section[data-label="10 Global Cases"][data-interaction-step="2"] .map-callout:not(.rotterdam),
+  section[data-label="10 Global Cases"][data-interaction-step="3"] .map-callout:not(.japan) {
+    opacity: 0.34;
+    filter: saturate(0.62);
+  }
+  section[data-label="10 Global Cases"][data-interaction-step="1"] .map-callout.sweden,
+  section[data-label="10 Global Cases"][data-interaction-step="2"] .map-callout.rotterdam,
+  section[data-label="10 Global Cases"][data-interaction-step="3"] .map-callout.japan {
+    transform: translateY(-6px);
+    border-color: color-mix(in srgb, var(--transition-soft) 48%, rgba(255,255,255,0.10));
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--transition-soft) 9%, rgba(255,255,255,0.036)), rgba(255,255,255,0.016));
+    box-shadow:
+      0 20px 56px rgba(0,0,0,0.26),
+      0 0 34px color-mix(in srgb, var(--transition-soft) 18%, transparent);
+  }
+  section[data-label="10 Global Cases"][data-interaction-step="4"] .map-callout {
+    opacity: 0.58;
+    filter: saturate(0.72);
+  }
+  section[data-label="10 Global Cases"][data-interaction-step="4"] .map-insight {
+    transform: translateY(-5px);
+    color: rgba(245,245,247,0.88);
+    border-left-color: var(--human);
+    text-shadow: 0 0 24px color-mix(in srgb, var(--human) 18%, transparent);
+  }
+  section[data-label="10 Global Cases"][data-interaction-step="4"] .map-insight strong {
+    color: var(--human);
   }
 
   section[data-label="11 Jobs"] .jobs-system-grid {
@@ -3269,13 +3763,13 @@
     <div class="slide-inner end">
       <div class="eyebrow"><span class="dot"></span><span>2026</span></div>
       <h1 class="display" style="margin-top: 40px;">
-        기후변화,<br/>
-        일자리,<br/>
-        그리고 <span class="accent">광양의 미래</span>.
+        <span class="cover-key cover-climate">기후변화</span>,<br/>
+        <span class="cover-key cover-jobs">일자리</span>,<br/>
+        그리고 <span class="accent cover-key cover-future">광양의 미래</span>.
       </h1>
       <div class="row gap-48" style="margin-top: 64px; align-items: flex-end; justify-content: space-between;">
         <p class="body-lg" style="max-width: 800px;">
-          탄소 규제가 광양의 산업과 일자리 지도를 바꾸고 있습니다.<br/>
+          <span class="cover-carbon">탄소 규제</span>가 광양의 산업과 일자리 지도를 바꾸고 있습니다.<br/>
           중학생인 우리는 무엇을 준비해야 할까요?
         </p>
         <div class="col gap-12" style="text-align: right; white-space: nowrap;">
@@ -3293,14 +3787,14 @@
     <div class="slide-inner center">
       <div class="eyebrow"><span class="dot"></span><span>QUESTION</span></div>
       <h1 class="display" style="text-align: left; margin-top: 32px;">
-        <span class="dim">지구 반대편의</span><br/>
-        <span class="dim">정책 하나가</span><br/>
-        내 미래의 직업을<br/>
-        바꿀 수 있을까?
+        <span class="dim hook-policy">지구 반대편의</span><br/>
+        <span class="dim hook-policy">정책 하나가</span><br/>
+        <span class="hook-job">내 미래의 직업을</span><br/>
+        <span class="hook-change">바꿀 수 있을까?</span>
       </h1>
       <p class="body-lg" style="margin-top: 64px;">
-        그 정책의 이름이 바로 CBAM입니다.<br/>
-        그리고 첫 번째 압박은 철강에서 시작됩니다.
+        그 정책의 이름이 바로 <span class="hook-cbam">CBAM</span>입니다.<br/>
+        그리고 첫 번째 압박은 <span class="hook-steel">철강</span>에서 시작됩니다.
       </p>
     </div>
     <div class="source-note">출처: 고용노동부, 「2024년 하반기 주요 업종 일자리 전망 발표」, 2024.07.29</div>
@@ -3317,21 +3811,21 @@
       <div class="gwangyang-field-copy">
         <div class="eyebrow"><span class="dot"></span><span>SITE · GWANGYANG INDUSTRY</span></div>
         <h2 class="h1" style="margin-top: 32px;">
-        광양은 <span style="color: var(--carbon);">철강</span>과 <span style="color: var(--accent);">항만</span>으로<br/>
+        광양은 <span class="gwangyang-steel" style="color: var(--carbon);">철강</span>과 <span class="gwangyang-port" style="color: var(--accent);">항만</span>으로<br/>
         성장한 도시입니다.
         </h2>
         <div class="industry-chips">
-          <span class="industry-chip">광양제철소 · 생산</span>
-          <span class="industry-chip">광양항 · 물류</span>
-          <span class="industry-chip">광양만권 산업단지 · 고용</span>
+          <span class="industry-chip gwangyang-chip-steel">광양제철소 · 생산</span>
+          <span class="industry-chip gwangyang-chip-port">광양항 · 물류</span>
+          <span class="industry-chip gwangyang-chip-jobs">광양만권 산업단지 · 고용</span>
         </div>
         <p class="body-lg" style="margin-top: 34px;">
-          철강은 생산을, 항만은 물류를 맡아<br/>
-          광양의 산업과 일자리를 지탱해 왔습니다.
+          <span class="gwangyang-production">철강은 생산을</span>, <span class="gwangyang-logistics">항만은 물류를</span> 맡아<br/>
+          광양의 <span class="gwangyang-economy">산업과 일자리</span>를 지탱해 왔습니다.
         </p>
         <p class="field-link">
-          탄소 규제는 지역경제와<br/>
-          일자리 문제로 이어집니다.
+          탄소 규제는 <span class="gwangyang-local-economy">지역경제</span>와<br/>
+          <span class="gwangyang-job-risk">일자리 문제</span>로 이어집니다.
         </p>
       </div>
       <div class="gwangyang-image-card" aria-label="밤의 항만과 제철소, 산업단지를 표현한 다크 산업 도시 이미지"></div>
@@ -3346,12 +3840,12 @@
     <div class="slide-inner center">
       <div class="tag"><span class="dot"></span> EU REGULATION · 2026</div>
       <h1 class="display" style="margin-top: 40px;">
-        탄소가 <span class="accent">비용</span>이 되는 시대.
+        <span class="cbam-carbon">탄소</span>가 <span class="accent cbam-cost">비용</span>이 되는 시대.
       </h1>
       <p class="h3 mute" style="margin-top: 24px;">EU 탄소국경조정제도 — Carbon Border Adjustment Mechanism</p>
       <p class="body-lg" style="margin-top: 64px; max-width: 1300px;">
-        탄소 배출이 많은 제품에 탄소 비용을 반영하는 제도입니다.<br/>
-        철강처럼 배출량이 큰 산업은 수출 과정에서 비용 부담이 커질 가능성이 있습니다.
+        <span class="cbam-emission">탄소 배출</span>이 많은 제품에 <span class="cbam-cost-text">탄소 비용</span>을 반영하는 제도입니다.<br/>
+        <span class="cbam-steel">철강</span>처럼 배출량이 큰 산업은 <span class="cbam-export">수출 과정에서 비용 부담</span>이 커질 가능성이 있습니다.
       </p>
     </div>
     <div class="source-note">출처: 산업연구원 이재윤·탁은명·김정현, 「EU 탄소국경조정제도의 국내 철강 수출입 영향 및 시사점」, 2024</div>
@@ -3456,13 +3950,15 @@
     <div class="slide-num mono">06 / 18</div>
     <div class="footer-mark">전환 — 광양이 준비해야 하는 이유</div>
     <div class="slide-inner center">
-      <h1 class="display">
-        <span class="dim">먼 미래의 이야기가</span><br/>
-        <span class="dim">아닙니다.</span><br/>
-        이미, <span class="accent">시작되었습니다.</span>
+      <h1 class="display already-title">
+        <span class="dim already-distant">먼 미래의 이야기가</span><br/>
+        <span class="dim already-distant">아닙니다.</span><br/>
+        <span class="already-started">이미, <span class="accent">시작되었습니다.</span></span>
       </h1>
       <p class="body-lg" style="margin-top: 56px; max-width: 1220px;">
-        탄소 규제, 철강 전환 압력, 지역 재정 변화는 광양이 산업 전환을 준비해야 하는 이유입니다.
+        <span class="already-factor factor-carbon">탄소 규제</span>,
+        <span class="already-factor factor-steel">철강 전환 압력</span>,
+        <span class="already-factor factor-finance">지역 재정 변화</span>는 광양이 산업 전환을 준비해야 하는 이유입니다.
       </p>
     </div>
     <div class="source-note">출처: 윤순진, 「한국의 2050 탄소중립 시나리오: 내용과 과제」, 2022.01.17</div>
@@ -3473,15 +3969,15 @@
     <div class="slide-num mono">07 / 18</div>
     <div class="footer-mark">전환 — 위기와 기회</div>
     <div class="slide-inner center">
-      <p class="h3 mute">그러나 같은 변화 속에서,</p>
+      <p class="h3 mute pivot-kicker">그러나 같은 변화 속에서,</p>
       <h1 class="display" style="margin-top: 24px;">
-        철강을 버리는 것이 아니라,<br/>
-        <span class="accent">철강의 방식</span>을<br/>
-        바꾸는 것입니다.
+        <span class="pivot-keep">철강을 버리는 것이 아니라,</span><br/>
+        <span class="pivot-method">철강의 방식을</span><br/>
+        <span class="pivot-change">바꾸는 것입니다.</span>
       </h1>
       <p class="body-lg" style="margin-top: 48px; max-width: 1180px;">
-        사라지는 자리에서 새로운 산업이 자라기 위해서는 기술 전환과 사람의 준비가 함께 필요합니다.<br/>
-        광양의 전환은 기존 기반을 버리는 일이 아니라, 생산 방식을 바꾸는 과정입니다.
+        사라지는 자리에서 새로운 산업이 자라기 위해서는 <span class="pivot-tech">기술 전환</span>과 <span class="pivot-people">사람의 준비</span>가 함께 필요합니다.<br/>
+        광양의 전환은 <span class="pivot-foundation">기존 기반을 버리는 일이 아니라</span>, <span class="pivot-process">생산 방식을 바꾸는 과정</span>입니다.
       </p>
     </div>
     <div class="source-note multi">
@@ -3511,8 +4007,13 @@
           탄소 기반 환원제를 수소로 대체해<br/>
           철강 생산의 탄소 배출을 줄이려는 기술입니다.
         </p>
-        <div class="hyrex-formula" aria-label="철광석 더하기 수소는 철과 물이 됩니다">
-          철광석 + <span class="accent">H₂</span> → 철 + <span class="accent">H₂O</span>
+        <div class="hyrex-reaction-stack" aria-label="기존 방식과 HyREX 방식 비교">
+          <div class="hyrex-formula hyrex-formula-old" aria-label="기존 방식은 이산화탄소를 배출합니다">
+            기존 방식: 석탄(C) → <span class="carbon-accent">CO₂ 배출</span>
+          </div>
+          <div class="hyrex-formula hyrex-formula-new" aria-label="철광석 더하기 수소는 철과 물이 됩니다">
+            HyREX: 철광석 + <span class="accent">H₂</span> → 철 + <span class="accent">H₂O</span>
+          </div>
         </div>
         <hr class="rule" style="margin: 36px 0 28px;" />
         <div class="stack-sm" style="max-width: 760px;">
@@ -3555,7 +4056,7 @@
         <h2 class="h1" style="margin-top: 32px;">철강 도시에서,<br/>미래 산업 거점으로.</h2>
         <p class="body-lg" style="margin-top: 32px;">
           광양의 강점은 철강 하나가 아닙니다.<br/>
-          제철소·항만·산업단지를 한 번에 연결할 수 있다는 점입니다.
+          <span class="axis-term axis-steel">제철소</span>·<span class="axis-term axis-port">항만</span>·<span class="axis-term axis-complex">산업단지</span>를 한 번에 연결할 수 있다는 점입니다.
         </p>
         <div class="industry-axis-chips">
           <span class="industry-axis-chip">철강 기반 · 소재 산업 · 에너지 전환</span>
@@ -4215,6 +4716,119 @@
   })();
 </script>
 
+<!-- Staged emphasis for slides 8-10 -->
+<script>
+  (function () {
+    const params = new URLSearchParams(location.search);
+    const isPresent = params.get('present') === '1' || params.get('final') === '1';
+    const isScriptMode = params.get('script') === '1';
+    if (!isPresent || isScriptMode) return;
+
+    const stagedSlides = {
+      '02 Hook': 1,
+      '03 Gwangyang': 3,
+      '04 CBAM': 3,
+      '06 Already': 3,
+      '07 Pivot': 3,
+      '08 Hydrogen': 3,
+      '09 Battery': 3,
+      '10 Global Cases': 4,
+      '11 Jobs': 4,
+      '14 Teamplay': 4
+    };
+
+    function getDeck() {
+      return document.querySelector('deck-stage');
+    }
+
+    function getActiveSlide() {
+      return document.querySelector('deck-stage > section[data-deck-active]');
+    }
+
+    function maxStepFor(slide) {
+      if (!slide) return null;
+      const value = stagedSlides[slide.dataset.label || ''];
+      return Number.isFinite(value) ? value : null;
+    }
+
+    function getStep(slide) {
+      const numeric = Number(slide && slide.dataset.interactionStep);
+      return Number.isFinite(numeric) ? numeric : 0;
+    }
+
+    function setStep(slide, step) {
+      const max = maxStepFor(slide);
+      if (max === null) return false;
+      const next = Math.max(0, Math.min(max, Math.round(step)));
+      slide.dataset.interactionStep = String(next);
+      return true;
+    }
+
+    function stagedInteractionStep(delta) {
+      const slide = getActiveSlide();
+      const max = maxStepFor(slide);
+      if (max === null || !delta) return false;
+
+      const current = getStep(slide);
+      if (delta > 0 && current < max) return setStep(slide, current + 1);
+      if (delta < 0 && current > 0) return setStep(slide, current - 1);
+      return false;
+    }
+
+    function stopForStagedInteraction(event, delta) {
+      if (!stagedInteractionStep(delta)) return false;
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === 'function') event.stopImmediatePropagation();
+      return true;
+    }
+
+    function installGoToGuard() {
+      const deck = getDeck();
+      if (!deck || typeof deck.goTo !== 'function' || deck.dataset.stagedInteractionGuardInstalled === '1') return;
+      const originalGoTo = deck.goTo.bind(deck);
+      deck.goTo = function guardedStagedGoTo(targetIndex, ...rest) {
+        const slides = [...deck.querySelectorAll(':scope > section')];
+        const currentSlide = getActiveSlide();
+        const currentIndex = currentSlide ? slides.indexOf(currentSlide) : -1;
+        const target = Number(targetIndex);
+        const delta = target > currentIndex ? 1 : (target < currentIndex ? -1 : 0);
+        if (Math.abs(target - currentIndex) === 1 && stagedInteractionStep(delta)) return;
+        return originalGoTo(targetIndex, ...rest);
+      };
+      deck.dataset.stagedInteractionGuardInstalled = '1';
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+      let delta = 0;
+      if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ' || event.key === 'Spacebar' || event.key === 'Enter') {
+        delta = 1;
+      } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+        delta = -1;
+      }
+      stopForStagedInteraction(event, delta);
+    }, true);
+
+    document.addEventListener('slidechange', (event) => {
+      document.querySelectorAll('deck-stage > section[data-interaction-step]').forEach((slide) => {
+        if (slide !== event.detail.slide) delete slide.dataset.interactionStep;
+      });
+      if (maxStepFor(event.detail.slide) !== null && !event.detail.slide.dataset.interactionStep) {
+        setStep(event.detail.slide, 0);
+      }
+      installGoToGuard();
+    });
+
+    window.__gwangyangInteractionStep = stagedInteractionStep;
+    requestAnimationFrame(() => {
+      const slide = getActiveSlide();
+      if (maxStepFor(slide) !== null) setStep(slide, 0);
+      installGoToGuard();
+    });
+  })();
+</script>
+
 <!-- Present-mode click/touch/wheel navigation -->
 <script>
   (function () {
@@ -4237,6 +4851,7 @@
     }
 
     function advanceSlide(delta) {
+      if (window.__gwangyangInteractionStep && window.__gwangyangInteractionStep(delta)) return;
       if (window.__gwangyangDiscussionStep && window.__gwangyangDiscussionStep(delta)) return;
       const deck = getDeck();
       if (!deck) return;
@@ -4660,7 +5275,13 @@
         script: `마지막으로, 발표 내용을 바탕으로 함께 생각해 볼 첫 번째 질문을 준비했습니다.
 정답을 맞히는 시간이 아니라, 각자의 진로와 연결해 생각해 보는 시간입니다.
 첫 번째 질문입니다. 미래 직업을 선택할 수 있다면, 나의 흥미와 적성보다 인공지능 시대에 살아남을 안정성을 우선해야 할까요?
-먼저 다른 팀원들과 친구들의 의견을 들어보겠습니다.
+먼저 친구들의 의견을 들어보겠습니다.
+1. "좋습니다. 방금 의견과 연결해서, 다른 관점이나 보완할 의견이 있으신 분은 말씀해 주세요."
+2. "네, 그런 관점도 생각해 볼 수 있을 것 같습니다. 이 의견에 덧붙이거나 다른 의견 있으신 분 계실까요?"
+3. "네, 말씀해 주신 부분도 중요한 지점인 것 같습니다. 여기에 추가하거나 다른 의견 있으신 분 계신가요?"
+4. "그런 시각도 가능하겠네요. 다른 팀에서는 이 문제를 어떻게 보셨는지 의견을 더 들어보고 싶습니다."
+5. "네, 잘 들었습니다. 같은 의견이어도 좋고, 반대되는 의견이어도 좋으니 자유롭게 말씀해 주세요."
+6. "네, 그 부분도 저희가 함께 고민해 볼 만한 내용인 것 같습니다. 이어서 다른 의견도 들어보겠습니다."
 (의견 청취 후 팀 공동의견 발표)
 저희 팀의 공동의견은 흥미와 적성을 포기하고 안정성만 선택하는 것은 좋지 않다는 것입니다. 다만 AI 시대에는 안정성의 의미가 달라지기 때문에, 내가 좋아하는 분야가 미래에 어떻게 바뀔지 계속 배우고 적응하는 태도가 필요하다고 보았습니다.
 안정성은 절대 사라지지 않는 직업을 찾는 것이 아니라, 산업이 바뀌어도 계속 배우고 새로운 역할로 이동할 수 있는 힘에서 나온다고 생각합니다. 그리고 흥미와 적성은 진로 선택의 출발점입니다. 좋아하고 잘하는 분야가 있어야 오래 배우고 성장할 수 있기 때문입니다.`
@@ -4671,7 +5292,13 @@
         title: "토론 질문 2 — 청소년에게 필요한 역량",
         script: `이어서 두 번째 질문입니다.
 새로운 산업구조의 변화 속에서 내가 원하는 직업을 얻기 위해 청소년에게 필요한 역량은 무엇일까요?
-이번에도 먼저 다른 팀원들과 친구들의 의견을 들어보겠습니다.
+이번에도 먼저 친구들의 의견을 들어보겠습니다.
+1. "좋습니다. 방금 의견과 연결해서, 다른 관점이나 보완할 의견이 있으신 분은 말씀해 주세요."
+2. "네, 그런 관점도 생각해 볼 수 있을 것 같습니다. 이 의견에 덧붙이거나 다른 의견 있으신 분 계실까요?"
+3. "네, 말씀해 주신 부분도 중요한 지점인 것 같습니다. 여기에 추가하거나 다른 의견 있으신 분 계신가요?"
+4. "그런 시각도 가능하겠네요. 다른 팀에서는 이 문제를 어떻게 보셨는지 의견을 더 들어보고 싶습니다."
+5. "네, 잘 들었습니다. 같은 의견이어도 좋고, 반대되는 의견이어도 좋으니 자유롭게 말씀해 주세요."
+6. "네, 그 부분도 저희가 함께 고민해 볼 만한 내용인 것 같습니다. 이어서 다른 의견도 들어보겠습니다."
 (의견 청취 후 팀 공동의견 발표)
 저희 팀은 세 가지 역량이 필요하다고 생각했습니다. 첫째는 환경 감수성입니다. 기후 변화가 산업과 지역, 일자리에 어떤 영향을 주는지 이해하는 힘입니다.
 둘째는 기술 리터러시입니다. AI, 수소, 이차전지, 데이터 같은 기술을 어렵다고 피하지 않고 배우는 태도입니다.
@@ -4691,6 +5318,81 @@
     ];
 
     const totalSlides = scriptData.length;
+    const advanceMarkerData = {
+      2: [
+        { after: '그 변화를 이끄는 핵심 정책의 이름은 바로 ' },
+        { at: 'end' }
+      ],
+      3: [
+        { after: '철강은 생산을 책임지고,' },
+        { after: '항만은 세계로 뻗어나가는 물류를 맡으며' },
+        { after: '광양의 지역 경제와 수많은 일자리를 단단하게 지탱해왔습니다.' },
+        { at: 'end' }
+      ],
+      4: [
+        { after: '탄소가 비용이 되는 시대가 왔습니다.' },
+        { after: '그만큼의 탄소 비용을 세금처럼 내야 한다는 뜻입니다.' },
+        { after: '철강처럼 배출량이 큰 산업은 비용 부담이 커질 수밖에 없습니다.' },
+        { at: 'end' }
+      ],
+      5: [
+        { after: '2022년 1,121억 원' },
+        { at: 'end' }
+      ],
+      6: [
+        { after: '결코 먼 미래의 이야기가 아닙니다.' },
+        { after: '이미 시작되었습니다.' },
+        { after: '절박한 이유를 말해주고 있습니다.' },
+        { at: 'end' }
+      ],
+      7: [
+        { after: '철강을 버리는 것이 아니라' },
+        { after: '철강의 방식을 바꾸는 것입니다.' },
+        { after: '과거의 생산 방식입니다.' },
+        { at: 'end' }
+      ],
+      8: [
+        { after: '즉 철을 생산할수록 탄소도 함께 배출되는 구조입니다.' },
+        { after: '탄소 대신 물이 배출되는 획기적인 저탄소 기술입니다.' },
+        { after: '하지만 이 기술이 당장 모든 문제를 해결해주는 마법은 아닙니다.' },
+        { at: 'end' }
+      ],
+      9: [
+        { after: '광양의 강점은 철강, 항만, 산업단지를 함께 연결할 수 있다는 점입니다.' },
+        { after: '광양항을 수소와 친환경 에너지의 물류 거점으로 활용하며,' },
+        { after: '주변 산업단지를 이차전지와 신소재 산업으로 채운다면 광양은 단순한 철강 도시를 넘어 미래 산업 거점으로 재도약할 수 있습니다.' },
+        { at: 'end' }
+      ],
+      10: [
+        { after: '스웨덴은 제철소 내의 공정 전환을 서두르고 있고,' },
+        { after: '네덜란드 로테르담은 항만을 에너지 허브로 탈바꿈하고 있으며,' },
+        { after: '일본은 국가 차원의 수소 수요와 인프라를 설계하고 있습니다.' },
+        { after: '여기서 중요한 것은 특정 국가의 이름이 아니라 그들이 취하고 있는 전환의 방식입니다.' },
+        { at: 'end' }
+      ],
+      11: [
+        { after: '현장에서 요구하는 역량과 직무의 본질이 변한다는 뜻입니다.' },
+        { after: '고탄소 반복 공정의 전문가입니다.' },
+        { after: '수소 설비 운영자가 필요해집니다.' },
+        { after: '함께 늘어날 것입니다.' }
+      ],
+      14: [
+        { after: '지자체는 정책과 예산으로 길을 열고,' },
+        { after: '기업은 과감한 기술 투자와 고용을 창출하며,' },
+        { after: '교육계와 학생들은 미래 역량을 확실히 해야 합니다.' },
+        { after: '\n' },
+        { at: 'end' }
+      ],
+      16: [
+        { after: '(의견 청취 후 팀 공동의견 발표)' },
+        { at: 'end' }
+      ],
+      17: [
+        { after: '(의견 청취 후 팀 공동의견 발표)' },
+        { at: 'end' }
+      ],
+      18: []
+    };
     const params = new URLSearchParams(location.search);
     const isScriptMode = params.get('script') === '1';
     const isLocalScriptMode = isScriptMode && params.get('local') === '1';
@@ -4888,6 +5590,42 @@
       box.style.overflowY = text.scrollHeight > box.clientHeight ? 'auto' : 'hidden';
     }
 
+    function appendAdvanceMarker(container, count = 1) {
+      for (let i = 0; i < count; i += 1) {
+        const marker = document.createElement('span');
+        marker.className = 'console-advance-marker';
+        marker.textContent = '→';
+        marker.title = '여기에서 공유용 화면을 넘깁니다';
+        marker.setAttribute('aria-label', '여기에서 공유용 화면을 넘깁니다');
+        container.appendChild(marker);
+      }
+    }
+
+    function renderScriptText(container, script, slideNo) {
+      if (!container) return;
+      const text = script.trim();
+      const markers = advanceMarkerData[slideNo] || [{ at: 'end' }];
+      container.textContent = '';
+
+      let cursor = 0;
+      markers.forEach((marker) => {
+        if (marker.at === 'end') return;
+        const needle = marker.after || '';
+        if (!needle) return;
+        const index = text.indexOf(needle, cursor);
+        if (index < 0) return;
+        const end = index + needle.length;
+        container.appendChild(document.createTextNode(text.slice(cursor, end)));
+        appendAdvanceMarker(container, marker.count || 1);
+        cursor = end;
+      });
+
+      container.appendChild(document.createTextNode(text.slice(cursor)));
+      markers
+        .filter((marker) => marker.at === 'end')
+        .forEach((marker) => appendAdvanceMarker(container, marker.count || 1));
+    }
+
     function updateLocalNavButtons(index) {
       const root = document.getElementById('speaker-console');
       if (!root || !isLocalScriptMode) return;
@@ -4973,7 +5711,7 @@
       root.querySelector('#speaker-slide-no').textContent = `${current.no} / ${totalSlides}`;
       root.querySelector('#speaker-current-title').textContent = current.title;
       root.querySelector('#speaker-current-speaker').textContent = current.speaker;
-      root.querySelector('#speaker-script-text').textContent = current.script.trim();
+      renderScriptText(root.querySelector('#speaker-script-text'), current.script, slideNo);
       const scriptBox = root.querySelector('.console-script');
       if (scriptBox) scriptBox.scrollTop = 0;
       updateLocalNavButtons(slideNo);

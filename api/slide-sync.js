@@ -21,6 +21,31 @@ function normalizeSlide(index) {
   return Math.max(1, Math.min(18, Math.round(numeric)));
 }
 
+function normalizeDelta(delta) {
+  const numeric = Number(delta);
+  if (!Number.isFinite(numeric) || numeric === 0) return 1;
+  return numeric > 0 ? 1 : -1;
+}
+
+function normalizeMessage(payload) {
+  const type = payload.type === 'slide-advance' ? 'slide-advance' : 'slide-change';
+  const base = {
+    type,
+    sourceId: String(payload.sourceId || 'audience'),
+    at: Number(payload.at) || Date.now()
+  };
+  if (type === 'slide-advance') {
+    return {
+      ...base,
+      delta: normalizeDelta(payload.delta)
+    };
+  }
+  return {
+    ...base,
+    index: normalizeSlide(payload.index)
+  };
+}
+
 function parseBody(body) {
   if (!body) return {};
   if (typeof body === 'object') return body;
@@ -38,12 +63,7 @@ module.exports = function handler(req, res) {
   if (req.method === 'POST') {
     try {
       const payload = parseBody(req.body);
-      slideState = {
-        type: 'slide-change',
-        index: normalizeSlide(payload.index),
-        sourceId: String(payload.sourceId || 'audience'),
-        at: Number(payload.at) || Date.now()
-      };
+      slideState = normalizeMessage(payload);
       globalThis.__gwangyangSlideState = slideState;
     } catch (error) {
       res.status(400).json({ error: 'Invalid slide sync payload' });

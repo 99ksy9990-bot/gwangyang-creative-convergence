@@ -3724,7 +3724,7 @@
     document.documentElement.classList.toggle('script-mode', isScriptMode);
     document.body.classList.toggle('script-mode', isScriptMode);
     document.title = isScriptMode
-      ? (isLocalScriptMode ? '공유 금지 - 학생용 대본 보기' : '공유 금지 - 발표자 대본 콘솔')
+      ? (isLocalScriptMode ? '공유 금지 - 대본 콘솔' : '공유 금지 - 발표자 대본 콘솔')
       : 'ZOOM 공유용 - 광양창의융합교육 B3조';
     window.__GWANGYANG_SCRIPT_MODE = isScriptMode;
     window.__GWANGYANG_SCRIPT_LOCAL_MODE = isLocalScriptMode;
@@ -3743,7 +3743,7 @@
         if (!delta) return;
         event.preventDefault();
         event.stopImmediatePropagation();
-        if (isLocalScriptMode && typeof window.__speakerConsoleAdvance === 'function') {
+        if (isScriptMode && typeof window.__speakerConsoleAdvance === 'function') {
           window.__speakerConsoleAdvance(delta);
         }
       }, true);
@@ -4866,6 +4866,7 @@
         location.hash = '#/' + (target + 1);
       }
     }
+    window.__gwangyangAdvanceSlide = advanceSlide;
 
     function isInteractiveTarget(target) {
       return !!target.closest('button, a, input, textarea, select, .nav-shell');
@@ -5402,7 +5403,7 @@
     function getRemoteSyncEndpoint() {
       const host = location.hostname;
       if (host === '127.0.0.1' || host === 'localhost') {
-        return 'https://gwangyang-creative-convergence.netlify.app/.netlify/functions/slide-sync';
+        return 'https://gwangyang-creative-convergence.vercel.app/api/slide-sync';
       }
       if (host.endsWith('netlify.app')) {
         return '/.netlify/functions/slide-sync';
@@ -5416,6 +5417,7 @@
     let activeSlide = null;
     let lastRemoteSlideAt = 0;
     let fastLocalSyncAvailable = true;
+    const appliedSyncMessages = new Set();
 
     function normalizeSlide(index) {
       const numeric = Number(index);
@@ -5443,6 +5445,26 @@
       const message = {
         type: 'slide-change',
         index: slideNo,
+        sourceId: clientId,
+        at: Date.now()
+      };
+      if (channel) {
+        channel.postMessage(message);
+      }
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(message));
+      } catch (error) {
+        // localStorage can be unavailable in restricted browser contexts.
+      }
+      sendRemoteSlideChange(message);
+    }
+
+    function broadcastSlideAdvance(delta) {
+      const numeric = Number(delta);
+      if (!Number.isFinite(numeric) || numeric === 0) return;
+      const message = {
+        type: 'slide-advance',
+        delta: numeric > 0 ? 1 : -1,
         sourceId: clientId,
         at: Date.now()
       };
@@ -5494,7 +5516,6 @@
     }
 
     function sendRemoteSlideChange(message) {
-      if (isScriptMode) return;
       postSlideChange(localSyncEndpoint, message);
       postSlideChange(remoteSyncEndpoint, message);
     }
@@ -5526,22 +5547,18 @@
     }
 
     async function pollRemoteSlideChange() {
-      if (isLocalScriptMode) return;
       try {
         const message = await readBestSlideChange();
-        if (!message || message.type !== 'slide-change') return;
-        if (message.sourceId === clientId || message.at <= lastRemoteSlideAt) return;
+        if (!message || !message.type) return;
+        if (message.at <= lastRemoteSlideAt) return;
         lastRemoteSlideAt = message.at;
-        remoteApplying = true;
-        setCurrentSlide(message.index, { broadcast: false, fromRemote: true });
-        remoteApplying = false;
+        applySyncMessage(message);
       } catch (error) {
         // Ignore transient network issues during the presentation.
       }
     }
 
     async function runRemoteSlidePolling() {
-      if (isLocalScriptMode) return;
       await pollRemoteSlideChange();
       const delay = fastLocalSyncAvailable ? 60 : 120;
       setTimeout(runRemoteSlidePolling, delay);
@@ -5549,13 +5566,6 @@
 
     function setCurrentSlide(index, options = {}) {
       const slideNo = normalizeSlide(index);
-      const scriptCanApply = !isScriptMode || isLocalScriptMode || options.fromRemote === true || options.allowScriptLocal === true;
-      if (!scriptCanApply) {
-        const lockedSlide = activeSlide || getStoredSlide() || getCurrentSlideFromHash();
-        updateHash(lockedSlide);
-        renderScriptSlide(lockedSlide);
-        return;
-      }
       activeSlide = slideNo;
       updateHash(slideNo);
       if (isScriptMode) {
@@ -5563,9 +5573,29 @@
       } else {
         renderAudienceSlide(slideNo);
       }
-      if (!isScriptMode && options.broadcast !== false && !remoteApplying) {
+      if (options.broadcast !== false && !remoteApplying) {
         broadcastSlideChange(slideNo);
       }
+    }
+
+    function isKeyboardInputTarget(target) {
+      return target && (
+        target.isContentEditable ||
+        /^(INPUT|TEXTAREA|SELECT)$/.test(target.tagName || '')
+      );
+    }
+
+    function handleSlideJumpKey(event) {
+      if (event.metaKey || event.ctrlKey || event.altKey) return;
+      if (isKeyboardInputTarget(event.target)) return;
+      if (event.key !== 'Home' && event.key !== 'End') return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      if (typeof event.stopImmediatePropagation === 'function') {
+        event.stopImmediatePropagation();
+      }
+      setCurrentSlide(event.key === 'Home' ? 1 : totalSlides);
     }
 
     function renderAudienceSlide(index) {
@@ -5643,7 +5673,7 @@
       root.querySelectorAll('[data-local-nav]').forEach((button) => {
         button.addEventListener('click', () => {
           const delta = button.dataset.localNav === 'next' ? 1 : -1;
-          setCurrentSlide(getCurrentSlideFromHash() + delta, { broadcast: false, allowScriptLocal: true });
+          window.__speakerConsoleAdvance(delta);
         });
       });
 
@@ -5668,7 +5698,7 @@
         const elapsed = Date.now() - startTime;
         startTime = 0;
         if (elapsed > 700 || Math.abs(dx) < 56 || Math.abs(dy) > 90) return;
-        setCurrentSlide(getCurrentSlideFromHash() + (dx < 0 ? 1 : -1), { broadcast: false, allowScriptLocal: true });
+        window.__speakerConsoleAdvance(dx < 0 ? 1 : -1);
       }, { passive: true });
     }
 
@@ -5680,13 +5710,13 @@
       root.dataset.ready = '1';
       root.innerHTML = `
         <header class="speaker-topbar console-header">
-          <p class="console-kicker">${isLocalScriptMode ? 'Student Script · 발표 화면 영향 없음' : 'Speaker Console · 공유 금지'}</p>
+          <p class="console-kicker">${isLocalScriptMode ? 'Script Console · 공유 화면 연동' : 'Speaker Console · 공유 금지'}</p>
           <div class="console-title-row">
             <span id="speaker-slide-no" class="console-slide-no"></span>
             <h1 id="speaker-current-title" class="console-title"></h1>
           </div>
           <div class="console-speaker">현재 발표자 <strong id="speaker-current-speaker"></strong></div>
-          <div class="console-local-nav" aria-label="학생용 대본 페이지 이동">
+          <div class="console-local-nav" aria-label="공유 화면과 연동되는 대본 페이지 이동">
             <button type="button" data-local-nav="prev" aria-label="이전 슬라이드">&lt;</button>
             <button type="button" data-local-nav="next" aria-label="다음 슬라이드">&gt;</button>
           </div>
@@ -5722,52 +5752,65 @@
       });
     }
 
-    function listenSlideChange() {
-      if (isLocalScriptMode) return;
+    function isDuplicateSyncMessage(message) {
+      if (!message) return true;
+      const key = [
+        message.sourceId || '',
+        message.type || '',
+        message.index || '',
+        message.delta || '',
+        message.at || ''
+      ].join('|');
+      if (appliedSyncMessages.has(key)) return true;
+      appliedSyncMessages.add(key);
+      if (appliedSyncMessages.size > 80) {
+        appliedSyncMessages.delete(appliedSyncMessages.values().next().value);
+      }
+      return false;
+    }
 
+    function applySyncMessage(message) {
+      if (!message || message.sourceId === clientId) return;
+      if (isDuplicateSyncMessage(message)) return;
+      if (message.type === 'slide-advance') {
+        if (isScriptMode) return;
+        const delta = Number(message.delta);
+        if (!Number.isFinite(delta) || delta === 0) return;
+        if (typeof window.__gwangyangAdvanceSlide === 'function') {
+          window.__gwangyangAdvanceSlide(delta > 0 ? 1 : -1);
+        }
+        return;
+      }
+      if (message.type !== 'slide-change') return;
+      remoteApplying = true;
+      setCurrentSlide(message.index, { broadcast: false, fromRemote: true });
+      remoteApplying = false;
+    }
+
+    function listenSlideChange() {
       if ('BroadcastChannel' in window) {
         channel = new BroadcastChannel(channelName);
         channel.addEventListener('message', (event) => {
-          const message = event.data || {};
-          if (message.type !== 'slide-change' || message.sourceId === clientId) return;
-          remoteApplying = true;
-          setCurrentSlide(message.index, { broadcast: false, fromRemote: true });
-          remoteApplying = false;
+          applySyncMessage(event.data || {});
         });
       }
 
       window.addEventListener('storage', (event) => {
         if (event.key !== storageKey || !event.newValue) return;
         try {
-          const message = JSON.parse(event.newValue);
-          if (message.type !== 'slide-change' || message.sourceId === clientId) return;
-          remoteApplying = true;
-          setCurrentSlide(message.index, { broadcast: false, fromRemote: true });
-          remoteApplying = false;
+          applySyncMessage(JSON.parse(event.newValue));
         } catch (error) {
           // Ignore malformed storage messages.
         }
       });
 
-      if (isScriptMode) {
-        runRemoteSlidePolling();
-      }
+      runRemoteSlidePolling();
     }
 
     function handleHashChange() {
       const slideNo = getCurrentSlideFromHash();
       if (isScriptMode) {
-        if (isLocalScriptMode) {
-          renderScriptSlide(slideNo);
-          return;
-        }
-        if (remoteApplying) {
-          renderScriptSlide(slideNo);
-        } else {
-          const lockedSlide = activeSlide || getStoredSlide() || slideNo;
-          updateHash(lockedSlide);
-          renderScriptSlide(lockedSlide);
-        }
+        setCurrentSlide(slideNo, { broadcast: !remoteApplying });
       } else {
         renderAudienceSlide(slideNo);
         if (!remoteApplying) broadcastSlideChange(slideNo);
@@ -5778,6 +5821,7 @@
       listenSlideChange();
       window.addEventListener('hashchange', handleHashChange);
       window.addEventListener('resize', fitScriptText);
+      document.addEventListener('keydown', handleSlideJumpKey, true);
       document.addEventListener('slidechange', (event) => {
         if (isScriptMode || remoteApplying) return;
         const nextIndex = Number(event.detail && event.detail.index);
@@ -5794,8 +5838,8 @@
     }
 
     window.__speakerConsoleAdvance = function (delta) {
-      if (isLocalScriptMode) {
-        setCurrentSlide(getCurrentSlideFromHash() + delta, { broadcast: false, allowScriptLocal: true });
+      if (isScriptMode) {
+        broadcastSlideAdvance(delta);
       }
       return activeSlide || getCurrentSlideFromHash();
     };
@@ -5804,6 +5848,7 @@
       getCurrentSlideFromHash,
       setCurrentSlide,
       broadcastSlideChange,
+      broadcastSlideAdvance,
       listenSlideChange,
       renderAudienceSlide,
       renderScriptSlide
@@ -5812,6 +5857,7 @@
     window.getCurrentSlideFromHash = getCurrentSlideFromHash;
     window.setCurrentSlide = setCurrentSlide;
     window.broadcastSlideChange = broadcastSlideChange;
+    window.broadcastSlideAdvance = broadcastSlideAdvance;
     window.listenSlideChange = listenSlideChange;
     window.renderAudienceSlide = renderAudienceSlide;
     window.renderScriptSlide = renderScriptSlide;

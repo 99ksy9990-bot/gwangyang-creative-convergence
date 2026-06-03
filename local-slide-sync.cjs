@@ -25,6 +25,31 @@ function normalizeSlide(index) {
   return Math.max(1, Math.min(18, Math.round(numeric)));
 }
 
+function normalizeDelta(delta) {
+  const numeric = Number(delta);
+  if (!Number.isFinite(numeric) || numeric === 0) return 1;
+  return numeric > 0 ? 1 : -1;
+}
+
+function normalizeMessage(payload) {
+  const type = payload.type === 'slide-advance' ? 'slide-advance' : 'slide-change';
+  const base = {
+    type,
+    sourceId: String(payload.sourceId || 'audience'),
+    at: Number(payload.at) || Date.now()
+  };
+  if (type === 'slide-advance') {
+    return {
+      ...base,
+      delta: normalizeDelta(payload.delta)
+    };
+  }
+  return {
+    ...base,
+    index: normalizeSlide(payload.index)
+  };
+}
+
 function send(res, statusCode, body) {
   res.writeHead(statusCode, headers);
   res.end(JSON.stringify(body));
@@ -51,12 +76,7 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const payload = JSON.parse(raw || '{}');
-        slideState = {
-          type: 'slide-change',
-          index: normalizeSlide(payload.index),
-          sourceId: String(payload.sourceId || 'audience'),
-          at: Number(payload.at) || Date.now()
-        };
+        slideState = normalizeMessage(payload);
         send(res, 200, slideState);
       } catch (error) {
         send(res, 400, { error: 'Invalid payload' });

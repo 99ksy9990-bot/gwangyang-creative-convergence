@@ -4,6 +4,7 @@ scraps/
 .netlify/
 netlify/
 node_modules/
+portable-node/
 *.bat
 local-site-server.cjs
 local-slide-sync.cjs

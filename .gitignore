@@ -8,6 +8,7 @@ screenshots/all-slides-local-*/
 scraps/unused-assets-*/
 scraps/comparison-text/
 exports/
+outputs/
 portable-node/
 
 # Local Netlify folder

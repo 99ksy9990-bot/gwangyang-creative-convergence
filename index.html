@@ -2994,6 +2994,32 @@
   section[data-label="02 Hook"] .hook-policy {
     color: rgba(244,244,245,0.54);
   }
+
+  /* Slide 03/CBAM staged emphasis: match speaker-console markers to visible flow cards. */
+  section[data-label="04 CBAM"][data-interaction-step]:not([data-interaction-step="0"]) .cbam-flow-card,
+  section[data-label="04 CBAM"][data-interaction-step]:not([data-interaction-step="0"]) .cbam-flow-arrow,
+  section[data-label="04 CBAM"][data-interaction-step]:not([data-interaction-step="0"]) .cbam-timeline,
+  section[data-label="04 CBAM"][data-interaction-step]:not([data-interaction-step="0"]) .cbam-bridge-out {
+    opacity: 0.34;
+    transition: opacity 240ms ease, transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+  }
+  section[data-label="04 CBAM"][data-interaction-step="1"] .cbam-flow-card.emission,
+  section[data-label="04 CBAM"][data-interaction-step="2"] .cbam-flow-card.cost,
+  section[data-label="04 CBAM"][data-interaction-step="3"] .cbam-flow-card.steel {
+    opacity: 1;
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--carbon) 58%, transparent);
+    box-shadow: 0 0 24px color-mix(in srgb, var(--carbon) 22%, transparent);
+  }
+  section[data-label="04 CBAM"][data-interaction-step="2"] .cbam-flow-arrow:nth-of-type(2),
+  section[data-label="04 CBAM"][data-interaction-step="3"] .cbam-flow-arrow {
+    opacity: 0.86;
+  }
+  section[data-label="04 CBAM"][data-interaction-step="3"] .cbam-timeline,
+  section[data-label="04 CBAM"][data-interaction-step="3"] .cbam-bridge-out {
+    opacity: 1;
+  }
+
   section[data-label="03 Gwangyang"][data-interaction-step="1"] .gwangyang-chip-steel,
   section[data-label="03 Gwangyang"][data-interaction-step="2"] .gwangyang-chip-port,
   section[data-label="03 Gwangyang"][data-interaction-step="3"] .gwangyang-chip-jobs {
@@ -3749,6 +3775,9 @@
     white-space: nowrap;
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum" 1;
+    display: flex;
+    align-items: flex-end;
+    gap: calc(34px * var(--t-scale));
   }
   section[data-label="05 Gwangyang Tax Trend"] .tax-kpi-number,
   section[data-label="05 Gwangyang Tax Trend"] .tax-stack-total-label,
@@ -3771,6 +3800,19 @@
     /* Slide 05 polish: keep the starting KPI readable without stealing the final-number emphasis. */
     color: rgba(245,245,247,0.76);
     font-weight: 720;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    vertical-align: bottom;
+  }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-kpi-start-value,
+  section[data-label="05 Gwangyang Tax Trend"] .tax-kpi-final-value {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.02em;
+    line-height: 1;
+    white-space: nowrap;
   }
   section[data-label="05 Gwangyang Tax Trend"] .tax-kpi-main .tax-kpi-arrow {
     color: rgba(245,245,247,0.42);
@@ -3780,6 +3822,21 @@
   section[data-label="05 Gwangyang Tax Trend"] .tax-kpi-main .tax-kpi-final {
     color: var(--tax-orange);
     font-weight: 820;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+    vertical-align: bottom;
+  }
+  section[data-label="05 Gwangyang Tax Trend"] .tax-kpi-year-chip {
+    min-width: 0;
+    width: fit-content;
+    padding: 5px 12px 6px;
+    border-radius: 999px;
+    font-size: calc(17px * var(--t-scale));
+    line-height: 1;
+    font-weight: 760;
+    color: rgba(245,245,247,0.62);
   }
   section[data-label="05 Gwangyang Tax Trend"] .tax-drop {
     color: rgba(245,245,247,0.46);
@@ -6241,20 +6298,20 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
     min-height: 70px;
     padding: 0 30px;
     border-radius: 999px;
-    background: #FFFFFF;
-    border-color: rgba(92,100,112,0.28);
-    color: #5C6470;
-    box-shadow: 0 10px 26px rgba(28,27,24,0.055);
+    background: #5C6470;
+    border-color: rgba(92,100,112,0.42);
+    color: #FFFFFF;
+    box-shadow: 0 10px 26px rgba(28,27,24,0.09);
     font-size: calc(52px * var(--t-scale));
     line-height: 1.18;
     font-weight: 780;
   }
   section[data-label="18 Discussion Q2"] .discussion-keyword-chip.empty {
-    background: transparent;
+    background: #1C1B18;
     border-style: dashed;
-    border-color: rgba(92,100,112,0.36);
-    color: #1C1B18;
-    box-shadow: none;
+    border-color: rgba(28,27,24,0.56);
+    color: #F7F5F0;
+    box-shadow: 0 10px 26px rgba(28,27,24,0.10);
   }
   .discussion-board-progress {
     margin: 0 0 0 auto;
@@ -6828,18 +6885,18 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
     border: 0;
     border-radius: 0;
     background: transparent;
-    color: rgba(226,236,230,0.78);
+    color: rgba(210,238,244,0.84);
     font-family: var(--font-body);
     font-size: calc(28px * var(--t-scale));
     line-height: 1.42;
     font-weight: 500;
     word-break: keep-all;
     box-shadow: none;
-    text-shadow: none;
+    text-shadow: 0 0 18px rgba(103,232,249,0.10);
   }
   .gwangyang-transition-band span {
     color: var(--transition-soft);
-    text-shadow: 0 0 16px rgba(103,232,249,0.18);
+    text-shadow: 0 0 18px rgba(103,232,249,0.22);
     font-weight: 820;
   }
   /* Slide 11 interaction restore: staged case emphasis on the new D3 map/card layout. */
@@ -7127,9 +7184,8 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
           </h2>
 
           <div class="tax-kpi">
-            <span class="tax-year-chip">2022 → 2024</span>
             <div class="tax-kpi-main" aria-label="2022년 1,121억에서 2024년 246억으로 감소">
-              <span class="tax-kpi-start"><span class="tax-kpi-number">1,121</span><span class="tax-unit">억</span></span><span class="tax-kpi-arrow">→</span><span class="tax-kpi-final" data-from="1121" data-to="246" data-duration="1100"><span class="tax-kpi-number">246</span><span class="tax-unit">억</span></span>
+              <span class="tax-kpi-start"><span class="tax-year-chip tax-kpi-year-chip">2022</span><span class="tax-kpi-start-value"><span class="tax-kpi-number">1,121</span><span class="tax-unit">억</span></span></span><span class="tax-kpi-final" data-from="1121" data-to="246" data-duration="1100"><span class="tax-year-chip tax-kpi-year-chip">2024</span><span class="tax-kpi-final-value"><span class="tax-kpi-number">246</span><span class="tax-unit">억</span></span></span>
             </div>
             <p class="tax-kpi-delta">
               <span class="tax-drop-chip" aria-label="약 78퍼센트 감소">
@@ -7363,11 +7419,11 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       </div>
 
       <div class="gwangyang-transition-band">
-        광양은 제철소·항만·산업단지를 한 곳에서 잇습니다.<br/>
+        광양에는 제철소·항만·산업단지가 한 지역 안에 모여 있습니다.<br/>
         그래서 <span>연결된 전환</span>이 가능합니다.
       </div>
     </div>
-    <div class="source-note">자료: 저탄소 산업 전환 사례 종합</div>
+    <div class="source-note">출처: 저탄소 산업 전환 사례 종합</div>
   </section>
 
   <!-- ================= 12 JOBS SYSTEM ================= -->
@@ -7582,7 +7638,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       </p>
       <!-- Slide 16 closing question emphasis: keep copy, emphasize only "선택". -->
       <p class="h3 closing-question-block">
-        여러분은 어떤 미래를 <span class="closing-choice-word">선택</span>하겠습니까?
+        여러분은 어떤 미래를 <span class="closing-choice-word">선택</span>하시겠습니까?
       </p>
     </div>
     <div class="source-note">출처: 한국직업능력연구원, 「미래 직업세계와 진로교육 방향」, 2022.</div>
@@ -7777,7 +7833,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       // Slide 11 leaders: use a fixed bow so 01/02 read as clearly curved like 03.
       const bend = Math.max(72, Math.min(118, Math.abs(dx) * 0.14));
       const controlX = (anchor[0] + pin[0]) / 2;
-      const controlY = (anchor[1] + pin[1]) / 2 + (side === 'right' ? bend : -bend);
+      const controlY = (anchor[1] + pin[1]) / 2 - bend;
       const c1x = anchor[0] + (controlX - anchor[0]) * (2 / 3);
       const c1y = anchor[1] + (controlY - anchor[1]) * (2 / 3);
       const c2x = pin[0] + (controlX - pin[0]) * (2 / 3);
@@ -7806,10 +7862,10 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
 
         const mapBox = {
           // Slide 11 base map: 10% larger while preserving the 02-03 center alignment.
-          x: Math.round(width * 0.159),
-          y: 72,
-          width: Math.round(width * 0.682),
-          height: 451
+          x: Math.round(width * 0.125),
+          y: 2,
+          width: Math.round(width * 0.75),
+          height: 496
         };
         const mapPadding = 6;
         const projection = d3.geoNaturalEarth1()
@@ -8164,6 +8220,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
 
     const stagedSlides = {
       '02 Hook': 1,
+      '04 CBAM': 3,
       '03 Gwangyang': 3,
       '06 Already': 3,
       '07 Pivot': 3,
@@ -8171,6 +8228,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       '09 Battery': 3,
       // Slide 11 staged map reveal: Sweden -> Rotterdam -> Japan -> Gwangyang conclusion.
       '11 Global Cases': 4,
+      '12 Jobs': 3,
       '15 Teamplay': 4
     };
     const defaultSteps = {
@@ -8720,7 +8778,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
     const scriptData = [
       {
         no: 1,
-        speaker: "정혜린",
+        speaker: "정혜린 학생",
         title: "기후변화, 일자리, 그리고 광양의 미래",
         script: `안녕하십니까. 광양창의융합교육 연구 결과를 발표할 정혜린입니다.
 기후 변화는 더 이상 날씨만의 문제가 아닙니다. 탄소 규제는 광양의 산업과 일자리 지도까지 바꾸고 있습니다.
@@ -8730,7 +8788,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 2,
-        speaker: "정혜린",
+        speaker: "정혜린 학생",
         title: "도입 — 탄소 규제와 미래 직업",
         script: `지구 반대편의 정책 하나가 정말로 내 미래의 직업을 바꿀 수 있을까요?
 기후 변화에 대응하기 위해 세계 각국은 탄소 배출을 줄이는 규제를 강화하고 있습니다. 처음에는 멀게 느껴졌지만, 조사를 거듭할수록 이 규제는 광양의 현실과 직접 연결되어 있었습니다.
@@ -8739,7 +8797,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 3,
-        speaker: "정혜린",
+        speaker: "정혜린 학생",
         title: "정책 — 변화의 시작",
         script: `앞서 말씀드린 그 정책의 이름은 CBAM, 탄소국경조정제도입니다.
 이제 탄소는 더 이상 눈에 보이지 않는 기체가 아닙니다. 탄소가 비용이 되는 시대가 왔습니다.
@@ -8749,7 +8807,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 4,
-        speaker: "정혜린",
+        speaker: "정혜린 학생",
         title: "지역 — 광양 산업 기반",
         script: `왜 이 문제가 광양에 치명적일까요?
 광양은 철강과 항만으로 성장해온 자랑스러운 도시입니다. 철강은 생산을 책임지고, 항만은 세계로 뻗어나가는 물류를 맡으며 광양의 지역 경제와 수많은 일자리를 단단하게 지탱해왔습니다.
@@ -8758,7 +8816,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 5,
-        speaker: "정혜린",
+        speaker: "정혜린 학생",
         title: "데이터 — 광양 지역 경제",
         script: `이러한 압박이 지역에 미치는 영향은 이미 수치로 나타나고 있습니다.
 화면의 숫자는 단순한 세수 감소가 아니라, 한 산업의 흐름이 도시 재정과 지역 생활까지 흔들 수 있다는 경고입니다.
@@ -8766,20 +8824,20 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
 중요한 것은 이 감소를 기후변화의 직접 결과로 단정하는 것이 아니라, 특정 산업에 크게 의존하는 구조가 외부 변화에 얼마나 민감한지 읽어내는 것입니다.
 도시 재정이 흔들리면 지역의 투자, 교육, 일자리 준비에도 영향을 줄 수 있습니다.
 그렇다면 위기 앞에서 우리는 무엇을 어떻게 바꿔야 할까요?
-이제 이 위기를 기술과 산업의 대안으로 어떻게 바꿀 수 있을지, 초롱이가 이어서 설명하겠습니다.`
+이제 이 위기를 기술과 산업의 대안으로 어떻게 바꿀 수 있을지, 염초롱 학생이 이어서 설명하겠습니다.`
       },
       {
         no: 6,
-        speaker: "염초롱",
+        speaker: "염초롱 학생",
         title: "전환 — 광양이 준비해야 하는 이유",
-        script: `혜린이가 짚어준 위기, 이제 그 답을 찾아볼 차례입니다. 염초롱입니다.
+        script: `정혜린 학생이 짚어준 위기에서 이어서 말씀드리겠습니다. 염초롱입니다.
 앞서 본 변화는 결코 먼 미래의 이야기가 아닙니다. 탄소 규제와 철강 전환의 압력, 그리고 지역 재정의 변화는 광양이 지금 산업 전환을 준비해야 하는 이유를 보여줍니다.
 광양은 이제 변화를 피할 수 없습니다. 중요한 것은 위기를 두려워하는 것이 아니라 새로운 성장 기회로 바꾸는 것입니다.
 그렇다면 이 위기를 극복하기 위해 광양이 나아가야 할 방향은 무엇일까요?`
       },
       {
         no: 7,
-        speaker: "염초롱",
+        speaker: "염초롱 학생",
         title: "전환 — 위기와 기회",
         script: `저희가 찾은 방향은 기존 기반을 새 방식으로 다시 쓰는 것입니다.
 광양이 가진 제철소와 항만을 버리는 대신, 그 안의 생산 방식과 에너지 흐름을 저탄소 구조로 바꾸자는 뜻입니다.
@@ -8788,7 +8846,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 8,
-        speaker: "염초롱",
+        speaker: "염초롱 학생",
         title: "수소환원제철",
         script: `그 생산 방식을 근본적으로 바꾸는 핵심 기술이 바로 수소환원제철, HyREX 기술입니다.
 기존의 고로 방식은 석탄을 사용하여 철광석에서 산소를 분리하기 때문에 필연적으로 대량의 이산화탄소를 배출합니다. 즉 철을 생산할수록 탄소도 함께 배출되는 구조입니다.
@@ -8799,7 +8857,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 9,
-        speaker: "염초롱",
+        speaker: "염초롱 학생",
         title: "철강 도시에서, 미래 산업 거점으로",
         script: `그렇다면 왜 광양이 이 거대한 전환에 최적지일까요?
 광양의 강점은 철강만이 아닙니다. 제철소와 항만, 산업단지를 함께 연결할 수 있다는 점입니다.
@@ -8808,7 +8866,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 10,
-        speaker: "염초롱",
+        speaker: "염초롱 학생",
         title: "전환의 다음 장면",
         script: `여기서 잠시, 광양의 다음 장면을 상상해 보겠습니다.
 철강 도시로 성장해온 광양은 이제 철강을 바탕으로 수소, 소재, 재생에너지를 연결하는 새로운 산업 도시로 나아갈 수 있습니다.
@@ -8817,19 +8875,20 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 11,
-        speaker: "염초롱",
-        title: "세계는 이미 저탄소 산업 지도를 다시 그리고 있습니다",
-        script: `세계는 이미 저탄소 산업 지도를 다시 그리고 있습니다.
-스웨덴은 제철소 내의 공정 전환을 서두르고 있고, 네덜란드 로테르담은 항만을 에너지 허브로 탈바꿈하고 있으며, 일본은 국가 차원의 수소 수요와 인프라를 설계하고 있습니다.
-여기서 중요한 것은 특정 국가의 이름이 아니라 그들이 취하고 있는 전환의 방식입니다. 제철소, 항만, 그리고 지역 인재를 연결할 때 광양만의 전환 모델이 완성될 수 있습니다.
-저희는 해외 사례를 조사하면서 산업 전환은 기술만으로 이루어지는 것이 아니라 지역 전체의 변화가 함께 이루어져야 한다는 점을 확인할 수 있었습니다.
-이제 이 변화가 결국 사람과 일자리의 문제로 어떻게 이어지는지, 유주가 이어서 말씀드리겠습니다.`
+        speaker: "염초롱 학생",
+        title: "전환의 길은 나라마다 다릅니다",
+        script: `전환의 길은 나라마다 다릅니다.
+스웨덴은 제철소 안에서 탄소를 줄이는 공정 전환을 보여주고, 네덜란드 로테르담항은 항만을 수소와 에너지 물류 거점으로 바꾸고 있으며, 일본은 국가 차원에서 수소 수요와 인프라를 함께 설계하고 있습니다.
+여기서 중요한 것은 특정 국가의 이름이 아니라, 각 사례가 보여주는 전환의 방식입니다.
+광양에는 제철소·항만·산업단지가 한 지역 안에 모여 있습니다. 그래서 연결된 전환이 가능합니다.
+이제 이 변화가 결국 사람과 일자리의 문제로 어떻게 이어지는지, 정유주 학생이 이어서 말씀드리겠습니다.`
       },
       {
         no: 12,
-        speaker: "정유주",
+        speaker: "정유주 학생",
         title: "개념도 — 산업 전환에 따른 직무 변화",
-        script: `초롱이가 설명한 기술 전환은 결국 현장에서 일하는 사람들의 변화로 이어집니다. 정유주입니다.
+        script: `염초롱 학생이 설명한 기술 전환에서 이어서 말씀드리겠습니다. 정유주입니다.
+기술 전환은 결국 현장에서 일하는 사람들의 변화로 이어집니다.
 기술과 산업의 구조가 바뀐다면, 그곳에서 일하는 사람들의 삶은 어떻게 달라질까요?
 저희는 이 변화를 이렇게 해석했습니다. 일자리는 단순히 사라지는 것이 아니라, 필요한 역할이 바뀝니다.
 자동화나 친환경 기술이 도입된다고 해서 단순히 사람의 자리가 없어지는 것이 아니라, 현장에서 요구하는 역량과 역할이 달라진다는 뜻입니다.
@@ -8839,7 +8898,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 13,
-        speaker: "정유주",
+        speaker: "정유주 학생",
         title: "핵심 개념 — 정의로운 전환",
         script: `이러한 급격한 직무 변화 속에서 가장 중요한 개념이 바로 정의로운 전환입니다.
 정의로운 전환은 기술보다 사람이 함께 이동할 수 있는 구조를 만드는 일입니다.
@@ -8848,7 +8907,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 14,
-        speaker: "정유주",
+        speaker: "정유주 학생",
         title: "준비 — 중학생의 미래 역량",
         script: `그렇다면 미래 일자리의 주역이 될 중학생인 저희는 무엇을 준비해야 할까요?
 그래서 저희가 찾은 방향은 세 가지입니다.
@@ -8859,7 +8918,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 15,
-        speaker: "정유주",
+        speaker: "정유주 학생",
         title: "협력 — 광양 전환 팀플레이",
         script: `이 부분이 광양에 중요한 이유는 아무리 뛰어난 기술과 똑똑한 인재가 있어도, 각자 흩어져 있다면 성공할 수 없기 때문입니다.
 좋은 기술도 함께 움직여야 현실이 됩니다.
@@ -8868,7 +8927,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       },
       {
         no: 16,
-        speaker: "정유주",
+        speaker: "정유주 학생",
         title: "방향은, 우리가 정합니다",
         script: `이제 발표를 마무리하며 저희가 느낀 가장 중요한 메시지를 전하고자 합니다.
 기술은 도구일 뿐입니다.
@@ -8877,15 +8936,17 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
 그래서 화면의 문장처럼, 변화의 방향은 우리의 선택에 달려 있습니다.
 여러분은 광양의, 그리고 우리 모두의 미래를 위해 어떤 선택을 하시겠습니까?
 이 질문을 바탕으로 이제 Q&A와 토론으로 이어가겠습니다.
-저희의 발표 내용을 떠올리면서 자유롭게 의견을 나눠주시면 감사하겠습니다.`
+저희의 발표 내용을 떠올리면서 자유롭게 의견을 나눠주시면 감사하겠습니다.
+첫 번째 토론은 염초롱 학생이 진행하겠습니다.`
       },
       {
         no: 17,
-        speaker: "염초롱",
-        title: "토론 질문 1 — 흥미·적성과 안정성",
-        script: `마지막으로, 발표 내용을 바탕으로 함께 생각해 볼 첫 번째 질문을 준비했습니다.
+        speaker: "염초롱 학생",
+        title: "토론 질문 1 — 안정성 vs 흥미·적성",
+        script: `정유주 학생의 마무리 질문에 이어서 첫 번째 토론을 진행하겠습니다. 염초롱입니다.
+발표 내용을 바탕으로 함께 생각해 볼 첫 번째 질문입니다.
 정답을 맞히는 시간이 아니라, 각자의 진로와 연결해 생각해 보는 시간입니다.
-첫 번째 질문입니다. 미래 직업을 선택할 수 있다면, 나의 흥미와 적성보다 인공지능 시대에 살아남기 위한 안정성을 우선해야 할까요?
+안정성 vs 흥미·적성, 무엇이 먼저일까요?
 먼저 친구들의 의견을 들어보겠습니다.
 1. "좋습니다. 그 의견을 선택한 이유까지 조금만 더 말해줄 수 있을까요?"
 2. "반대로 생각하는 친구도 있을까요? 흥미와 안정성 중 어느 쪽이 더 중요하다고 보는지 들어보고 싶습니다."
@@ -8895,14 +8956,16 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
 6. "마지막으로 한 의견만 더 듣고 팀 공동의견으로 넘어가겠습니다."
 (의견 청취 후 팀 공동의견 발표)
 저희 팀의 공동의견은 흥미와 적성을 포기하고 안정성만 선택하는 것은 좋지 않다는 것입니다. 다만 AI 시대에는 안정성의 의미가 달라지기 때문에, 내가 좋아하는 분야가 미래에 어떻게 바뀔지 계속 배우고 적응하는 태도가 필요하다고 보았습니다.
-안정성은 절대 사라지지 않는 직업을 찾는 것이 아니라, 산업이 바뀌어도 계속 배우고 새로운 역할로 이동할 수 있는 힘에서 나온다고 생각합니다. 그리고 흥미와 적성은 진로 선택의 출발점입니다. 좋아하고 잘하는 분야가 있어야 오래 배우고 성장할 수 있기 때문입니다.`
+안정성은 절대 사라지지 않는 직업을 찾는 것이 아니라, 산업이 바뀌어도 계속 배우고 새로운 역할로 이동할 수 있는 힘에서 나온다고 생각합니다. 그리고 흥미와 적성은 진로 선택의 출발점입니다. 좋아하고 잘하는 분야가 있어야 오래 배우고 성장할 수 있기 때문입니다.
+두 번째 질문은 정혜린 학생이 이어서 진행하겠습니다.`
       },
       {
         no: 18,
-        speaker: "정혜린",
+        speaker: "정혜린 학생",
         title: "토론 질문 2 — 청소년에게 필요한 역량",
-        script: `이제 두 번째 질문은 시선을 우리 자신의 준비로 옮겨보겠습니다.
-새로운 산업구조의 변화 속에서 내가 원하는 직업을 얻기 위해 청소년에게 필요한 역량은 무엇일까요?
+        script: `염초롱 학생의 첫 번째 토론에 이어서 두 번째 질문을 진행하겠습니다. 정혜린입니다.
+이번에는 시선을 우리 자신의 준비로 옮겨보겠습니다.
+청소년에게 지금 필요한 역량은 무엇일까요?
 이번에는 한 단어로 답해도 좋고, 이유를 덧붙여도 좋습니다. 먼저 친구들의 의견을 들어보겠습니다.
 1. "좋습니다. 그 역량이 왜 중요하다고 생각했는지도 짧게 덧붙여 줄 수 있을까요?"
 2. "다른 역량을 떠올린 친구도 있을까요? 화면에 없는 의견도 괜찮습니다."
@@ -8914,13 +8977,15 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
 저희 팀은 세 가지 역량이 필요하다고 생각했습니다. 첫째는 환경 감수성입니다. 기후 변화가 산업과 지역, 일자리에 어떤 영향을 주는지 이해하는 힘입니다.
 둘째는 기술 리터러시입니다. AI, 수소, 이차전지, 데이터 같은 기술을 어렵다고 피하지 않고 배우는 태도입니다.
 셋째는 창의융합적 사고입니다. 환경, 기술, 경제, 지역 문제를 따로 보지 않고 연결해서 해결책을 찾는 힘입니다.
-여기에 소통과 협력, 계속 배우는 태도가 더해져야 원하는 직업을 미래 변화 속에서도 이어갈 수 있다고 생각합니다.`
+여기에 소통과 협력, 계속 배우는 태도가 더해져야 원하는 직업을 미래 변화 속에서도 이어갈 수 있다고 생각합니다.
+마지막 정리는 정유주 학생이 이어서 말씀드리겠습니다.`
       },
       {
         no: 19,
-        speaker: "정유주",
+        speaker: "정유주 학생",
         title: "전체 최종 마무리 멘트",
-        script: `오늘 발표와 토론을 통해 저희가 말하고 싶었던 것은, 미래 직업이 정해진 답처럼 주어지는 것이 아니라는 점입니다.
+        script: `정혜린 학생이 진행한 토론을 이어받아, 정유주입니다.
+오늘 발표와 토론을 통해 저희가 말하고 싶었던 것은, 미래 직업이 정해진 답처럼 주어지는 것이 아니라는 점입니다.
 앞에서 우리는 탄소 규제와 산업 변화가 이미 시작되었다고 말했습니다. 하지만 이 변화가 위기로만 끝나는 것은 아닙니다.
 흥미와 적성은 진로의 출발점이고, 미래의 안정성은 변화 속에서도 계속 배우고 적응하는 힘에서 나옵니다.
 환경 감수성, 기술 리터러시, 창의융합적 사고를 바탕으로 우리는 이 변화를 새로운 시작으로 바꿀 수 있습니다.
@@ -8932,7 +8997,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
     const totalSlides = scriptData.length;
     const advanceMarkerData = {
       2: [
-        { after: '그 변화를 이끄는 핵심 정책의 이름은 바로 ' },
+        { after: '그 정책의 이름은 CBAM, 탄소국경조정제도입니다.' },
         { at: 'end' }
       ],
       3: [
@@ -8948,7 +9013,6 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
         { at: 'end' }
       ],
       5: [
-        { after: '한 산업의 흐름이 도시 재정과 지역 생활까지 흔들 수 있다는 경고입니다.' },
         { at: 'end' }
       ],
       6: [
@@ -8976,14 +9040,13 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
         { at: 'end' }
       ],
       10: [
-        { after: '광양의 다음 장면을 상상해 보겠습니다.' },
         { at: 'end' }
       ],
       11: [
-        { after: '스웨덴은 제철소 내의 공정 전환을 서두르고 있고,' },
-        { after: '네덜란드 로테르담은 항만을 에너지 허브로 탈바꿈하고 있으며,' },
-        { after: '일본은 국가 차원의 수소 수요와 인프라를 설계하고 있습니다.' },
-        { after: '여기서 중요한 것은 특정 국가의 이름이 아니라 그들이 취하고 있는 전환의 방식입니다.' },
+        { after: '스웨덴은 제철소 안에서 탄소를 줄이는 공정 전환을 보여주고,' },
+        { after: '네덜란드 로테르담항은 항만을 수소와 에너지 물류 거점으로 바꾸고 있으며,' },
+        { after: '일본은 국가 차원에서 수소 수요와 인프라를 함께 설계하고 있습니다.' },
+        { after: '광양에는 제철소·항만·산업단지가 한 지역 안에 모여 있습니다.' },
         { at: 'end' }
       ],
       12: [
@@ -9243,8 +9306,8 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
         const marker = document.createElement('span');
         marker.className = 'console-advance-marker';
         marker.textContent = '→';
-        marker.title = '여기에서 공유용 화면을 넘깁니다';
-        marker.setAttribute('aria-label', '여기에서 공유용 화면을 넘깁니다');
+        marker.title = '여기에서 공유 화면 또는 슬라이드 안 인터렉션을 넘깁니다';
+        marker.setAttribute('aria-label', '여기에서 공유 화면 또는 슬라이드 안 인터렉션을 넘깁니다');
         container.appendChild(marker);
       }
     }

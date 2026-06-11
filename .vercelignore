@@ -1,6 +1,7 @@
 exports/
 outputs/
 screenshots/
+screenshots_fhd_*/
 scraps/
 .netlify/
 netlify/

@@ -2,9 +2,8 @@
 node_modules/
 dist/
 .env
-screenshots/full-*/
-screenshots/slides-*-*/
-screenshots/all-slides-local-*/
+screenshots/
+screenshots_fhd_*/
 scraps/unused-assets-*/
 scraps/comparison-text/
 exports/

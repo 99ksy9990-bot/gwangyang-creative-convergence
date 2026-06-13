@@ -5,6 +5,10 @@ if exist "%~dp003_STOP_PRESENTATION.bat" (
   call "%~dp003_STOP_PRESENTATION.bat" nopause
 )
 
+if exist "%~dp0local_fallback\reset_local_fallback.bat" (
+  call "%~dp005_STOP_LOCAL_BACKUP.bat" nopause
+)
+
 echo Switching Windows display mode back to Duplicate...
 if exist "%SystemRoot%\System32\DisplaySwitch.exe" (
   "%SystemRoot%\System32\DisplaySwitch.exe" /clone

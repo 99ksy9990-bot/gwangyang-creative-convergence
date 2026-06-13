@@ -7,6 +7,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "$body=@{type='slide-chan
 
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$marker='%PROFILE_MARKER%'; Get-CimInstance Win32_Process | Where-Object { ($_.Name -eq 'msedge.exe' -or $_.Name -eq 'chrome.exe') -and $_.CommandLine -like ('*' + $marker + '*') } | ForEach-Object { try { Stop-Process -Id $_.ProcessId -Force } catch {} }"
 
+powershell -NoProfile -ExecutionPolicy Bypass -Command "Get-CimInstance Win32_Process | Where-Object { ($_.Name -eq 'node.exe' -or $_.Name -eq 'cmd.exe') -and (($_.CommandLine -like '*local-site-server.cjs*') -or ($_.CommandLine -like '*local-slide-sync.cjs*')) } | ForEach-Object { try { Stop-Process -Id $_.ProcessId -Force } catch {} }"
+
 echo Done.
 if /i "%1"=="nopause" exit /b 0
 pause

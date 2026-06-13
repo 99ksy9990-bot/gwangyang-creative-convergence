@@ -9,5 +9,6 @@ if not exist "%EDGE%" set "EDGE=%ProgramFiles%\Google\Chrome\Application\chrome.
 if not exist "%EDGE%" set "EDGE=%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"
 set "PROFILE=%LOCALAPPDATA%\GwangyangB3Edge\audience"
 set "STAMP=%RANDOM%%RANDOM%"
-start "Audience" "%EDGE%" --no-first-run --user-data-dir="%PROFILE%" --app="http://127.0.0.1:4183/index.html?present=1&v=%STAMP%#/1"
+set "BROWSER_FLAGS=--no-first-run --no-default-browser-check --disable-session-crashed-bubble --start-fullscreen"
+start "Audience" "%EDGE%" %BROWSER_FLAGS% --user-data-dir="%PROFILE%" --app="http://127.0.0.1:4183/index.html?present=1&v=%STAMP%#/1"
 

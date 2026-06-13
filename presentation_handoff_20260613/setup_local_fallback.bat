@@ -5,14 +5,22 @@ set "ROOT=%~dp0"
 set "PROFILE_BASE=%LOCALAPPDATA%\GwangyangB3PresentationLocal"
 set "STAMP=%RANDOM%%RANDOM%"
 set "BROWSER_FLAGS=--no-first-run --no-default-browser-check --disable-session-crashed-bubble --start-fullscreen"
+set "NODE_EXE=%ROOT%portable-node\node.exe"
 
+if exist "%NODE_EXE%" goto node_ready
 where node >nul 2>nul
-if errorlevel 1 (
+if not errorlevel 1 (
+  set "NODE_EXE=node"
+  goto node_ready
+)
+
   echo Node.js was not found.
+  echo portable-node\node.exe was not found in local_fallback.
   echo Use 01_START_PRESENTATION.bat if internet is available.
   pause
   exit /b 1
-)
+
+:node_ready
 
 set "BROWSER=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
 if not exist "%BROWSER%" set "BROWSER=%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"
@@ -47,8 +55,13 @@ exit /b 0
 
 :launch_local
 
-start "Local Site Server" /min cmd /c "cd /d ""%ROOT%"" && node local-site-server.cjs"
-start "Local Slide Sync" /min cmd /c "cd /d ""%ROOT%"" && node local-slide-sync.cjs"
+if /i "%NODE_EXE%"=="node" (
+  start "Local Site Server" /min cmd /c "cd /d ""%ROOT%"" && node local-site-server.cjs"
+  start "Local Slide Sync" /min cmd /c "cd /d ""%ROOT%"" && node local-slide-sync.cjs"
+) else (
+  start "Local Site Server" /min cmd /c "cd /d ""%ROOT%"" && ""%NODE_EXE%"" local-site-server.cjs"
+  start "Local Slide Sync" /min cmd /c "cd /d ""%ROOT%"" && ""%NODE_EXE%"" local-slide-sync.cjs"
+)
 timeout /t 2 /nobreak >nul
 
 call "%ROOT%reset_local_fallback.bat" nopause

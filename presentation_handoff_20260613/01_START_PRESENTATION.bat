@@ -10,7 +10,7 @@ if not exist "%~dp0setup_presentation_mode.bat" (
 
 if /i not "%1"=="check" (
   if exist "%~dp000_SET_EXTEND_MODE.bat" call "%~dp000_SET_EXTEND_MODE.bat" nopause
-  timeout /t 2 /nobreak >nul
+  timeout /t 5 /nobreak >nul
 )
 
 call "%~dp0setup_presentation_mode.bat" %*

@@ -10,3 +10,5 @@ portable-node/
 *.bat
 local-site-server.cjs
 local-slide-sync.cjs
+presentation_handoff_*/
+*.zip

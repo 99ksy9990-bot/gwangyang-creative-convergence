@@ -1,0 +1,11 @@
+Production URL
+https://gwangyang-creative-convergence.vercel.app/
+
+Shared Slides
+https://gwangyang-creative-convergence.vercel.app/index.html?present=1#/1
+
+Speaker Console
+https://gwangyang-creative-convergence.vercel.app/index.html?script=1&local=1#/1
+
+Reset Sync API
+https://gwangyang-creative-convergence.vercel.app/api/slide-sync

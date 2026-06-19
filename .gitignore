@@ -8,6 +8,7 @@ scraps/unused-assets-*/
 scraps/comparison-text/
 exports/
 outputs/
+output/
 portable-node/
 
 # Local Netlify folder

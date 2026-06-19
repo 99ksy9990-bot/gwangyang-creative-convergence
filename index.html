@@ -9514,6 +9514,7 @@ HyREX 설비를 제어하고 데이터를 모니터링하는 역할이 더 중�
     let suppressSlideChangeBroadcastUntil = 0;
     let ignoreRemoteAdvanceUntil = 0;
     let fastLocalSyncAvailable = true;
+    let localSyncRetryAt = 0;
     const appliedSyncMessages = new Set();
     // Speaker console v2 state: local-only progress inside the private script view.
     let consoleAdvanceIndex = 0;
@@ -9631,27 +9632,42 @@ HyREX 설비를 제어하고 데이터를 모니터링하는 역할이 더 중�
       postSlideChange(remoteSyncEndpoint, message);
     }
 
-    async function readSlideChange(endpoint) {
-      const response = await fetch(endpoint + '?t=' + Date.now(), {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-store'
-      });
-      if (!response.ok) return null;
-      return response.json();
+    async function readSlideChange(endpoint, options = {}) {
+      const timeoutMs = Number(options.timeoutMs) || 1200;
+      const controller = 'AbortController' in window ? new AbortController() : null;
+      const timeoutId = controller
+        ? window.setTimeout(() => controller.abort(), timeoutMs)
+        : null;
+      try {
+        const response = await fetch(endpoint + '?t=' + Date.now(), {
+          method: 'GET',
+          mode: 'cors',
+          cache: 'no-store',
+          signal: controller ? controller.signal : undefined
+        });
+        if (!response.ok) return null;
+        return response.json();
+      } finally {
+        if (timeoutId) window.clearTimeout(timeoutId);
+      }
     }
 
     async function readBestSlideChange() {
-      try {
-        const message = await readSlideChange(localSyncEndpoint);
-        fastLocalSyncAvailable = true;
-        if (message && Number(message.at) > lastRemoteSlideAt) return message;
-      } catch (error) {
-        fastLocalSyncAvailable = false;
+      const now = Date.now();
+      if (now >= localSyncRetryAt) {
+        try {
+          const message = await readSlideChange(localSyncEndpoint, { timeoutMs: 90 });
+          fastLocalSyncAvailable = true;
+          localSyncRetryAt = 0;
+          if (message && Number(message.at) > lastRemoteSlideAt) return message;
+        } catch (error) {
+          fastLocalSyncAvailable = false;
+          localSyncRetryAt = Date.now() + 1800;
+        }
       }
 
       try {
-        return await readSlideChange(remoteSyncEndpoint);
+        return await readSlideChange(remoteSyncEndpoint, { timeoutMs: 1800 });
       } catch (error) {
         return null;
       }

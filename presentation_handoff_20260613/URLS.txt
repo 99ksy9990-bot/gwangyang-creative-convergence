@@ -1,11 +1,11 @@
 Production URL
-https://gwangyang-creative-convergence.vercel.app/
+https://gy-creative.vercel.app/
 
 Shared Slides
-https://gwangyang-creative-convergence.vercel.app/index.html?present=1#/1
+https://gy-creative.vercel.app/s
 
 Speaker Console
-https://gwangyang-creative-convergence.vercel.app/index.html?script=1&local=1#/1
+https://gy-creative.vercel.app/c
 
 Reset Sync API
-https://gwangyang-creative-convergence.vercel.app/api/slide-sync
+https://gy-creative.vercel.app/api/slide-sync

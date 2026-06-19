@@ -58,8 +58,8 @@
 
 ## 발표 중 주소
 
-- 공유용 슬라이드: `https://gwangyang-creative-convergence.vercel.app/index.html?present=1#/1`
-- 발표자 콘솔: `https://gwangyang-creative-convergence.vercel.app/index.html?script=1&local=1#/1`
+- 공유용 슬라이드: `https://gy-creative.vercel.app/s`
+- 발표자 콘솔: `https://gy-creative.vercel.app/c`
 
 발표자 콘솔에서 Enter, 오른쪽 방향키, Space를 누르면 공유용 슬라이드와 인터렉션이 같이 넘어갑니다.
 

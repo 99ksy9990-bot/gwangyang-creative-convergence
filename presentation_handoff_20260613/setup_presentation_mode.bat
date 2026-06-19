@@ -1,8 +1,9 @@
 @echo off
 setlocal
 
-set "BASE_URL=https://gwangyang-creative-convergence.vercel.app"
+set "BASE_URL=https://gy-creative.vercel.app"
 set "PROFILE_BASE=%LOCALAPPDATA%\GwangyangB3Presentation"
+set "SHARED_PROFILE=%PROFILE_BASE%\shared"
 set "STAMP=%RANDOM%%RANDOM%"
 set "BROWSER_FLAGS=--no-first-run --no-default-browser-check --disable-session-crashed-bubble --start-fullscreen"
 
@@ -43,11 +44,11 @@ echo Resetting online slide sync to slide 1...
 powershell -NoProfile -ExecutionPolicy Bypass -Command "$body=@{type='slide-change';index=1;sourceId='presentation-setup';at=[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()}|ConvertTo-Json -Compress; try { Invoke-RestMethod -Uri '%BASE_URL%/api/slide-sync' -Method Post -ContentType 'application/json' -Body $body | Out-Null; Write-Host 'Sync reset complete.' } catch { Write-Host 'Sync reset failed. Continuing with browser launch.' }"
 
 echo Opening shared slide window on the audience screen...
-start "Shared Slides" "%BROWSER%" %BROWSER_FLAGS% %AUDIENCE_SCREEN% --user-data-dir="%PROFILE_BASE%\audience" --app="%BASE_URL%/index.html?present=1&v=%STAMP%#/1"
+start "Shared Slides" "%BROWSER%" %BROWSER_FLAGS% %AUDIENCE_SCREEN% --user-data-dir="%SHARED_PROFILE%" --app="%BASE_URL%/index.html?present=1&v=%STAMP%#/1"
 timeout /t 1 /nobreak >nul
 
 echo Opening speaker console on the laptop screen...
-start "Speaker Console" "%BROWSER%" %BROWSER_FLAGS% %SPEAKER_SCREEN% --user-data-dir="%PROFILE_BASE%\speaker" --app="%BASE_URL%/index.html?script=1&local=1&v=%STAMP%#/1"
+start "Speaker Console" "%BROWSER%" %BROWSER_FLAGS% %SPEAKER_SCREEN% --user-data-dir="%SHARED_PROFILE%" --app="%BASE_URL%/index.html?script=1&local=1&reset=1&v=%STAMP%#/1"
 
 echo.
 echo Done. Share only the "Shared Slides" window.

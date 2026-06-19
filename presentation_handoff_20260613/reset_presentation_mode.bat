@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set "BASE_URL=https://gwangyang-creative-convergence.vercel.app"
+set "BASE_URL=https://gy-creative.vercel.app"
 set "PROFILE_MARKER=GwangyangB3Presentation"
 
 echo Resetting online slide sync to slide 1...

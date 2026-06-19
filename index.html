@@ -3908,6 +3908,99 @@
     border-radius: 999px;
     background: rgba(145,247,186,0.42);
   }
+  /* Speaker console mobile fit: prevent clipped private console headers on phones. */
+  @media (max-width: 640px) {
+    body.script-mode .speaker-console {
+      width: 100dvw;
+      max-width: 100dvw;
+      height: 100dvh;
+      padding: 8px;
+      gap: 8px;
+      overflow: hidden;
+    }
+    body.script-mode .speaker-topbar,
+    body.script-mode .speaker-main,
+    .console-header,
+    .console-script,
+    .console-script-text {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .console-header {
+      padding: 9px 10px 10px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .console-meta-row {
+      margin-bottom: 5px;
+    }
+    .console-kicker {
+      font-size: 10px;
+      letter-spacing: 0.04em;
+    }
+    .console-title-row {
+      flex-wrap: wrap;
+      gap: 6px 8px;
+    }
+    .console-slide-no {
+      font-size: 18px;
+    }
+    .console-title {
+      flex: 1 1 calc(100% - 92px);
+      font-size: 18px;
+      line-height: 1.15;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+    }
+    .console-local-nav {
+      margin-left: 0;
+      gap: 6px;
+    }
+    .console-local-nav button {
+      width: 40px;
+      height: 32px;
+      font-size: 20px;
+    }
+    .console-speaker {
+      margin-top: 6px;
+      gap: 4px 8px;
+      font-size: 13px;
+      line-height: 1.25;
+    }
+    .console-speaker-item,
+    .console-next-slide {
+      white-space: normal;
+    }
+    .console-next-slide {
+      flex: 1 1 100%;
+      overflow: visible;
+      text-overflow: clip;
+    }
+    .console-script {
+      padding: 8px;
+      border-radius: 8px;
+    }
+    .console-script-text {
+      font-size: 17px;
+      line-height: 1.45;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    .console-script-step {
+      gap: 8px;
+      padding: 8px 9px;
+    }
+    .console-script-step.is-current .console-step-copy {
+      padding-right: 6px;
+    }
+    .console-enter-marker {
+      width: 30px;
+      height: 24px;
+      margin-left: 6px;
+      font-size: 15px;
+    }
+  }
   deck-stage > section::before {
     opacity: 0.42;
   }
@@ -6970,6 +7063,9 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
     vector-effect: non-scaling-stroke;
     shape-rendering: geometricPrecision;
   }
+  .world-case-svg .world-map-fallback .world-country {
+    opacity: 0.92;
+  }
   .world-case-svg .world-map-layer {
     opacity: 0.50;
   }
@@ -7628,7 +7724,37 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       <h2 class="h2 system-title transition-map-title">전환의 길은 나라마다 다릅니다.</h2>
 
       <div class="world-case-stage" aria-label="세계 저탄소 산업 전환 사례 지도">
-        <svg class="world-case-svg" aria-hidden="true"></svg>
+        <svg class="world-case-svg" aria-hidden="true" viewBox="0 0 1680 500" preserveAspectRatio="xMidYMid meet">
+          <g class="world-map-layer world-map-fallback">
+            <path class="world-ocean" d="M242 82C345 32 500 24 628 63C772 107 867 98 1012 57C1169 13 1347 36 1452 118C1558 201 1567 318 1475 392C1378 471 1205 487 1062 452C911 415 776 421 626 459C468 498 300 473 210 383C128 301 142 131 242 82Z"></path>
+            <path class="world-country" d="M565 116C627 79 723 77 793 112C858 144 875 202 827 238C767 283 656 274 591 226C543 190 523 142 565 116Z"></path>
+            <path class="world-country" d="M759 154C861 94 1047 85 1172 130C1288 171 1350 251 1305 320C1255 397 1103 418 980 382C845 342 694 369 625 306C571 257 642 223 759 154Z"></path>
+            <path class="world-country" d="M1033 171C1078 139 1160 141 1207 177C1252 211 1230 260 1174 281C1115 303 1041 283 1015 241C996 210 1004 191 1033 171Z"></path>
+            <path class="world-country" d="M1228 254C1275 235 1349 249 1393 291C1428 325 1416 375 1368 399C1319 423 1256 405 1226 362C1197 322 1196 275 1228 254Z"></path>
+            <path class="world-country" d="M845 317C894 293 959 303 1000 339C1034 369 1025 412 981 434C926 461 839 436 816 387C802 356 814 332 845 317Z"></path>
+            <path class="world-map-outline" d="M565 116C627 79 723 77 793 112C858 144 875 202 827 238C767 283 656 274 591 226C543 190 523 142 565 116ZM759 154C861 94 1047 85 1172 130C1288 171 1350 251 1305 320C1255 397 1103 418 980 382C845 342 694 369 625 306C571 257 642 223 759 154Z"></path>
+          </g>
+          <g class="world-leader-layer">
+            <path class="world-leader sweden" d="M352 135C470 56 608 70 735 130"></path>
+            <path class="world-leader rotterdam" d="M352 325C482 244 606 220 718 202"></path>
+            <path class="world-leader japan" d="M1328 249C1275 212 1228 221 1182 258"></path>
+          </g>
+          <g class="world-pin-layer">
+            <g class="world-pin-group sweden" transform="translate(735 130)">
+              <circle class="world-pin-halo" r="24"></circle><circle class="world-pin" r="9.5"></circle><circle class="world-pin-core" r="3.4"></circle>
+            </g>
+            <g class="world-pin-group rotterdam" transform="translate(718 202)">
+              <circle class="world-pin-halo" r="24"></circle><circle class="world-pin" r="9.5"></circle><circle class="world-pin-core" r="3.4"></circle>
+            </g>
+            <g class="world-pin-group japan" transform="translate(1182 258)">
+              <circle class="world-pin-halo" r="24"></circle><circle class="world-pin" r="9.5"></circle><circle class="world-pin-core" r="3.4"></circle>
+            </g>
+            <g class="world-pin-group gwangyang" transform="translate(1118 287)">
+              <circle class="world-pin-halo" r="26"></circle><circle class="world-pin" r="10.5"></circle><circle class="world-pin-core" r="3.6"></circle>
+              <text class="world-pin-label" x="18" y="6">GWANGYANG</text>
+            </g>
+          </g>
+        </svg>
         <article class="world-case-card sweden" data-pin-key="sweden">
           <p class="case-index mono">01</p>
           <h3>스웨덴 공정</h3>
@@ -8079,14 +8205,14 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
       const svgNode = stage && stage.querySelector('.world-case-svg');
       if (!stage || !svgNode) return;
       const box = stage.getBoundingClientRect();
-      if (box.width < 200 || box.height < 200) return;
+      const width = Math.round(stage.clientWidth || box.width);
+      const height = Math.round(stage.clientHeight || box.height);
+      if (width < 200 || height < 200) return;
 
       try {
         const mapData = await loadCountries();
         const countries = mapData.countries;
         const d3 = window.d3;
-        const width = Math.round(stage.clientWidth || box.width);
-        const height = Math.round(stage.clientHeight || box.height);
         const svg = d3.select(svgNode)
           .attr('viewBox', `0 0 ${width} ${height}`)
           .attr('preserveAspectRatio', 'xMidYMid meet');
@@ -8097,7 +8223,7 @@ section[data-label="15 Teamplay"][data-interaction-step="4"] .teamplay-card-num 
           x: Math.round(width * 0.125),
           y: 2,
           width: Math.round(width * 0.75),
-          height: 496
+          height: Math.max(300, height - 4)
         };
         const mapPadding = 6;
         const projection = d3.geoNaturalEarth1()
@@ -9365,13 +9491,14 @@ HyREX 설비를 제어하고 데이터를 모니터링하는 역할이 더 중�
     const isScriptMode = params.get('script') === '1';
     const isLocalScriptMode = isScriptMode && params.get('local') === '1';
     const isPreviewNoSync = params.get('nosync') === '1';
+    const shouldResetSyncOnLoad = isScriptMode && params.get('reset') === '1';
     const channelName = 'gwangyang-creative-convergence-slide-sync';
     const storageKey = 'gwangyang-creative-convergence-slide-sync';
     const localSyncEndpoint = 'http://127.0.0.1:4184/slide-sync';
     function getRemoteSyncEndpoint() {
       const host = location.hostname;
       if (host === '127.0.0.1' || host === 'localhost') {
-        return 'https://gwangyang-creative-convergence.vercel.app/api/slide-sync';
+        return 'https://gy-creative.vercel.app/api/slide-sync';
       }
       if (host.endsWith('netlify.app')) {
         return '/.netlify/functions/slide-sync';
@@ -9465,6 +9592,14 @@ HyREX 설비를 제어하고 데이터를 모니터링하는 역할이 더 중�
         // Ignore unavailable or malformed localStorage values.
       }
       return null;
+    }
+
+    function clearStoredSlideSync() {
+      try {
+        localStorage.removeItem(storageKey);
+      } catch (error) {
+        // Ignore unavailable localStorage.
+      }
     }
 
     function postSlideChange(endpoint, message) {
@@ -9594,10 +9729,11 @@ HyREX 설비를 제어하고 데이터를 모니터링하는 역할이 더 중�
       const text = document.querySelector('.console-script-text');
       if (!box || !text) return;
 
+      const isNarrowConsole = window.matchMedia && window.matchMedia('(max-width: 640px)').matches;
       box.style.overflowY = 'hidden';
       text.style.overflow = 'hidden';
-      text.style.fontSize = '24px';
-      text.style.lineHeight = '1.48';
+      text.style.fontSize = isNarrowConsole ? '17px' : '24px';
+      text.style.lineHeight = isNarrowConsole ? '1.45' : '1.48';
       positionConsoleScript();
     }
 
@@ -9955,6 +10091,11 @@ HyREX 설비를 제어하고 데이터를 모니터링하는 역할이 더 중�
     }
 
     function initSpeakerSync() {
+      if (shouldResetSyncOnLoad) {
+        activeSlide = 1;
+        lastRemoteSlideAt = Date.now();
+        clearStoredSlideSync();
+      }
       listenSlideChange();
       window.addEventListener('hashchange', handleHashChange);
       window.addEventListener('resize', fitScriptText);
@@ -9967,8 +10108,9 @@ HyREX 설비를 제어하고 데이터를 모니터링하는 역할이 더 중�
       });
 
       if (isScriptMode) {
-        const startSlide = isLocalScriptMode ? getCurrentSlideFromHash() : (getStoredSlide() || getCurrentSlideFromHash());
+        const startSlide = shouldResetSyncOnLoad ? 1 : (isLocalScriptMode ? getCurrentSlideFromHash() : (getStoredSlide() || getCurrentSlideFromHash()));
         setCurrentSlide(startSlide, { broadcast: false, allowScriptLocal: true });
+        if (shouldResetSyncOnLoad) broadcastSlideChange(startSlide);
       } else {
         setCurrentSlide(getCurrentSlideFromHash());
       }

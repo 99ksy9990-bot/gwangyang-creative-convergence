@@ -1,0 +1,11 @@
+Production URL
+https://gy-creative.vercel.app/
+
+Shared Slides
+https://gy-creative.vercel.app/s
+
+Speaker Console
+https://gy-creative.vercel.app/c
+
+Reset Sync API
+https://gy-creative.vercel.app/api/slide-sync

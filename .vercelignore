@@ -1,0 +1,15 @@
+exports/
+outputs/
+output/
+screenshots/
+screenshots_fhd_*/
+scraps/
+.netlify/
+netlify/
+node_modules/
+portable-node/
+*.bat
+local-site-server.cjs
+local-slide-sync.cjs
+presentation_handoff_*/
+*.zip
